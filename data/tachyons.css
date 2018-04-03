@@ -698,6 +698,7 @@ code, .code { font-family: Consolas, monaco, monospace; }
 /* Sans-Serif Typefaces */
 .helvetica { font-family: 'helvetica neue', helvetica, sans-serif; }
 .avenir { font-family: 'avenir next', avenir, sans-serif; }
+.roboto { font-family: 'Roboto', sans-serif; }
 /* Serif Typefaces */
 .athelas { font-family: athelas, georgia, serif; }
 .georgia { font-family: georgia, serif; }
