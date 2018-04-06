@@ -6,7 +6,7 @@ int xdirection = 1;  // Left or Right
 int ydirection = 1;  // Top to Bottom
 void setup()
 {
-size(640, 360);
+// size(640, 360);
 noStroke();
 frameRate(30);
 ellipseMode(RADIUS);
