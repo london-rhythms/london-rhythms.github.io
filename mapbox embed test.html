@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Display a map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZ3NsYXRlcjY0IiwiYSI6ImNqYzk3NTU3YTA5MjAycXAzcmkzazl0YXcifQ.a066cgDjUYxGvv0ei_rHKg'; // Put your Mapbox Public Access token here
+
+    // Load a new map in the 'map' HTML div
+    var map = new mapboxgl.Map({
+    container: 'map', // container id
+    // my style sheet: mapbox://styles/gslater64/cjcj0bxhx0uss2rqqfsp5nwif
+    // duncan's mapbox://styles/duncan2001/cjb5126wu17g52spxin20qohu
+    style: 'mapbox://styles/gslater64/cjd35ocik40wz2sobvtl67q26', // stylesheet location
+    // other style: mapbox://styles/gslater64/cjd35ocik40wz2sobvtl67q26
+    center: [-0.1, 51.5], // starting position [lng, lat]
+    zoom: 12 // starting zoom
+    });
+
+
+//map.on('click', function(e) {
+//    var features = map.queryRenderedFeatures(e.point, {
+//    layers: ['buildingopendata-june-2016'] // replace this with the name of the layer
+//    });
+//
+//    if (!features.length) {
+//    return;
+//    }
+//
+//    var feature = features[0];
+//
+//    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+//    .setLngLat(feature.geometry.coordinates)
+//    .setHTML('<h3>' + feature.properties.Building + '</h3>')//<p>' + feature.properties.description + '</p>')
+//    .setLngLat(feature.geometry.coordinates)
+//    .addTo(map);
+//});
+
+
+map.on('load', function() {
+      // Add the circle layer to the map
+
+map.addLayer({
+        id: 'buildings',
+        type: 'circle',
+        source: {
+          type: 'vector',
+          url: 'mapbox://gslater64.cjd39wugi0p6w33pi84521fhc-9viyz' // Your Mapbox tileset Map ID
+        },
+        'source-layer': 'BuildingOpenData_June_2016_2', // name of tilesets
+        'layout': {
+            'visibility': 'visible'
+        },
+        paint: {
+           'circle-color': '#43F5A0',
+            // not working attempt below to change colour based on category
+            // 'circle-color': {
+            //     'property': 'type',
+            //     'type': 'categorical',
+            //     'stops': [
+            //         ['Department for Business, Innovation and Skills', '#009900'],
+            //         ['Department for Communities and Local Government', '#cc00ff'],
+            //         ['Department for Culture, Media and Sport', '#1666ff'],
+            //         ['Department for Transport', '#43F5A0']
+            //     ]
+            // },
+            'circle-opacity': 0.95,
+            'circle-radius':
+            {
+                stops: [[5,1], [6,2], [7,3], [10,4] ]
+            }
+//            'circle-stroke-width': {
+//			 	stops: [[8, 1], [13, 4], [16, 5]]
+//			 },
+//            'circle-stroke-color': '#000',
+//            'circle-stroke-opacity': 1,
+//            'circle-radius': {
+//            	property: 'Building Floor Area'}
+//            	stops: [
+//            		[{zoom: 9, value: 0}, 1],
+//            		[{zoom: 9, value: 100}, 5],
+//            		[{zoom: 12, value: 0}, 3],
+//            		[{zoom: 12, value: 100}, 40],
+//            		[{zoom: 16, value: 0}, 4],
+//            		[{zoom: 16, value: 100}, 150],
+//            		]
+//            }
+        }
+      });
+
+
+    var popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
+
+    map.on('mouseenter', 'buildings', function(e) {
+        // Change the cursor style as a UI indicator.
+        map.getCanvas().style.cursor = 'pointer';
+
+        // Populate the popup and set its coordinates
+        // based on the feature found.
+        popup.setLngLat(e.features[0].geometry.coordinates)
+            .setHTML(
+                    '<H3> Building Details </H3>'
+                    + '<B> Building Name: </B>' + e.features[0].properties.building_name + '<P></P>'
+                    + '<B> Department: </B>' + e.features[0].properties.department + '<P></P>'
+                    + '<B> Tenure Type: </B>' + e.features[0].properties.tenure_type + '<P></P>'
+                    + '<B> Building Floor Area: </B>' + e.features[0].properties.building_floor_area + '<P></P>'
+                    + '<B> Building Type: </B>' + e.features[0].properties.building_type + '<P></P>'
+                    + '<B> Building Usage: </B>' + e.features[0].properties.building_usage
+                    )
+            .addTo(map);
+    });
+
+    map.on('mouseleave', 'buildings', function() {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
+
+
+});
+
+
+
+</script>
+</div>
+</body>
+</html>
