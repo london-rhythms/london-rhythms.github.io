@@ -15,13 +15,16 @@ var categories = ['musicvenues', 'restaurants', 'adultentertainment', 'beergarde
 let businesses = [];
 let colour = [];
 let tables = [];
+let cat_display = [];
+let key_display = []
+let bus_key;
 
 
 function  preload(){
 
   for (var day=0; day<7; day++){
 
-    table = loadTable('../files/location_hours_day_' + str(day) + '.csv', 'csv', 'header');
+    table = loadTable('location_hours_day_' + str(day) + '.csv', 'csv', 'header');
     tables.push(table);
   }
 }
@@ -29,17 +32,30 @@ function  preload(){
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  textFont('Helvetica');
 
+  // cat_display[0] = true;
+  bus_key = new KeyItem(40,150,0);
+
+  var y = 100;
   // create colour array
   for (var i = 0; i < categories.length; i++){
 
     colorMode(HSB);
     c = map(i,0,categories.length, 100, 300);
     colour[i] = color(c,100,100);
+
+    cat_display[i] = true;
+
+    let k = new KeyItem(20, y, i);
+    key_display.push(k);
+    y += 30;
   }
 
+  // load all data and generate businesses
   for (var d=0; d<7; d++){
 
+    // sub array
     businesses[d] = [];
 
     for (var r = 0; r < tables[d].getRowCount(); r++){
@@ -66,16 +82,19 @@ function setup() {
 
 function draw() {
 
-  print(day_t);
-  print(time);
-
   background('#282828');
   runTime(10);
 
   fill(255);
-  textSize(50);
-  text(day_names[day_t], 10, 50);
-  text(timeString(), 10, 100);
+  textSize(30);
+  text(day_names[day_t], 10, 30);
+  text(timeString(), 10, 60);
+
+  // bus_key.show();
+
+  for (var i = 0; i < categories.length; i++){
+    key_display[i].show();
+  }
 
   for(let bus of businesses[day_t]){
 
@@ -99,15 +118,15 @@ class Business {
   }
 
   show(){
-
     // to turn categories on and off I could just switch the colours in this array between original and the same as the background
-    var col = categories.indexOf(this.cat);
-
+    var cat_index = categories.indexOf(this.cat);
     noStroke();
-    // fill('#F012BE');
-    fill(colour[col]);
+    fill(colour[cat_index]);
 
-    ellipse(this.lon, this.lat, this.r, this.r);
+    if(cat_display[cat_index]){
+
+      ellipse(this.lon, this.lat, this.r, this.r);
+    }
   }
 
   isopen(){
@@ -136,6 +155,60 @@ class Business {
   }
 }
 
+
+class KeyItem {
+
+  constructor(x, y, num){
+    this.x = x;
+    this.y = y;
+    this.num = num;
+    this.r = 15;
+    this.selected = true;
+  }
+
+  show(){
+
+    if(this.selected){
+
+      fill(colour[this.num]);
+      ellipse(this.x, this.y, this.r, this.r);
+      fill(255);
+      textSize(15);
+      textAlign(LEFT, CENTER);
+      text(categories[this.num], this.x + this.r, this.y);
+    }
+    else{
+      fill(colour[this.num]);
+      ellipse(this.x, this.y, this.r, this.r);
+      fill('#282828');
+      ellipse(this.x, this.y, this.r-2, this.r-2);
+      fill(255);
+      textSize(15);
+      textAlign(LEFT, CENTER);
+      text(categories[this.num], this.x + this.r, this.y);
+    }
+  }
+
+  clicked(){
+
+    if (dist(this.x, this.y, mouseX, mouseY) < this.r){
+      // reverse selected boolean used above in show()
+      this.selected = !this.selected;
+      // reverse display boolean in cat_display array
+      cat_display[this.num] = !cat_display[this.num];
+    }
+  }
+
+}
+
+
+function mousePressed(){
+  // bus_key.clicked();
+  for(let k of key_display){
+    k.clicked();
+  }
+}
+
 function runTime(interval){
 
   if (time > (1440 - interval)){
@@ -151,13 +224,6 @@ function runTime(interval){
   else time += interval;
 }
 
-// function runTime(interval){
-//
-//   if (time > (1440 - interval)){
-//     time = 0;
-//   }
-//   else time += interval;
-// }
 
 function timeString(){
 
