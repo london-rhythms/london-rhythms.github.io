@@ -24,7 +24,7 @@ function  preload(){
 
   for (var day=0; day<7; day++){
 
-    table = loadTable('location_hours_day_' + str(day) + '.csv', 'csv', 'header');
+    table = loadTable('../files/location_hours_day_' + str(day) + '.csv', 'csv', 'header');
     tables.push(table);
   }
 }
