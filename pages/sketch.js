@@ -7,90 +7,116 @@ var longitude = {
   max: -0.00600815,
 }
 
-var time = {
-  h: 0,
-  m: 0,
-}
-
+var time = 0;
+var day_t = 0;
 var table;
+var day_names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday', 'Saturday', 'Sunday'];
+var categories = ['musicvenues', 'restaurants', 'adultentertainment', 'beergardens', 'comedyclubs', 'danceclubs', 'jazzandblues', 'karaoke', 'pianobars', 'poolhalls', 'cocktailbars', 'gaybars', 'hookah_bars',  'pubs', 'sportsbars', 'wine_bars']
+let businesses = [];
+let colour = [];
+let tables = [];
+
 
 function  preload(){
-  table = loadTable('location_hours_day0.csv', 'csv', 'header');
+
+  for (var day=0; day<7; day++){
+
+    table = loadTable('../files/location_hours_day_' + str(day) + '.csv', 'csv', 'header');
+    tables.push(table);
+  }
 }
 
-let businesses = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  for (var r = 0; r < table.getRowCount(); r++){
+  // create colour array
+  for (var i = 0; i < categories.length; i++){
 
-    var lat_in = table.getString(r, 2);
-    var lon_in = table.getString(r, 3);
-    var open = split(table.getString(r, 4), ':');
-    var close = split(table.getString(r, 1), ':');
-
-    var lat = map(float(lat_in), latitude.min, latitude.max, windowHeight, 0);
-    var lon = map(float(lon_in), longitude.min, longitude.max, 0, windowWidth);
-
-    let b = new Business(lat, lon, open, close);
-    businesses.push(b);
+    colorMode(HSB);
+    c = map(i,0,categories.length, 100, 250);
+    colour[i] = color(c,100,100);
   }
+
+  for (var d=0; d<7; d++){
+
+    businesses[d] = [];
+
+    for (var r = 0; r < tables[d].getRowCount(); r++){
+
+      var cat = tables[d].getString(r, 1);
+      var name = tables[d].getString(r,2);
+      var lat_in = tables[d].getString(r, 4);
+      var lon_in = tables[d].getString(r, 3);
+      var day = int(tables[d].getString(r,5));
+      var open  = int(tables[d].getString(r, 6));
+      var close = int(tables[d].getString(r, 7));
+
+      var lat = map(float(lat_in), latitude.min, latitude.max, windowHeight, 0);
+      var lon = map(float(lon_in), longitude.min, longitude.max, 0, windowWidth);
+
+      let b = new Business(name, cat, lat, lon, open, close);
+      businesses[d].push(b);
+    }
+
+  }
+
 }
+
 
 function draw() {
 
-  background(40);
-  runTime(20);
+  print(day_t);
+  print(time);
+
+  background('#282828');
+  runTime(10);
 
   fill(255);
   textSize(50);
-  if(time.h <10){
-    text('0' + time.h + ':' + time.m, 10, 50);
-  }
-  else {
-    text(time.h + ':' + time.m, 10, 50);
-  }
+  text(day_names[day_t], 10, 50);
+  text(timeString(), 10, 100);
 
-  for(let bus of businesses){
-    if(bus.open()){
+  for(let bus of businesses[day_t]){
 
+    bus.hover();
+    if(bus.isopen()){
       bus.show();
     }
   }
-  print(time.h + ' - ' + time.m);
-  // print('10 - 30');
-  // print(timeLess(10, 30, time.h, time.m));
-  print(businesses[0].openH + ' - ' + businesses[0].openM);
-  print('')
 }
 
 class Business {
 
-  constructor(lat, lon, open, close) {
+  constructor(name, cat, lat, lon, open, close) {
+    this.name = name;
+    this.cat = cat;
     this.lat = lat;
     this.lon = lon;
-    this.openH = int(open[0]);
-    this.openM = int(open[1]);
-    this.closeH = int(close[0]);
-    this.closeM = int(close[1]);
+    this.open = open;
+    this.close = close;
+    this.r = 3;
   }
 
   show(){
-    noStroke();
 
-    fill('#F012BE');
-    ellipse(this.lon, this.lat, 5, 5);
+    // to turn categories on and off I could just switch the colours in this array between original and the same as the background
+    var col = categories.indexOf(this.cat);
+
+    noStroke();
+    // fill('#F012BE');
+    fill(colour[col]);
+
+    ellipse(this.lon, this.lat, this.r, this.r);
   }
 
-  open(){
+  isopen(){
+    var output = false;
 
-    var output;
-
-    if (timeLess(this.closeH, this.closeM, this.openH, this.openM) && (timeLess(this.openH, this.openM, time.h, time.m) || timeLess(time.h, time.m, this.closeH, this.closeM)) ) {
+    if ( (this.close < this.open) && (this.open < time || time < this.close) ) {
       output = true;
     }
-    else if ((timeLess(this.openH, this.openM, time.h, time.m) && timeLess(time.h, time.m, this.closeH, this.closeM))) {
+    else if ( this.open < time && time < this.close ) {
       output = true;
     }
     else {
@@ -98,37 +124,54 @@ class Business {
     }
     return output;
   }
+
+  hover(){
+
+    if (dist(this.lon, this.lat, mouseX, mouseY) < this.r){
+
+      noFill();
+      stroke('#F012BE');
+      ellipse(this.lon, this.lat, this.r+10, this.r+10);
+    }
+  }
 }
 
+function runTime(interval){
 
-function runTime(interval_mins){
-
-  if (time.m == 60){
-    time.m = 0;
-    if (time.h == 24){
-      time.h = 0
+  if (time > (1440 - interval)){
+    if (day_t == 6){
+      day_t = 0;
+      time = 0;
     }
     else {
-      time.h = time.h + 1;
+      time = 0;
+      day_t = day_t + 1;
     }
   }
-  else {
-    time.m = time.m + interval_mins;
-  }
+  else time += interval;
 }
 
-function timeLess(thisH, thisM, thatH, thatM){
+// function runTime(interval){
+//
+//   if (time > (1440 - interval)){
+//     time = 0;
+//   }
+//   else time += interval;
+// }
 
-  var output;
+function timeString(){
 
-  if (thisH < thatH){
-    output = true;
+  var hours = 0;
+  var mins = 0;
+  var out;
+
+  hours = floor(time/60);
+  mins = (time - (hours*60));
+
+  if (hours<10){
+    out = str('0' + hours + ':' + mins);
   }
-  else if (thisH == thatH && thisM < thatM) {
-    output = true;
-  }
-  else {
-    output = false;
-  }
-  return output;
+  else out = str(hours + ':' + mins);
+
+  return out;
 }
