@@ -34,7 +34,7 @@ function setup() {
   for (var i = 0; i < categories.length; i++){
 
     colorMode(HSB);
-    c = map(i,0,categories.length, 100, 250);
+    c = map(i,0,categories.length, 100, 300);
     colour[i] = color(c,100,100);
   }
 
