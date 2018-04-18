@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	<title>fullPage.js — TestPage</title>
+	<link rel="stylesheet" type="text/css" href="https://alvarotrigo.com/fullPage/jquery.fullPage.css">
+	<style>
+	.section { text-align: center; font: 50px "Arial"; color: #fff;}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://alvarotrigo.com/fullPage/jquery.fullpage.min.js"></script>
+
+
+<script>
+	$(function(){
+		$('#testpage').fullpage({
+			sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90']
+		});
+	});
+</script>
+</head>
+
+<body data-lang="es">
+
+	<div id="testpage">
+
+		<!-- each section is a single screen -->
+		<div class="section">
+			<h3>Hello!</h3>
+			<p>This is the first page.</p>
+		</div>
+
+		<div class="section">
+			<!-- add horizontal slides here  -->
+			<div class="slide">First slide of Second screen</div>
+			<div class="slide">blabla</div>
+			<div class="slide">blablabla</div>			
+		</div>
+
+		<div class="section">
+			<h3>Third Screen</h3>
+		</div>
+		
+		<div class="section">
+			<h3>This is the last Screen</h3>
+		</div>
+	</div>
+
+</body>
+
+</html>
