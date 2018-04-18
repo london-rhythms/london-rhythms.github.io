@@ -5,29 +5,42 @@
 	<meta charset="utf-8">
 	<title>fullPage.js — TestPage</title>
 	<link rel="stylesheet" type="text/css" href="//alvarotrigo.com/fullPage/jquery.fullPage.css">
-	<style>
-	.section { text-align: center; font: 50px "Arial"; color: #fff;}
-</style>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="//alvarotrigo.com/fullPage/jquery.fullpage.min.js"></script>
-
+	
+	<style>
+	#menu { margin: 0; padding: 0; position: fixed; left: 10px; top: 10px; list-style-type: none; z-index: 70;}
+	#menu li { float: left; margin:  0 10px 0 0; font-size: 14px;}
+	#menu a { float: left; padding: 10px 20px; background-color: #fff; color: #333; text-decoration: none;}
+	#menu .active a { color: #fff; background-color: #333;}
+	.section { text-align: center; font: 50px "Microsoft Yahei"; color: #fff;}
+</style>
 
 <script>
 	$(function(){
 		$('#testpage').fullpage({
-			sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90']
+			sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90'],
+			anchors: ['page1', 'page2', 'page3', 'page4'],
+			menu: '#menu'
 		});
 	});
 </script>
 </head>
 
-<body data-lang="es">
+<body>
+
+	<ul id="menu">
+		<li data-menuanchor="page1" class="active"><a href="#page1">Stage 1</a></li>
+		<li data-menuanchor="page2"><a href="#page2">Stage 2</a></li>
+		<li data-menuanchor="page3"><a href="#page3">Stage 3</a></li>
+		<li data-menuanchor="page4"><a href="#page4">Stage 4</a></li>
+	</ul>
 
 	<div id="testpage">
-
-		<!-- each section is a single screen -->
+		
+	<!-- each section is a single screen -->
 		<div class="section">
-			<h3>Hello!</h3>
+			<h3>London Night Rhythms</h3>
 			<p>This is the first page.</p>
 		</div>
 
@@ -41,12 +54,12 @@
 		<div class="section">
 			<h3>Third Screen</h3>
 		</div>
-		
+
 		<div class="section">
-			<h3>This is the last Screen</h3>
+			<h3>This is the last screen.</h3>
 		</div>
 	</div>
 
-</body>
 
+</body>
 </html>
