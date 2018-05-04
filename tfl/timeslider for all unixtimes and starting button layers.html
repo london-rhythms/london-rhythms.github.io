@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>TFL: Exit data</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <!loading script jquery 1.6.0 to later change the html element>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>    
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }      
+    </style>
+</head>
+
+<body>
+    
+<style>
+    #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 10px;
+        border-radius: 3px;
+        width: 120px;
+        border: 1px solid rgba(0,0,0,0.4);
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    #menu a {
+        font-size: 13px;
+        color: #404040;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0,0,0,0.25);
+        text-align: center;
+    }
+
+    #menu a:last-child {
+        border: none;
+    }
+
+    #menu a:hover {
+        background-color: #f8f8f8;
+        color: #404040;
+    }
+
+    #menu a.active {
+        background-color: #3887be;
+        color: #ffffff;
+    }
+
+    #menu a.active:hover {
+        background: #3074a4;
+    }        
+    
+    
+    .map-overlay {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 10px;
+}
+
+.map-overlay .map-overlay-inner {
+    background-color: #fff;
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.map-overlay h2 {
+    line-height: 24px;
+    display: block;
+    margin: 0 0 10px;
+}
+
+.map-overlay .legend .bar {
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #FCA107, #7F3121);
+}
+
+.map-overlay input {
+    background-color: transparent;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    cursor: ew-resize;
+} 
+    
+.button {
+  cursor: pointer;
+}
+
+</style>
+
+<nav id="menu"></nav>
+<div id="map"></div>
+    
+<div class='map-overlay top'>
+    <div class='map-overlay-inner'>
+        <h2>Timeslider</h2>
+        <label id='input2'></label>
+        <input id="input" type="range" min="0" value="0" max="323" step="1">
+        <div id="output"></div>
+</div>
+            
+<script>
+    
+// change values 
+var values = [1.48185360e+09,   1.48185540e+09,   1.48185720e+09,
+         1.48185900e+09,   1.48186080e+09,   1.48186260e+09,
+         1.48194000e+09,   1.48194180e+09,   1.48194360e+09,
+         1.48194540e+09,   1.48194720e+09,   1.48194900e+09,
+         1.48245840e+09,   1.48246020e+09,   1.48246200e+09,
+         1.48246380e+09,   1.48246560e+09,   1.48246740e+09,
+         1.48254480e+09,   1.48254840e+09,   1.48255020e+09,
+         1.48255200e+09,   1.48255380e+09,   1.48306320e+09,
+         1.48306500e+09,   1.48306680e+09,   1.48306860e+09,
+         1.48307040e+09,   1.48307220e+09,   1.48314960e+09,
+         1.48315140e+09,   1.48315320e+09,   1.48315500e+09,
+         1.48315680e+09,   1.48315860e+09,   1.49628240e+09,
+         1.49628420e+09,   1.49628600e+09,   1.49628780e+09,
+         1.49628960e+09,   1.49629140e+09,   1.49887440e+09,
+         1.49887620e+09,   1.49887800e+09,   1.49887980e+09,
+         1.49888160e+09,   1.49888340e+09,   1.48427280e+09,
+         1.48427460e+09,   1.48427640e+09,   1.48427820e+09,
+         1.48428000e+09,   1.48428180e+09,   1.48435920e+09,
+         1.48436100e+09,   1.48436280e+09,   1.48436460e+09,
+         1.48436640e+09,   1.48436820e+09,   1.48487760e+09,
+         1.48487940e+09,   1.48488120e+09,   1.48488300e+09,
+         1.48488480e+09,   1.48488660e+09,   1.48496400e+09,
+         1.48496580e+09,   1.48496760e+09,   1.48496940e+09,
+         1.48497120e+09,   1.48497300e+09,   1.48548240e+09,
+         1.48548420e+09,   1.48548600e+09,   1.48548780e+09,
+         1.48548960e+09,   1.48549140e+09,   1.48556880e+09,
+         1.48557060e+09,   1.48557240e+09,   1.48557420e+09,
+         1.48557600e+09,   1.48557780e+09,   1.48842000e+09,
+         1.48842180e+09,   1.48842360e+09,   1.48842540e+09,
+         1.48842720e+09,   1.48842900e+09,   1.49109840e+09,
+         1.49110020e+09,   1.49110200e+09,   1.49110380e+09,
+         1.49110560e+09,   1.49110740e+09,   1.50690960e+09,
+         1.50691140e+09,   1.50691320e+09,   1.50691500e+09,
+         1.50691680e+09,   1.50691860e+09,   1.50958800e+09,
+         1.50958980e+09,   1.50959160e+09,   1.50959340e+09,
+         1.50959520e+09,   1.50959700e+09,   1.48729680e+09,
+         1.48729860e+09,   1.48730040e+09,   1.48730220e+09,
+         1.48730400e+09,   1.48730580e+09,   1.48738320e+09,
+         1.48738500e+09,   1.48738680e+09,   1.48738860e+09,
+         1.48739040e+09,   1.48739220e+09,   1.47943440e+09,
+         1.47943620e+09,   1.47943800e+09,   1.47943980e+09,
+         1.47944160e+09,   1.47944340e+09,   1.47952080e+09,
+         1.47952260e+09,   1.47952440e+09,   1.47952620e+09,
+         1.47952800e+09,   1.47952980e+09,   1.48003920e+09,
+         1.48004100e+09,   1.48004280e+09,   1.48004460e+09,
+         1.48004640e+09,   1.48004820e+09,   1.48012560e+09,
+         1.48012740e+09,   1.48012920e+09,   1.48013100e+09,
+         1.48013280e+09,   1.48013460e+09,   1.45524240e+09,
+         1.45524420e+09,   1.45524600e+09,   1.45524780e+09,
+         1.45524960e+09,   1.45525140e+09,   1.45774800e+09,
+         1.45774980e+09,   1.45775160e+09,   1.45775340e+09,
+         1.45775520e+09,   1.45775700e+09,   1.47364560e+09,
+         1.47364740e+09,   1.47364920e+09,   1.47365100e+09,
+         1.47365280e+09,   1.47365460e+09,   1.47623760e+09,
+         1.47623940e+09,   1.47624120e+09,   1.47624300e+09,
+         1.47624480e+09,   1.47624660e+09,   1.46811600e+09,
+         1.46811780e+09,   1.46811960e+09,   1.46812140e+09,
+         1.46812320e+09,   1.46812500e+09,   1.47079440e+09,
+         1.47079620e+09,   1.47079800e+09,   1.47079980e+09,
+         1.47080160e+09,   1.47080340e+09,   1.47641040e+09,
+         1.47641220e+09,   1.47641400e+09,   1.47641580e+09,
+         1.47641760e+09,   1.47641940e+09,   1.47649680e+09,
+         1.47649860e+09,   1.47650040e+09,   1.47650220e+09,
+         1.47650400e+09,   1.47650580e+09,   1.47701520e+09,
+         1.47701700e+09,   1.47701880e+09,   1.47702060e+09,
+         1.47702240e+09,   1.47702420e+09,   1.47710160e+09,
+         1.47710340e+09,   1.47710520e+09,   1.47710700e+09,
+         1.47710880e+09,   1.47711060e+09,   1.47762000e+09,
+         1.47762180e+09,   1.47762360e+09,   1.47762540e+09,
+         1.47762720e+09,   1.47762900e+09,   1.47770640e+09,
+         1.47770820e+09,   1.47771000e+09,   1.47771180e+09,
+         1.47771360e+09,   1.47771540e+09,   1.46034000e+09,
+         1.46034180e+09,   1.46034360e+09,   1.46034540e+09,
+         1.46034720e+09,   1.46034900e+09,   1.46293200e+09,
+         1.46293380e+09,   1.46293560e+09,   1.46293740e+09,
+         1.46293920e+09,   1.46294100e+09,   1.47882960e+09,
+         1.47883140e+09,   1.47883320e+09,   1.47883500e+09,
+         1.47883680e+09,   1.47883860e+09,   1.48142160e+09,
+         1.48142340e+09,   1.48142520e+09,   1.48142700e+09,
+         1.48142880e+09,   1.48143060e+09,   1.48254660e+09,
+         1.47157200e+09,   1.47157380e+09,   1.47157560e+09,
+         1.47157740e+09,   1.47157920e+09,   1.47158100e+09,
+         1.47165840e+09,   1.47166020e+09,   1.47166200e+09,
+         1.47166380e+09,   1.47166560e+09,   1.47166740e+09,
+         1.47217680e+09,   1.47217860e+09,   1.47218040e+09,
+         1.47218220e+09,   1.47218400e+09,   1.47218580e+09,
+         1.47226320e+09,   1.47226500e+09,   1.47226680e+09,
+         1.47226860e+09,   1.47227040e+09,   1.47227220e+09,
+         1.45498320e+09,   1.45498500e+09,   1.45498680e+09,
+         1.45498860e+09,   1.45499040e+09,   1.45499220e+09,
+         1.45748880e+09,   1.45749060e+09,   1.45749240e+09,
+         1.45749420e+09,   1.45749600e+09,   1.45749780e+09,
+         1.47338640e+09,   1.47338820e+09,   1.47339000e+09,
+         1.47339180e+09,   1.47339360e+09,   1.47339540e+09,
+         1.47597840e+09,   1.47598020e+09,   1.47598200e+09,
+         1.47598380e+09,   1.47598560e+09,   1.47598740e+09,
+         1.47399120e+09,   1.47399300e+09,   1.47399480e+09,
+         1.47399660e+09,   1.47399840e+09,   1.47400020e+09,
+         1.47407760e+09,   1.47407940e+09,   1.47408120e+09,
+         1.47408300e+09,   1.47408480e+09,   1.47408660e+09,
+         1.47459600e+09,   1.47459780e+09,   1.47459960e+09,
+         1.47460140e+09,   1.47460320e+09,   1.47460500e+09,
+         1.47468240e+09,   1.47468420e+09,   1.47468600e+09,
+         1.47468780e+09,   1.47468960e+09,   1.47469140e+09,
+         1.47520080e+09,   1.47520260e+09,   1.47520440e+09,
+         1.47520620e+09,   1.47520800e+09,   1.47520980e+09,
+         1.45239120e+09,   1.45239300e+09,   1.45239480e+09,
+         1.45239660e+09,   1.45239840e+09,   1.45240020e+09];
+     
+var input = document.getElementById('input'),
+   output = document.getElementById('output');
+input.oninput = function(){
+    // value shown in slder in HTML format 3
+    var date_value = values[this.value];
+    
+    // multiply by 1000
+    var d = new Date(date_value*1000);
+    
+    // if condition otherwise 0 too much for minutes 30 --> 030
+    
+    if (d.getMinutes() < 2) {
+            var new_d = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + ' ' + "0" + d.getHours() + ':' + "0"+ d.getMinutes() + ':' + "0"+d.getSeconds();     
+    }
+    
+    if (d.getMinutes() > 1) {
+         var new_d = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + ' ' + "0" + d.getHours() + ':' + d.getMinutes() + ':' + "0"+d.getSeconds();    
+    }
+        
+    output.innerHTML = "Date: " + new_d;
+    
+};
+    
+input.oninput();
+    
+// console.log(document.getElementById('input').value);
+    
+document.getElementById('input').addEventListener('input', function(e) {
+    var value = parseInt(e.target.value);
+    // test in the console whether the right value is taken 
+    // value taken is position in the []
+    //console.log(values[value]); 
+    map.setFilter('Entries', ['==', ['number', ['get', 'unix']], values[value]]);
+    map.setFilter('Exits', ['==', ['number', ['get', 'unix']], values[value]]);
+});
+    
+// change names of slider     
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoia2FhdG5sIiwiYSI6ImNqY2h2d2ZtMzFnaTQzNHBhOWhvaWs3aWsifQ.Ok-oAUUWa36bsPl_tOJ13g';
+
+    var map = new mapboxgl.Map({
+    container: 'map', // container id
+    // using black style, but can change to something else 
+    style: 'mapbox://styles/kaatnl/cje7cgai0h5zl2smonbz0oybe', 
+    // stylesheet location: look up centre coordinates london 
+    // for now using oxford street 
+    // [long-lat] format 
+    center: [-0.141099,51.515419],
+    // to change startng view height 
+    pitch: 60,
+    // to rotate starting view 
+    // bearing: -60,    
+    // starting zoom
+    zoom: 12
+});
+                                        
+map.on('load', function () {
+    
+    // add data stored as tileset 
+    // create layer from the tube-stations data 
+
+    
+    map.addLayer({
+      id: 'Exits',
+      type: 'fill-extrusion',
+      source: {
+          type: 'vector',
+          url: 'mapbox://kaatnl.68xqxif7'
+      },
+    // currently filtering for one timestamp -> need to make a time slider for this later 
+       'filter': ['==', ['number', ['get', 'unix']], 1481853600],
+      'source-layer': 'station_unix_locations-42eaeg',
+      'layout': {
+          // starting map 
+          'visibility': 'visible'
+      },
+      paint: {
+          'fill-extrusion-opacity': 0.75,
+          'fill-extrusion-color': {
+              property: 'Exits',
+              type: 'exponential',
+              // make stops dependent on zoom level?
+              stops: [
+                  [0, "#f7fbff"],
+                  [50, "#deebf7"],
+                  [100, "hsl(0, 40%, 83%)"],
+                  [200, "hsl(0, 53%, 73%)"],
+                  [300, "hsl(0, 80%, 59%)"],
+                  [400, "hsl(0, 83%, 48%)"],
+                  // check colors again!
+                  // when changing the last one to black, it does not appear?
+                  [500, "hsl(0, 100%, 22%)"],
+                  [600, "hsl(0, 96%, 10%)"],
+                  [750, "#08306b"]
+              ]
+          }, 
+          'fill-extrusion-height': {
+              property: 'Exits',
+              type: 'exponential',
+              // make stops dependent on zoom level?
+              stops: [
+                  [0, 0],
+                  [50, 250],
+                  [100, 500],
+                  [200, 1000],
+                  [300, 1500],
+                  [400, 2000],
+                  [500, 2500],
+                  [600, 3000],
+                  [750, 5000]
+              ]
+          }}
+    });     
+    
+        map.addLayer({
+      id: 'Entries',
+      type: 'fill-extrusion',
+      source: {
+          type: 'vector',
+          url: 'mapbox://kaatnl.68xqxif7'
+      },
+      'filter': ['==', ['number', ['get', 'unix']], 1481853600],
+      'source-layer': 'station_unix_locations-42eaeg',
+      'layout': {
+          'visibility': 'none'
+      },
+      paint: {
+          'fill-extrusion-opacity': 0.75,
+          'fill-extrusion-color': {
+              property: 'Entries',
+              type: 'exponential',
+              // make stops dependent on zoom level?
+              stops: [
+                  [100, "hsl(0, 40%, 83%)"],
+                  [200, "hsl(0, 53%, 73%)"],
+                  [300, "hsl(0, 80%, 59%)"],
+                  [400, "hsl(0, 83%, 48%)"],
+                  // check colors again!
+                  // when changing the last one to black, it does not appear?
+                  [500, /* "rgb(0,0,0)"*/ "hsl(0, 100%, 22%)"],
+                  [600, /* "rgb(0,0,0)"*/ "hsl(0, 96%, 10%)"]
+              ]
+          },
+          'fill-extrusion-height': {
+              property: 'Entries',
+              type: 'exponential',
+              // make stops dependent on zoom level?
+              stops: [
+                  [100, 500],
+                  [200, 1000],
+                  [300, 1500],
+                  [400, 2000],
+                  [500, 2500],
+                  [600, 3000]   
+              ]
+          }}
+    });
+    
+});
+ 
+var toggleableLayerIds = [ 'Exits', 'Entries' ];
+    
+for (var i = 0; i < toggleableLayerIds.length; i++) {
+    var id = toggleableLayerIds[i];
+
+    var link = document.createElement('a');
+    link.id = id;
+    link.href = '#'+id;
+    link.class = 'active';
+    link.textContent = id;
+    
+    // starting map
+    //$("#Entries").attr('class', '');
+    
+    // map.setLayoutProperty('Exits', 'visibility', 'none');
+    
+    if (link.textContent == 'Entries') {
+        console.log(link);  
+        console.log("test Entries");
+    }
+    
+    if (link.textContent == 'Exits') {
+        console.log(link);  
+        console.log("test Exits");
+    }
+    
+            
+    console.log("kahina");
+    console.log($("a[href = '#Exits']").prop('id'));
+    console.log($("a[href = '#Entries']").prop('id'));
+    
+    link.onclick = function (e) {
+        var clickedLayer = this.textContent;
+        console.log(link);
+        console.log(clickedLayer);
+        // either entries or exits 
+        e.preventDefault();
+        e.stopPropagation();
+
+        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                
+        console.log(visibility);
+        
+        // console.log($("a[href = '#Exits']").prop('class'));
+                        
+        if (clickedLayer == 'Entries' & visibility == 'none' & ($("a[href = '#Exits']").prop('class') == 'visible')) {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            map.setLayoutProperty('Exits', 'visibility', 'none');
+            this.className = 'active';
+            $("#Exits").attr('class', 'non_active');
+        } else if (clickedLayer == 'Entries' & visibility == 'none' & $("#Exits").attr('non_active')) {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            this.className = 'active';            
+        } else if (clickedLayer == 'Entries' & visibility == 'visible') {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            this.className = 'active';  
+        } else if (clickedLayer == 'Exits' & visibility == 'none' & $("#Entries").attr('active')) {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            map.setLayoutProperty('Entries', 'visibility', 'none');
+            this.className = 'active';
+            $("#Exits").attr('class', '');
+        } else if (clickedLayer == 'Exits' & visibility == 'none' & $("#Entries").attr('non_active')) {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            this.className = 'active';   
+        } else if (clickedLayer == 'Exits' & visibility == 'visible') {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+            this.className = 'non_active';  
+        } 
+                   
+     
+            
+            
+            
+            
+          /*  
+            
+            
+        } else if (clickedLayer == 'Entries' & visibility == 'visible' & $("#Exits").attr('')) {
+            // set entries layer to visible 
+            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+            // set exit layer to non visible 
+            map.setLayoutProperty('Exits', 'visibility', 'none');
+            this.className = '';
+            //$("a.Exits").attr("className", '');
+            // alert($("a[href = '#Exits']").prop('className'));
+            //$("#Exits").attr('class', 'active');
+        
+        } else if (clickedLayer == 'Entries' & visibility == 'none' & $("#Exits").attr('')) {
+            // set entries layer to visible 
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            // set exit layer to non visible 
+            map.setLayoutProperty('Exits', 'visibility', 'none');
+            this.className = 'active';
+            //$("a.Exits").attr("className", '');
+            // alert($("a[href = '#Exits']").prop('className'));
+            //$("#Exits").attr('class', 'active');
+            
+        } else if (clickedLayer == 'Exits' & visibility == 'none') { 
+            // set entries layer to visible 
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            // set exit layer to non visible 
+            map.setLayoutProperty('Entries', 'visibility', 'none');
+            this.className = 'active';
+            //$("a.Exits").attr("className", '');
+            // alert($("a[href = '#Exits']").prop('className'));
+            //$("#Entries").attr('class', '');
+        } else if (clickedLayer == 'Exits' & visibility == 'visible') {
+            // set entries layer to visible 
+            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+            // set exit layer to non visible 
+            map.setLayoutProperty('Entries', 'visibility', 'visible');
+            this.className = '';
+            //$("a.Exits").attr("className", '');
+            // alert($("a[href = '#Exits']").prop('className'));
+            //$("#Entries").attr('class', 'active');          
+        } */
+    
+    
+    
+    }; 
+
+    var layers = document.getElementById('menu');
+    layers.appendChild(link);
+}    
+
+console.log("test");
+    
+//console.log($("a[href = '#Exits']").prop('class'));
+
+</script>
+
+</body>
+</html>
