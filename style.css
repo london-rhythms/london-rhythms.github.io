@@ -1,0 +1,145 @@
+/* style of navigation tabs 
+ * ------------------------------*/
+
+#menu {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    height: 10px;
+    z-index: 70;
+    width: 50px;
+    padding: 0;
+    margin: 0;
+}
+
+/* overall style of menu*/
+
+#menu li {
+    display: block;
+    float: right;
+    margin: 5px;
+    width: 24px;
+    height: 24px;
+    background: rgba(200, 200, 200, 0.5);
+    border-radius: 12px;
+}
+
+/* style of image in menu*/
+
+#menu li img {
+    width: 16px;
+    position: relative;
+    top: 10%;
+    left: 15%;
+}
+
+/* when actived, change style*/
+
+#menu li.active {
+    background: #666;
+    background: rgba(100, 255, 255, 0.7);
+    color: #fff;
+}
+
+/*when hovering, change style*/
+
+#menu li:hover {
+    background: rgba(180, 255, 255, 0.7);
+}
+
+
+
+/* page style 
+ * ---------------------------------*/
+
+.section {
+    text-align: center;
+    font: "Arial";
+    color: #fff;
+    background-position: center center;
+    margin: 0;
+}
+
+#section1 {
+    background-size: cover;
+    background-image: url(media/bg_pulsecity.jpg);
+}
+
+#slide31 {
+    background-size: cover;
+    background-image: url(media/bg_tfl.jpg);
+}
+
+
+
+/* style of controlArrow for slides
+ * ---------------------------------*/
+
+.fp-controlArrow {
+    top: 51%;
+}
+
+.fp-controlArrow.fp-prev {
+    left: 0;
+    border: none;
+    width: 50px;
+    height: 50px;
+    background: url(media/arrow_left.png) no-repeat;
+
+}
+
+.fp-controlArrow.fp-next {
+    right: 0;
+    border: none;
+    width: 50px;
+    height: 50px;
+    background: url(media/arrow_right.png) no-repeat;
+}
+
+
+
+
+/* style of texts
+ * ---------------------------------*/
+
+/* fonts: try Google Web Fonts if time available*/
+
+/*
+.fp-tableCell {
+     position of elements
+    vertical-align: top;
+}
+*/
+
+.main_title {
+    text-align: center;
+    position: relative;
+    top: -12%;
+}
+
+.main_intro {
+    text-align: center;
+    position: relative;
+    top: 5%;
+}
+
+.textContainer{
+    text-align: left;
+    position: relative;
+    left: 10px;
+    width: 95%;
+}
+
+h1 {
+    font: "Arial";
+    font-size: 6vw;
+}
+
+h2 {
+    font: "Arial";
+    font-size: 1.5vw;
+}
+
+h3{
+    font-size: 32px;
+}
