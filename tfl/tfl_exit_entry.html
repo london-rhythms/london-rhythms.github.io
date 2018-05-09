@@ -102,6 +102,11 @@
 .button {
   cursor: pointer;
 }
+    
+   .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
 
 </style>
 
@@ -227,6 +232,9 @@ var values = [1.48185360e+09,   1.48185540e+09,   1.48185720e+09,
          1.47520620e+09,   1.47520800e+09,   1.47520980e+09,
          1.45239120e+09,   1.45239300e+09,   1.45239480e+09,
          1.45239660e+09,   1.45239840e+09,   1.45240020e+09];
+    
+// sort based on value    
+values.sort();
      
 var input = document.getElementById('input'),
    output = document.getElementById('output');
@@ -251,8 +259,16 @@ input.oninput = function(){
     
 };
     
-input.oninput();
     
+/*
+var input = document.getElementById('input'),
+   output = document.getElementById('output');
+input.oninput = function(){
+    // value shown in slder in HTML format 3
+    var date_value2 = values[this.value];
+    console.log(date_value2); 
+}*/
+
 // console.log(document.getElementById('input').value);
     
 document.getElementById('input').addEventListener('input', function(e) {
@@ -302,7 +318,7 @@ map.on('load', function () {
       'source-layer': 'station_unix_locations-42eaeg',
       'layout': {
           // starting map 
-          'visibility': 'visible'
+          'visibility': 'none'
       },
       paint: {
           'fill-extrusion-opacity': 0.75,
@@ -388,132 +404,81 @@ map.on('load', function () {
     
 });
  
+//var toggleableLayerIds = [ 'Exits', 'Entries' ];
+    
 var toggleableLayerIds = [ 'Exits', 'Entries' ];
     
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];
-
+    
     var link = document.createElement('a');
     link.id = id;
     link.href = '#'+id;
-    link.class = 'active';
+    link.className = '';
     link.textContent = id;
     
-    // starting map
-    //$("#Entries").attr('class', '');
-    
-    // map.setLayoutProperty('Exits', 'visibility', 'none');
-    
-    if (link.textContent == 'Entries') {
-        console.log(link);  
-        console.log("test Entries");
-    }
-    
-    if (link.textContent == 'Exits') {
-        console.log(link);  
-        console.log("test Exits");
-    }
-    
-            
-    console.log("kahina");
-    console.log($("a[href = '#Exits']").prop('id'));
-    console.log($("a[href = '#Entries']").prop('id'));
-    
-    link.onclick = function (e) {
+        link.onclick = function (e) {
+        
         var clickedLayer = this.textContent;
-        console.log(link);
-        console.log(clickedLayer);
-        // either entries or exits 
         e.preventDefault();
-        e.stopPropagation();
-
-        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-                
-        console.log(visibility);
-        
-        // console.log($("a[href = '#Exits']").prop('class'));
-                        
-        if (clickedLayer == 'Entries' & visibility == 'none' & ($("a[href = '#Exits']").prop('class') == 'visible')) {
-            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-            map.setLayoutProperty('Exits', 'visibility', 'none');
+        e.stopPropagation();         
+    
+        if (this.className === '' && this.id === 'Exits') {
+            map.setLayoutProperty('Exits', 'visibility', 'visible');
+            map.setLayoutProperty('Entries', 'visibility', 'none');            
             this.className = 'active';
-            $("#Exits").attr('class', 'non_active');
-        } else if (clickedLayer == 'Entries' & visibility == 'none' & $("#Exits").attr('non_active')) {
-            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-            this.className = 'active';            
-        } else if (clickedLayer == 'Entries' & visibility == 'visible') {
-            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-            this.className = 'active';  
-        } else if (clickedLayer == 'Exits' & visibility == 'none' & $("#Entries").attr('active')) {
-            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-            map.setLayoutProperty('Entries', 'visibility', 'none');
-            this.className = 'active';
-            $("#Exits").attr('class', '');
-        } else if (clickedLayer == 'Exits' & visibility == 'none' & $("#Entries").attr('non_active')) {
-            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-            this.className = 'active';   
-        } else if (clickedLayer == 'Exits' & visibility == 'visible') {
-            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-            this.className = 'non_active';  
+            var Entries = document.getElementById('Entries');
+            Entries.className = '';            
+            //console.log(this+"X");
+            
         } 
-                   
-     
-            
-            
-            
-            
-          /*  
-            
-            
-        } else if (clickedLayer == 'Entries' & visibility == 'visible' & $("#Exits").attr('')) {
-            // set entries layer to visible 
-            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-            // set exit layer to non visible 
+        else if (this.className === 'active' && this.id === 'Exits') {
             map.setLayoutProperty('Exits', 'visibility', 'none');
             this.className = '';
-            //$("a.Exits").attr("className", '');
-            // alert($("a[href = '#Exits']").prop('className'));
-            //$("#Exits").attr('class', 'active');
-        
-        } else if (clickedLayer == 'Entries' & visibility == 'none' & $("#Exits").attr('')) {
-            // set entries layer to visible 
-            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-            // set exit layer to non visible 
-            map.setLayoutProperty('Exits', 'visibility', 'none');
-            this.className = 'active';
-            //$("a.Exits").attr("className", '');
-            // alert($("a[href = '#Exits']").prop('className'));
-            //$("#Exits").attr('class', 'active');
+            //console.log(this+"Y");
             
-        } else if (clickedLayer == 'Exits' & visibility == 'none') { 
-            // set entries layer to visible 
-            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-            // set exit layer to non visible 
-            map.setLayoutProperty('Entries', 'visibility', 'none');
-            this.className = 'active';
-            //$("a.Exits").attr("className", '');
-            // alert($("a[href = '#Exits']").prop('className'));
-            //$("#Entries").attr('class', '');
-        } else if (clickedLayer == 'Exits' & visibility == 'visible') {
-            // set entries layer to visible 
-            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-            // set exit layer to non visible 
+        }
+        else if (this.className === '' && this.id === 'Entries') {
             map.setLayoutProperty('Entries', 'visibility', 'visible');
+            map.setLayoutProperty('Exits', 'visibility', 'none');
+            this.className = 'active';
+            var Exits = document.getElementById('Exits');
+            Exits.className = '';
+            //console.log(this+"Z");        
+        }
+        else if (this.className === 'active' && this.id === 'Entries') {
+            map.setLayoutProperty('Entries', 'visibility', 'none');
             this.className = '';
-            //$("a.Exits").attr("className", '');
-            // alert($("a[href = '#Exits']").prop('className'));
-            //$("#Entries").attr('class', 'active');          
-        } */
+            //console.log(this+"Q");        
+        }            
     
-    
-    
-    }; 
+    }
 
     var layers = document.getElementById('menu');
     layers.appendChild(link);
-}    
+}
+
+    
+map.on('click', 'Exits', function (e) {
+        coordinates = e.lngLat;
+        //var coordinates = e.features[0].geometry.coordinates.slice();
+        var station = e.features[0].properties.Station;
+    
+        var number_exits = e.features[0].properties.Exits;
+        var number_entries = e.features[0].properties.Entries;
+        
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(station+" Exits: "+number_exits+" Entries: "+number_entries)
+            .addTo(map);       
+        
+        console.log(station+"TEST COORD");
+}); 
 
 console.log("test");
+    
+var featureList = document.getElementById('features');
+console.log(featureList+'LIST');
     
 //console.log($("a[href = '#Exits']").prop('class'));
 
