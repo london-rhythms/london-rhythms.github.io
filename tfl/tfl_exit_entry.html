@@ -17,7 +17,9 @@
 <body>
     
 <style>
-    #menu {
+    
+    
+ #menu {
         background: #fff;
         position: absolute;
         z-index: 1;
@@ -106,21 +108,40 @@
    .mapboxgl-popup {
         max-width: 400px;
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    }
-
+    }    
+    
+    
 </style>
-
+    
 <nav id="menu"></nav>
 <div id="map"></div>
     
 <div class='map-overlay top'>
     <div class='map-overlay-inner'>
-        <h2>Timeslider</h2>
-        <label id='input2'></label>
-        <input id="input" type="range" min="0" value="0" max="323" step="1">
-        <div id="output"></div>
-</div>
-            
+
+<button id="reverse">
+Step back
+</button>
+<button id="forward">
+Step forward
+</button>
+<button id="play">
+Start
+</button>
+<button id="stop">
+Stop
+</button>
+    
+<br>
+
+<h2>Timeslider</h2>
+<label id='input2'></label>
+<input id = "input" type="range" class="range-slider" step="1" value="0" min="0" max="323"/>
+<span id="demo"></span>
+<div id="output"></div>
+                
+</div>        
+        
 <script>
     
 // change values 
@@ -232,10 +253,60 @@ var values = [1.48185360e+09,   1.48185540e+09,   1.48185720e+09,
          1.47520620e+09,   1.47520800e+09,   1.47520980e+09,
          1.45239120e+09,   1.45239300e+09,   1.45239480e+09,
          1.45239660e+09,   1.45239840e+09,   1.45240020e+09];
-    
-// sort based on value    
+      
 values.sort();
-     
+    
+var interval;
+$('#forward').click(function () {
+  var index = $('.range-slider').val();
+    index++;
+    index = index > 323 ? 0 : index;
+    $('.range-slider').val(index);
+    $("#demo").html(values[index]);
+    
+    
+    map.setFilter('Entries', ['==', ['number', ['get', 'unix']], values[index]]);
+    map.setFilter('Exits', ['==', ['number', ['get', 'unix']], values[index]]);
+    //If you want to change something on the map when the year is INCREASED, do it here 
+  	//map.legend.setContent(index);
+});
+$('#reverse').click(function () {
+  var index = $('.range-slider').val();
+    index--
+    index = index < 0 ? 323 : index;
+    $('.range-slider').val(index);
+        
+    $("#demo").html(values[index]);
+    
+    
+    map.setFilter('Entries', ['==', ['number', ['get', 'unix']], values[index]]);
+    map.setFilter('Exits', ['==', ['number', ['get', 'unix']], values[index]]);
+    //If you want to change something on the map when the year is DECREASED, do it here 
+  	//map.legend.setContent(index);
+}); 
+$('#play').click(function(){
+	interval=setInterval(function (){
+	$("#forward").trigger('click');
+        // affects the rate of speed of slider 
+  },1000);
+});
+$("#stop").click(function(){
+	clearInterval(interval);
+});
+    
+ 
+document.getElementById('input').addEventListener('input', function(e) {
+    // get value of the slider when changing the slider manually 
+    var index = parseInt(e.target.value);
+    console.log("TEST");
+    console.log(index);
+    map.setFilter('Entries', ['==', ['number', ['get', 'unix']], values[index]]);
+    map.setFilter('Exits', ['==', ['number', ['get', 'unix']], values[index]]);    
+});
+    
+var index = $('.range-slider').val();
+console.log(values[index]);
+   
 var input = document.getElementById('input'),
    output = document.getElementById('output');
 input.oninput = function(){
@@ -254,34 +325,17 @@ input.oninput = function(){
     if (d.getMinutes() > 1) {
          var new_d = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + ' ' + "0" + d.getHours() + ':' + d.getMinutes() + ':' + "0"+d.getSeconds();    
     }
-        
-    output.innerHTML = "Date: " + new_d;
+     
+    var index = $('.range-slider').val();
+    $("#demo").html(values[index]);
+    //output.innerHTML = "Date: " + new_d;
     
-};
+};    
+    
+////////
     
     
-/*
-var input = document.getElementById('input'),
-   output = document.getElementById('output');
-input.oninput = function(){
-    // value shown in slder in HTML format 3
-    var date_value2 = values[this.value];
-    console.log(date_value2); 
-}*/
-
-// console.log(document.getElementById('input').value);
     
-document.getElementById('input').addEventListener('input', function(e) {
-    var value = parseInt(e.target.value);
-    // test in the console whether the right value is taken 
-    // value taken is position in the []
-    //console.log(values[value]); 
-    map.setFilter('Entries', ['==', ['number', ['get', 'unix']], values[value]]);
-    map.setFilter('Exits', ['==', ['number', ['get', 'unix']], values[value]]);
-});
-    
-// change names of slider     
-
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2FhdG5sIiwiYSI6ImNqY2h2d2ZtMzFnaTQzNHBhOWhvaWs3aWsifQ.Ok-oAUUWa36bsPl_tOJ13g';
 
     var map = new mapboxgl.Map({
@@ -457,7 +511,6 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
     var layers = document.getElementById('menu');
     layers.appendChild(link);
 }
-
     
 map.on('click', 'Exits', function (e) {
         coordinates = e.lngLat;
@@ -475,14 +528,11 @@ map.on('click', 'Exits', function (e) {
         console.log(station+"TEST COORD");
 }); 
 
-console.log("test");
+console.log("kahina");
+console.log($('.range-slider').val());
     
-var featureList = document.getElementById('features');
-console.log(featureList+'LIST');
-    
-//console.log($("a[href = '#Exits']").prop('class'));
-
 </script>
-
+    
 </body>
+
 </html>
