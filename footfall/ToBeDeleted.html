@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	<title>fullPage.js — TestPage</title>
+	<link rel="stylesheet" type="text/css" href="//alvarotrigo.com/fullPage/jquery.fullPage.css">
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="//alvarotrigo.com/fullPage/jquery.fullpage.min.js"></script>
+	
+	<style>
+	#menu { margin: 0; padding: 0; position: fixed; left: 10px; top: 10px; list-style-type: none; z-index: 70;}
+	#menu li { float: left; margin:  0 10px 0 0; font-size: 14px;}
+	#menu a { float: left; padding: 10px 20px; background-color: #fff; color: #333; text-decoration: none;}
+	#menu .active a { color: #fff; background-color: #333;}
+	.section { text-align: center; font: 50px "Arial"; color: #fff;}
+</style>
+
+<script>
+	$(function(){
+		$('#testpage').fullpage({
+			sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90'],
+			anchors: ['page1', 'page2', 'page3', 'page4'],
+			menu: '#menu'
+		});
+	});
+</script>
+</head>
+
+<body>
+
+	<ul id="menu">
+		<li data-menuanchor="page1" class="active"><a href="#page1">Stage 1</a></li>
+		<li data-menuanchor="page2"><a href="#page2">Stage 2</a></li>
+		<li data-menuanchor="page3"><a href="#page3">Stage 3</a></li>
+		<li data-menuanchor="page4"><a href="#page4">Stage 4</a></li>
+	</ul>
+
+	<div id="testpage">
+		
+	<!-- each section is a single screen -->
+		<div class="section">
+			<h3>London Night Rhythms</h3>
+			<p>This is the first page.</p>
+			<iframe src="mapbox_test.html" height="400" width="100%" scrolling="no" frameBorder="0"></iframe>
+		</div>
+
+		<div class="section">
+			<!-- add horizontal slides here  -->
+			<div class="slide">First slide of Second screen</div>
+			<div class="slide">blabla</div>
+			<div class="slide">blablabla</div>			
+		</div>
+
+		<div class="section">
+			<iframe src="p5js_test.html" height="100%" width="100%" ></iframe>
+		</div>
+
+		<div class="section">
+			<h3>{% gist 8cd4f00ff88ffe41e271a3aade4619db %}</h3>
+		</div>
+	</div>
+
+
+</body>
+</html>
