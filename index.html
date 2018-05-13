@@ -7,7 +7,7 @@
     <title>London Night Rhythms</title>
     <link rel="stylesheet" type="text/css" href="https://alvarotrigo.com/fullPage/jquery.fullPage.css">
     <link rel="stylesheet" href="style.css">
-    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=East Sea Dokdo' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -39,6 +39,7 @@
         <li data-menuanchor="page4"><a href="#page4" title="Yelp"><img src="media/icon_4.png"></a></li>
         <li data-menuanchor="page5"><a href="#page5" title="Footfall"><img src="media/icon_5.png"></a></li>
         <li data-menuanchor="page6"><a href="#page6" title="Twitter"><img src="media/icon_6.png"></a></li>
+        <li onclick="on()"><img src="media/icon_7.png" title="About"></li>
     </ul>
 
 
@@ -64,21 +65,9 @@
             <div class="overlay">
                 <h3>Night tube usage by station, 2016-2017</h3>
                 <p>Data source: <a href="https://tfl.gov.uk/corporate/publications-and-reports/underground-services-performance" target="_blank">TFL night passengers data</a>
-                <br />Base map: <a href="https://www.mapbox.com/" target="_blank">Mapbox</a></p>
+                    <br />Map engine: <a href="https://www.mapbox.com/" target="_blank">Mapbox</a></p>
             </div>
             <iframe id="tfl" src="tfl/tfl_exit_entry.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
-
-            <!--
-            <div class="slide" id="slide32">
-                <iframe src="tfl/tfl_exit_entry.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
-            </div>            
-            <div class="slide" id="slide33">
-                <iframe src="tfl/tfl_exit_entry.html" height="100%" width="60%" frameBorder="0" align="left" scrolling="no"></iframe>
-                <div class="textContainer">
-                    <h3>Where can people go at night?</h3>
-                    <p>Details to add here.</p>
-                </div>
-            -->
         </div>
 
 
@@ -87,22 +76,9 @@
             <div class="overlay">
                 <h3>Night business clusters over time</h3>
                 <p>Data source: <a href="https://www.yelp.com/developers/documentation/v3" target="_blank">Yelp data API</a>
-                <br />Base map: <a href ="https://www.mapbox.com/" target="_blank">Mapbox</a></p>
+                    <br />Map engine: <a href="https://www.mapbox.com/" target="_blank">Mapbox</a></p>
             </div>
             <iframe src="yelp/p5js_test.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
-            <!--
-            <div class="slide">
-                <iframe src="yelp/p5js_test.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
-            </div>            
-            <div class="slide">
-                <iframe src="yelp/p5js_test.html" height="100%" width="60%" frameBorder="0" align="left" scrolling="no"></iframe>
-                <div class="textContainer">
-                    <h3>What can people do at night?</h3>
-                    <p>Details to add here.</p>
-                </div>
-                <div class="slide">blablabla</div>
--->
-
         </div>
 
 
@@ -111,7 +87,7 @@
             <div class="overlay">
                 <h3>Footfall</h3>
                 <p>Data source: <a href="https://data.cdrc.ac.uk/" target="_blank">CDRC</a>
-                <br />Base map: </p>
+                    <br />Base map: </p>
             </div>
         </div>
 
@@ -122,36 +98,35 @@
             <div class="overlay">
                 <h3>Night tweets clustering, weekday vs. weekend</h3>
                 <p>Data source: <a href="https://developer.twitter.com/" target="_blank">Twitter data API</a>
-                <br />Base map: </p>
+                    <br />Base map: </p>
             </div>
             <iframe src="twitter/weekday/index.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
-            <!--
-            <div class="slide">
-                <iframe src="twitter/weekday/index.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
-            </div>
-            <div class="slide">
-                <iframe src="twitter/weekend/index.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
-            </div>
--->
         </div>
+    </div>
 
-
-        <!-- Page7: footnote-->
-        <div class="section fp-auto-height">
-            <p class="pfoot">@2018 CASA, University College London | Creators: Kahina Ait ouazzou, Shan See, Gregory Slater, Dan Qin</p>
+    <!-- overlay description-->
+    <div id="about" onclick="off()">
+        <div id="aboutText">
+            <h3>London Night Rhythms</h3>
+            <br/><p>Project description here.Blablabla.</p>
+            <p>Creators :  Kahina Ait ouazzou, Shan See, Gregory Slater, Dan Qin
+                <br/>Map engine : <a href="https://www.mapbox.com/" target="_blank">Mapbox JS</a>
+                <br/>Github : <a href="https://github.com/london-rhythms/london-rhythms.github.io" target="_blank">@london-rhythms</a>
+                <br/><br/>@ 2018 CASA, University College London</p>
         </div>
     </div>
 
     <script>
-        function isCtrlPressed(event) {
-            if (event.ctrlKey) {
-                alert("The CTRL key was pressed!");
-            } else {
-                alert("The CTRL key was NOT pressed!");
-            }
+        function on() {
+            document.getElementById("about").style.display = "block";
+        }
+
+        function off() {
+            document.getElementById("about").style.display = "none";
         }
 
     </script>
+
 </body>
 
 </html>
