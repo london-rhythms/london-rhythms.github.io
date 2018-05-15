@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--META-->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <!--TITLE-->
+    <title>Tweets clustering</title>
+
+    <!--MAPBOX-->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css' rel='stylesheet' />
+    <script src="mapbox-gl-sync-move.js"></script>
+    
+    <!--STYLE SHEET-->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+    <style>
+
+
+    </style>
+</head>
+
+<body>
+    <div id='wkday' class='map'></div>
+    <div id='wkend' class='map'></div>
+    <div id='divider'></div>
+    
+    <div id='title-wkday'><h2>Weekday</h2></div>
+    <div id='title-wkend'><h2>Weekend</h2></div>
+    <div class='map-overlay' id='legend'><div class='plegend'>Number of tweets<br/>(per thousand pop.)</div></div>
+    <div class = 'map-overlay' id='statistics'><h3>Hover over boroughs.</h3></div>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="twtcluster.js"></script>
+
+</body>
+
+</html>
