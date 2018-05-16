@@ -1,3 +1,5 @@
+/*GENERAL*/
+
 body {
     background-color: #353535;
     color: white;
@@ -8,11 +10,33 @@ path {
     stroke: none;
 }
 
-.xaxis .tick.major {
-    fill: white;
-    stroke: white;
-    stroke-width: 0.1;
-    opacity: 0.7;
+/*CANVAS*/
+
+/*canvas position*/
+
+.canvas {
+    position: absolute;
+    top: 100px;
+}
+
+/*TOPIC SELECTOR*/
+
+/*topic selector container*/
+
+#topicDIV {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+/*SLIDER*/
+
+/*slider container*/
+
+#lambdaInput {
+    position: absolute;
+    top: 5px;
+    left: 400px;
 }
 
 .slideraxis {
@@ -23,28 +47,58 @@ path {
     fill: white;
 }
 
+/*slide bar container*/
+
+#sliderdiv {
+    position: relative;
+    top: -10px;
+}
+
+/*ticks container*/
+
+.sliderticks {
+    position: relative;
+    top: -5px;
+}
+
+.xaxis .tick.major {
+    fill: white;
+    stroke: white;
+    stroke-width: 0.1;
+    opacity: 0.7;
+}
+
+
+/*TEXT & BUTTONS*/
+
 text {
     font-family: sans-serif;
     font-size: 11px;
-    fill: white;  
-/* use "fill" instead of "color" to change font-color in svg*/
+    fill: white;
+    /* use "fill" instead of "color" to change font-color in svg*/
 }
 
+.buttonDiv {
+    position: absolute;
+    left: 220px;
+    top: 5px;
+}
 
 .button {
-    background-color: #505050; 
+    background-color: #396883;
     border: none;
     color: white;
     padding: 3px 8px;
-    margin: 2px;
+    width: 100px;
+    height: 25px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
+    display: block;
+    font-size: 12px;
 }
 
-.button:hover{
-    background-color:#707070;
+.button:hover {
+    background-color: #3C9BD2;
     cursor: pointer;
-    
+
 }
