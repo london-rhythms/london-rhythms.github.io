@@ -3,24 +3,30 @@
 
 <head>
 
+    <!--META & TITLE-->
     <meta charset="utf-8">
     <title>London Night Rhythms</title>
+
+    <!--FULLPAGE-->
     <link rel="stylesheet" type="text/css" href="https://alvarotrigo.com/fullPage/jquery.fullPage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://alvarotrigo.com/fullPage/jquery.fullpage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <!--STYLE SHEET-->
     <link rel="stylesheet" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=East Sea Dokdo' rel='stylesheet'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://alvarotrigo.com/fullPage/jquery.fullpage.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
 
     <script>
         //fullPage settings
         $(function() {
             $('#myPage').fullpage({
                 // page background
-                sectionsColor: ['#353535', '#353535', '#353535', '#353535', '#353535', '#353535', '#404040'],
-                anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6', 'lastpage'],
+                sectionsColor: ['#353535', '#353535', '#353535', '#353535', '#353535', '#353535'],
+                anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
                 menu: '#menu',
             });
         });
@@ -30,7 +36,7 @@
 
 <body>
 
-    <!--navigation tabs-->
+    <!--NAVIGATION TABS-->
     <!--free icons from: https://www.flaticon.com-->
     <ul id="menu">
         <li data-menuanchor="page1" class="active"><a href="#page1" title="Top"><img src="media/icon_1.png"></a></li>
@@ -43,10 +49,10 @@
     </ul>
 
 
-    <!-- each section is a single page -->
+    <!-- PAGES -->
     <div id="myPage">
 
-        <!-- Page1: Introduction-->
+        <!-- Page1: INTRO-->
         <div class="section section1">
             <div class="prjtitle">London Night Rhythms</div>
             <div class="prjintro">Inspiring introduction here!!!</div>
@@ -54,68 +60,93 @@
         </div>
 
 
-        <!-- Page2: Web structrue-->
+        <!-- Page2: STORY-->
         <div class="section section2">
             <h2>What can we explore about NTE?</h2>
             <p>More details here!!!</p>
         </div>
 
+
         <!-- Page3: TFL-->
         <div class="section section3">
+
+            <!--TITLE-->
             <div class="overlay">
                 <h3>Night tube usage by station, 2016-2017</h3>
-                <p>Data source: <a href="https://tfl.gov.uk/corporate/publications-and-reports/underground-services-performance" target="_blank">TFL night passengers data</a>
-                    <br />Map engine: <a href="https://www.mapbox.com/" target="_blank">Mapbox</a></p>
+                <p>Data source: <a href="https://tfl.gov.uk/corporate/publications-and-reports/underground-services-performance" target="_blank">TFL night passengers data</a></p>
             </div>
-            <iframe id="tfl" src="tfl/tfl_exit_entry.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
+
+            <!--MAP-->
+            <!--            <iframe id="tfl" src="tfl/tfl_exit_entry.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>-->
         </div>
 
 
-        <!-- Page4: Yelp-->
+        <!-- Page4: YELP-->
         <div class="section section4">
+
+            <!--TITLE-->
             <div class="overlay">
                 <h3>Night business clusters over time</h3>
-                <p>Data source: <a href="https://www.yelp.com/developers/documentation/v3" target="_blank">Yelp data API</a>
-                    <br />Map engine: <a href="https://www.mapbox.com/" target="_blank">Mapbox</a></p>
+                <p>Data source: <a href="https://www.yelp.com/developers/documentation/v3" target="_blank">Yelp data API</a></p>
             </div>
+
+            <!--MAP-->
             <iframe src="yelp/p5js_test.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
+
         </div>
 
 
-        <!-- Page5: Footfall-->
+        <!-- Page5: FOOTFALL-->
         <div class="section section5">
+
+            <!--TITLE-->
             <div class="overlay">
                 <h3>Footfall</h3>
-                <p>Data source: <a href="https://data.cdrc.ac.uk/" target="_blank">CDRC</a>
-                    <br />Base map: </p>
+                <p>Data source: <a href="https://data.cdrc.ac.uk/" target="_blank">CDRC</a></p>
             </div>
         </div>
 
 
 
-        <!-- Page6: Twitter-->
+        <!-- Page6: TWITTER-->
         <div class="section section6">
+
+            <!--TITLE-->
             <div class="overlay">
                 <h3>Night tweets clustering, weekday vs. weekend</h3>
-                <p>Data source: <a href="https://developer.twitter.com/" target="_blank">Twitter data API</a>
-                    <br />Base map: </p>
+                <p>Data source: <a href="https://developer.twitter.com/" target="_blank">Twitter data API</a></p>
             </div>
-            <iframe src="twitter/weekday/index.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
+
+            <!--MAP-->
+            <div class="slide">
+                <iframe src="twitter/twtcluster/tweet-cluster.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
+            </div>
+
+            <div class="slide">
+                <iframe src="twitter/twt-topic/twt-topic.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
+            </div>
         </div>
     </div>
 
-    <!-- overlay description-->
+
+    <!-- ABOUT -->
     <div id="about" onclick="off()">
         <div id="aboutText">
             <h3>London Night Rhythms</h3>
-            <br/><p>Project description here.Blablabla.</p>
-            <p>Creators :  Kahina Ait ouazzou, Shan See, Gregory Slater, Dan Qin
-                <br/>Map engine : <a href="https://www.mapbox.com/" target="_blank">Mapbox JS</a>
+            <br/>
+
+            <p>Project description here.Blablabla.</p>
+
+            <p>
+                <br/>Creators : Kahina Ait ouazzou, Shan See, Gregory Slater, Dan Qin
+                <br/>Map engine : <a href="https://www.mapbox.com/" target="_blank">Mapbox GL JS</a>
                 <br/>Github : <a href="https://github.com/london-rhythms/london-rhythms.github.io" target="_blank">@london-rhythms</a>
-                <br/><br/>@ 2018 CASA, University College London</p>
+                <br/>
+                <br/>@ 2018 CASA, University College London</p>
         </div>
     </div>
 
+    <!-- ABOUT/CLICK EVENTS -->
     <script>
         function on() {
             document.getElementById("about").style.display = "block";
