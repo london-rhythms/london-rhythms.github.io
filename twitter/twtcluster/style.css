@@ -62,25 +62,6 @@ body * {
     text-align: right;
 }
 
-h2 {
-    font-family: "Montserrat";
-    font-size: 20px;
-    color: white;
-    font-weight: normal;
-}
-
-h3 {
-    font-family: "Montserrat";
-    font-size: 14px;
-    color: white;
-    font-weight: normal;
-    margin: 0;
-}
-
-p {
-    font-family: "Montserrat";
-    font-size: 11px;
-}
 
 .map-overlay {
     /*    background: black;*/
@@ -122,4 +103,26 @@ p {
     background: black;
     color: white;
     padding: 15px;
+}
+
+/*TEXT STYLE*/
+
+h2 {
+    font-family: "Montserrat";
+    font-size: 20px;
+    color: white;
+    font-weight: normal;
+}
+
+h3 {
+    font-family: "Montserrat";
+    font-size: 14px;
+    color: white;
+    font-weight: normal;
+    margin: 0;
+}
+
+p {
+    font-family: "Montserrat";
+    font-size: 11px;
 }
