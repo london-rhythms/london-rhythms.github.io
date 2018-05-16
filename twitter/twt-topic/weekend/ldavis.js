@@ -42,9 +42,9 @@ LDAvis = function(to_select, json_file) {
         bottom: 70,
         left: 10
     },
-    mdswidth = 310,
+    mdswidth = 300,
     mdsheight = 400,
-    barwidth = 310,
+    barwidth = 300,
     barheight = 400,
     termwidth = 90, // width to add between two panels to display terms
     mdsarea = mdsheight * mdswidth;
@@ -57,8 +57,8 @@ LDAvis = function(to_select, json_file) {
     var word_prop = 0.25;
 
     // opacity of topic circles:
-    var base_opacity = 0.2,
-    highlight_opacity = 0.6;
+    var base_opacity = 0.3,
+    highlight_opacity = 0.8;
 
     // topic/lambda selection names are specific to *this* vis
     var topic_select = to_select + "-topic";
@@ -244,7 +244,8 @@ LDAvis = function(to_select, json_file) {
         // Create new svg element (that will contain everything):
         var svg = d3.select(to_select).append("svg")
             .attr("width", mdswidth + barwidth + margin.left + termwidth + margin.right)
-            .attr("height", mdsheight + 2 * margin.top + margin.bottom + 2 * rMax);
+            .attr("height", mdsheight + 2 * margin.top + margin.bottom + 2 * rMax)
+            .attr("class","canvas");
 
         // Create a group for the mds plot
         var mdsplot = svg.append("g")
@@ -368,7 +369,7 @@ LDAvis = function(to_select, json_file) {
             .attr("y", function(d) {
                 return (yScale(+d.y) + 4);
             })
-            .attr("stroke", "black")
+            .attr("stroke", "white")
             .attr("opacity", 1)
             .style("text-anchor", "middle")
             .style("font-size", "11px")
@@ -380,7 +381,7 @@ LDAvis = function(to_select, json_file) {
         // draw circles
         points.append("circle")
             .attr("class", "dot")
-            .style("opacity", 0.2)
+            .style("opacity", 0.3)
             .style("fill", color1)
             .attr("r", function(d) {
                 //return (rScaleMargin(+d.Freq));
@@ -392,7 +393,7 @@ LDAvis = function(to_select, json_file) {
             .attr("cy", function(d) {
                 return (yScale(+d.y));
             })
-            .attr("stroke", "black")
+            .attr("stroke", "white")
             .attr("id", function(d) {
                 return (topicID + d.topics)
             })
@@ -423,10 +424,10 @@ LDAvis = function(to_select, json_file) {
 
         svg.append("text")
             .text("Intertopic Distance Map (via multidimensional scaling)")
-            .attr("x", mdswidth/2 + margin.left)
+            .attr("x", margin.left)
             .attr("y", 30)
-	    .style("font-size", "16px")
-	    .style("text-anchor", "middle");
+	    .style("font-size", "14px")
+	    .style("text-anchor", "left");
 
         // establish layout and vars for bar chart
         var barDefault2 = lamData.filter(function(d) {
@@ -560,7 +561,7 @@ LDAvis = function(to_select, json_file) {
             .attr("y", -30)
             .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
             .style("text-anchor", "middle")
-            .style("font-size", "16px")
+            .style("font-size", "14px")
             .text("Top-" + R + " Most Salient Terms");
 	
         title.append("tspan")
@@ -589,7 +590,8 @@ LDAvis = function(to_select, json_file) {
 
 	    // topic input container:
 	    var topicDiv = document.createElement("div");
-	    topicDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; width: " + mdswidth + "px; height: 50px; float: left");
+	    topicDiv.setAttribute("style", "padding: 5px; display: block; width: " + mdswidth + "px; height: 50px;");
+        topicDiv.setAttribute("id", "topicDIV");
 	    inputDiv.appendChild(topicDiv);
 
             var topicLabel = document.createElement("label");
@@ -599,7 +601,7 @@ LDAvis = function(to_select, json_file) {
             topicDiv.appendChild(topicLabel);
 
             var topicInput = document.createElement("input");
-            topicInput.setAttribute("style", "width: 50px");
+            topicInput.setAttribute("style", "width: 100px");
             topicInput.type = "text";
             topicInput.min = "0";
             topicInput.max = K; // assumes the data has already been read in
@@ -612,26 +614,36 @@ LDAvis = function(to_select, json_file) {
 	    previous.setAttribute("id", topicDown);
 	    previous.setAttribute("style", "margin-left: 5px");
 	    previous.innerHTML = "Previous Topic";
-            topicDiv.appendChild(previous);
+//            topicDiv.appendChild(previous);
+        previous.className = "button";
 
 	    var next = document.createElement("button");
 	    next.setAttribute("id", topicUp);
 	    next.setAttribute("style", "margin-left: 5px");
 	    next.innerHTML = "Next Topic";
-            topicDiv.appendChild(next);
+//            topicDiv.appendChild(next);
+        next.className = "button";    
             
 	    var clear = document.createElement("button");
 	    clear.setAttribute("id", topicClear);
 	    clear.setAttribute("style", "margin-left: 5px");
 	    clear.innerHTML = "Clear Topic";
-            topicDiv.appendChild(clear);
+//            topicDiv.appendChild(clear);
+        clear.className = "button";
+            
+        var buttons = document.createElement("div");
+            buttons.className = "buttonDiv";
+            buttons.appendChild(previous);
+            buttons.appendChild(next);
+            buttons.appendChild(clear);
+            topicDiv.appendChild(buttons);
 
             // lambda inputs
     	    //var lambdaDivLeft = 8 + mdswidth + margin.left + termwidth;
     	    var lambdaDivWidth = barwidth;
     	    var lambdaDiv = document.createElement("div");
     	    lambdaDiv.setAttribute("id", "lambdaInput");
-    	    lambdaDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
+    	    lambdaDiv.setAttribute("style", "padding: 5px; display: block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
     	    inputDiv.appendChild(lambdaDiv);
 
     	    var lambdaZero = document.createElement("div");
@@ -654,7 +666,7 @@ LDAvis = function(to_select, json_file) {
 	    
     	    var sliderDiv = document.createElement("div");
     	    sliderDiv.setAttribute("id", "sliderdiv");
-    	    sliderDiv.setAttribute("style", "padding: 5px; height: 40px; width: 250px; float: right; margin-top: -5px; margin-right: 10px");
+    	    sliderDiv.setAttribute("style", "padding: 5px; height: 40px; width: 250px; float: left; margin-top: -5px; margin-right: 10px");
     	    lambdaDiv.appendChild(sliderDiv);
 
             var lambdaInput = document.createElement("input");
@@ -671,14 +683,15 @@ LDAvis = function(to_select, json_file) {
             var lambdaLabel = document.createElement("label");
 	    lambdaLabel.setAttribute("id", "lamlabel");
             lambdaLabel.setAttribute("for", lambdaID);
-	    lambdaLabel.setAttribute("style", "height: 20px; width: 60px; font-family: sans-serif; font-size: 14px; margin-left: 80px");
+	    lambdaLabel.setAttribute("style", "height: 20px; width: 60px; font-family: sans-serif; font-size: 14px; margin-left: 10px");
 	    lambdaLabel.innerHTML = "&#955 = <span id='" + lambdaID + "-value'>" + vis_state.lambda + "</span>";
             lambdaDiv.appendChild(lambdaLabel);
 
 	    // Create the svg to contain the slider scale:
 	    var scaleContainer = d3.select("#sliderdiv").append("svg")
 		.attr("width", 250)
-		.attr("height", 25);
+		.attr("height", 25)
+        .attr("class","sliderticks");
 
             var sliderScale = d3.scale.linear()
 		.domain([0, 1])
@@ -1012,7 +1025,7 @@ LDAvis = function(to_select, json_file) {
 		.attr("y", -30)
 		.attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
 		.style("text-anchor", "middle")
-		.style("font-size", "16px")
+		.style("font-size", "14px")
 		.text("Top-" + R + " Most Relevant Terms for Topic " + topics + " (" + Freq + "% of tokens)");
 	    
             // grab the bar-chart data for this topic only:
