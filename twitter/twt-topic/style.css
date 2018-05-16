@@ -1,20 +1,22 @@
+/*GENERAL*/
 body {
     overflow: hidden;
     margin: 0;
     padding: 0;
+    background-color: #353535;
 }
 
-
+/*GRAPH CONTAINER*/
 #wkday {
     position: absolute;
-    top: 0;
+    top: 80px;
     bottom: 0;
     width: 50%;
 }
 
 #wkend {
     position: absolute;
-    top: 0;
+    top: 80px;
     left: 50%;
     bottom: 0;
     width: 50%;
@@ -28,4 +30,28 @@ body {
     bottom: 0;
     width: 1px;
     z-index: 2;
+}
+
+/*TITLE*/
+#title-wkday {
+    position: absolute;
+    margin: 0;
+    top: 5px;
+    right: 51%;
+    text-align: right;
+}
+
+#title-wkend {
+    position: absolute;
+    margin: 0;
+    top: 5px;
+    left: 51%;
+    text-align: right;
+}
+
+h2 {
+    font-family: "Montserrat";
+    font-size: 20px;
+    color: white;
+    font-weight: normal;
 }
