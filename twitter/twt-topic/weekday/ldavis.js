@@ -244,7 +244,8 @@ LDAvis = function(to_select, json_file) {
         // Create new svg element (that will contain everything):
         var svg = d3.select(to_select).append("svg")
             .attr("width", mdswidth + barwidth + margin.left + termwidth + margin.right)
-            .attr("height", mdsheight + 2 * margin.top + margin.bottom + 2 * rMax);
+            .attr("height", mdsheight + 2 * margin.top + margin.bottom + 2 * rMax)
+            .attr("class","canvas");
 
         // Create a group for the mds plot
         var mdsplot = svg.append("g")
@@ -590,6 +591,7 @@ LDAvis = function(to_select, json_file) {
 	    // topic input container:
 	    var topicDiv = document.createElement("div");
 	    topicDiv.setAttribute("style", "padding: 5px; display: block; width: " + mdswidth + "px; height: 50px;");
+        topicDiv.setAttribute("id", "topicDIV");
 	    inputDiv.appendChild(topicDiv);
 
             var topicLabel = document.createElement("label");
@@ -599,7 +601,7 @@ LDAvis = function(to_select, json_file) {
             topicDiv.appendChild(topicLabel);
 
             var topicInput = document.createElement("input");
-            topicInput.setAttribute("style", "width: 30px");
+            topicInput.setAttribute("style", "width: 100px");
             topicInput.type = "text";
             topicInput.min = "0";
             topicInput.max = K; // assumes the data has already been read in
@@ -612,22 +614,29 @@ LDAvis = function(to_select, json_file) {
 	    previous.setAttribute("id", topicDown);
 	    previous.setAttribute("style", "margin-left: 5px");
 	    previous.innerHTML = "Previous Topic";
-            topicDiv.appendChild(previous);
+//            topicDiv.appendChild(previous);
         previous.className = "button";
 
 	    var next = document.createElement("button");
 	    next.setAttribute("id", topicUp);
 	    next.setAttribute("style", "margin-left: 5px");
 	    next.innerHTML = "Next Topic";
-            topicDiv.appendChild(next);
+//            topicDiv.appendChild(next);
         next.className = "button";    
             
 	    var clear = document.createElement("button");
 	    clear.setAttribute("id", topicClear);
 	    clear.setAttribute("style", "margin-left: 5px");
 	    clear.innerHTML = "Clear Topic";
-            topicDiv.appendChild(clear);
+//            topicDiv.appendChild(clear);
         clear.className = "button";
+            
+        var buttons = document.createElement("div");
+            buttons.className = "buttonDiv";
+            buttons.appendChild(previous);
+            buttons.appendChild(next);
+            buttons.appendChild(clear);
+            topicDiv.appendChild(buttons);
 
             // lambda inputs
     	    //var lambdaDivLeft = 8 + mdswidth + margin.left + termwidth;
@@ -657,7 +666,7 @@ LDAvis = function(to_select, json_file) {
 	    
     	    var sliderDiv = document.createElement("div");
     	    sliderDiv.setAttribute("id", "sliderdiv");
-    	    sliderDiv.setAttribute("style", "padding: 5px; height: 40px; width: 250px; float: right; margin-top: -5px; margin-right: 10px");
+    	    sliderDiv.setAttribute("style", "padding: 5px; height: 40px; width: 250px; float: left; margin-top: -5px; margin-right: 10px");
     	    lambdaDiv.appendChild(sliderDiv);
 
             var lambdaInput = document.createElement("input");
@@ -681,7 +690,8 @@ LDAvis = function(to_select, json_file) {
 	    // Create the svg to contain the slider scale:
 	    var scaleContainer = d3.select("#sliderdiv").append("svg")
 		.attr("width", 250)
-		.attr("height", 25);
+		.attr("height", 25)
+        .attr("class","sliderticks");
 
             var sliderScale = d3.scale.linear()
 		.domain([0, 1])
