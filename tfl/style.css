@@ -1,0 +1,392 @@
+/* GENERAL */
+
+body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/*MAP SETTING*/
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+/* EXIT AND ENTRY BUTTON LAYOUT */
+
+ #menu {
+        background: white;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 120px;
+        border-radius: 3px;
+    }
+    #menu a {
+        color: black;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0,0,0,0.25);
+        opacity: 0.6;
+    }
+
+    #menu a:last-child {
+        border: none;
+    }
+    #menu a:hover {
+        color: white;
+        background-color: black;
+    }
+    #menu a.active {
+        color: white;
+        background: black;
+    }
+    #menu a.active:hover {
+        color: white;
+        background: black;
+    } 
+
+/* POSITION OF MENU OF EXIT ENTRY BUTTON*/
+
+.map-overlay-menu top {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    top: 10px; 
+}
+
+.map-overlay-menu inner {
+    display: inline-block;
+    position: absolute;
+}
+
+/* PLAY STOP FORWARD BACK BUTTON */
+        
+.map-overlay2 {
+    background-color: transparent;
+    position: absolute;
+    /* setting as min so it will not cross the mapbox logo */
+    bottom: 48.5px;
+    /* change left value to make more in middle */
+    left: 320px;
+}  
+
+.map-overlay2-inner2 {
+    display: inline-block;
+    background-color: transparent;
+    /* change left value to make more in middle */
+    left: 7px;
+    position: absolute; 
+    width: 300px;
+    bottom: 0px;
+}
+
+.map-overlay {
+    background-color: transparent;
+    position: absolute;
+    /* change width value to make more in middle */
+    /* setting as min so it will not cross the mapbox logo */
+    bottom: 70px;
+    left: 10px;
+} 
+
+.map-overlay-inner2 {
+    display: inline-block;
+    background-color: transparent;
+    position: absolute; 
+    width: 300px;
+}
+
+/* DATE AND TIME LAYOUT */
+
+.map-overlay3 {
+    background-color: black;
+    opacity: 0.6;
+    position: absolute;
+    bottom: 150px;
+    left: 20px;
+    border-radius: 5px;
+}
+
+#time {
+    display: inline-block;
+    padding: 10px;
+}
+
+.map-overlay4 {
+    background-color: black;
+    opacity: 0.6;
+    position: absolute;
+    bottom: 90px;
+    left: 20px;
+    border-radius: 5px;
+}
+
+#date {
+    display: inline-block;
+    padding: 10px;
+}
+
+/* SLIDER */
+
+.map-overlay-inner {
+    display: inline-block;
+    background-color: transparent;
+    left: 30%;
+    position: absolute;
+    width: 20%;
+    bottom: 0;
+}
+
+map-overlay2 {
+    background-color: transparent;
+    position: absolute;
+    width: 50%;
+    height: 10%;
+    bottom: 58.5px;
+    left: 42%;
+}
+
+.range-slider {
+    color: black;
+    opacity: 0.6;
+    margin-bottom: 40px;
+}
+
+/* LEGEND */
+
+.map-overlay5 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+#legend {
+    background: black;
+    opacity: 0.6;
+    padding: 10px;
+    /* line height divides space between options */
+    line-height: 19px;
+    height: 150px;
+    margin-bottom: 40px;
+    width: 100px;
+}
+
+.legend-key {
+    display: inline-block;
+    border-radius: 20%;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+}
+
+/* BUTTON COLOURS */
+
+.button {
+  cursor: hand;
+}
+
+.stop {
+ background-color: black;
+ opacity: 0.6;
+}
+
+.stop:hover {
+ background-color: grey;
+}
+
+.play {
+ background-color: black;
+ opacity: 0.6;
+}
+
+.play:hover {
+ background-color: grey;
+}
+
+.backward {
+ background-color: black;
+ opacity: 0.6;
+}
+
+.backward:hover {
+ background-color: grey;
+}
+
+.forward {
+ background-color: black;
+ opacity: 0.6;
+}
+
+.forward:hover {
+ background-color: grey;
+}
+
+/*TEXT STYLE*/
+
+h1 {
+    font-family: "Montserrat";
+    font-size: 18px;
+    color: black;
+    font-weight: normal;
+}
+
+h2 {
+    font-family: "Montserrat";
+    font-size: 20px;
+    color: white;
+    font-weight: normal;
+}
+
+h3 {
+    font-family: "Montserrat";
+    font-size: 16px;
+    color: white;
+    font-weight: normal;
+    margin: 0;
+}
+
+h5 {
+    font-family: "Montserrat";
+    font-size: 30px;
+    color: white;
+    text-shadow: 1px 1px 5px #030303;
+}
+
+h6 {
+    font-family: "Montserrat";
+    font-size: 30px;
+    color: white;
+    text-shadow: 1px 1px 5px #030303;
+}
+
+/* CLEAN */
+
+/* RANGE SLIER LAY OUT */
+
+
+.range-slider {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+.range-slider :focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+.range-slider ::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+}
+    
+    
+/* Special styling for WebKit/Blink */
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+}
+    
+/* All the same stuff for Firefox */
+/* check how to change slider value bit to the left!! */
+.range-slider::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 3px solid white;
+  height: 29px;
+  width: 32px;
+  border-radius: 2px;
+  background: black;
+  opacity: 1; 
+  cursor: pointer;
+}
+    
+/* All the same stuff for IE */
+.range-slider::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}    
+
+.range-slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+.range-slider:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+
+/* change % of width so slider value is in de middle */
+.range-slider::-moz-range-track {
+  opacity: 1;
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  /* check opacity of slider and thumb !! */
+  background: black;
+  border-radius: 1.3px;
+  border: 0.2px solid white;
+}
+
+.range-slider::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+.range-slider::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+.range-slider:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+.range-slider::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+.range-slider:focus::-ms-fill-upper {
+  background: #367ebd;
+}    
