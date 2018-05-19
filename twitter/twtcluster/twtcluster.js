@@ -3,7 +3,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZGFubmFxaW4iLCJhIjoiY2l3b2RwY2VlMDAyYzJ6b2hsM
 
 //create sync maps
 var wkdayMap = new mapboxgl.Map({
-    container: 'wkday',  //div id in html
+    container: 'wkday', //div id in html
     style: 'mapbox://styles/dannaqin/cjh4q4he5385p2rpulpxzb1xw',
     center: [-0.1, 51.55],
     zoom: 9,
@@ -12,7 +12,7 @@ var wkdayMap = new mapboxgl.Map({
 });
 
 var wkendMap = new mapboxgl.Map({
-    container: 'wkend',  //div id in html
+    container: 'wkend', //div id in html
     style: 'mapbox://styles/dannaqin/cjh688cui4miq2rpuhgu45fmi',
     center: [-0.1, 51.55],
     zoom: 9,
@@ -23,7 +23,7 @@ var wkendMap = new mapboxgl.Map({
 syncMaps(wkdayMap, wkendMap);
 
 
-//actions after map load
+//actions after map load-weekday
 wkdayMap.on('load', function () {
 
     //colors and texts of legend
@@ -48,6 +48,58 @@ wkdayMap.on('load', function () {
         legend.appendChild(item);
     }
 
+    //add comparing layer
+    wkdayMap.addLayer({
+        id: 'variance',
+        type: 'fill',
+        source: {
+            type: 'vector',
+            url: 'mapbox://dannaqin.5ege415e'
+        },
+        'source-layer': 'london_count_var-blzo3g',
+        'layout': {
+            'visibility': 'none'
+        },
+        'paint': {
+            "fill-color": {
+                "base": 1,
+                "type": "interval",
+                "property": 'count_var',
+                //using quartiles as stop points
+                "stops": [
+                [-5, '#003366'],
+                [-0.04, '#004c99'],
+                [0.03, '#660000'],
+                [0.1, '#990000'],
+                [1, '#cc0000']]
+            },
+            "fill-opacity": 1
+        }
+    });
+    
+    //legend for comparing layer
+    var layersComp = ['less active','','','','more active'];
+    var colorsComp = ['#003366','#004c99','#660000','#990000','#cc0000'];
+    
+    for (i = 0; i < layersComp.length; i++) {
+        var layerC = layersComp[i];
+        var colorC = colorsComp[i];
+        var itemC = document.createElement('div');
+        var keyC = document.createElement('span');
+        keyC.className = 'legend-key';
+        keyC.style.backgroundColor = colorC;
+
+        var valueC = document.createElement('span');
+        valueC.innerHTML = layerC;
+        valueC.className = 'plegend';
+
+        itemC.appendChild(keyC);
+        itemC.appendChild(valueC);
+        compareLeg.appendChild(itemC);
+    }
+    
+
+
     //add border layer for hover effect
     wkdayMap.addLayer({
         id: 'wkday-border',
@@ -58,7 +110,7 @@ wkdayMap.on('load', function () {
         },
         'source-layer': 'london_wkcount-5snfji', // name of tilesets
         'layout': {},
-        paint: {
+        'paint': {
             "line-color": "#e9f5fb",
             "line-width": 2
         },
@@ -67,8 +119,9 @@ wkdayMap.on('load', function () {
 });
 
 
+//actions after map load-weekend
 wkendMap.on('load', function () {
-    
+
     //add border layer for hover effect
     wkendMap.addLayer({
         id: 'wkend-border',
@@ -79,7 +132,7 @@ wkendMap.on('load', function () {
         },
         'source-layer': 'london_wkcount-5snfji', // name of tilesets
         'layout': {},
-        paint: {
+        'paint': {
             "line-color": "#e9f5fb",
             "line-width": 2
         },
@@ -105,6 +158,7 @@ wkdayMap.on('mousemove', function (e) {
     wkdayMap.setFilter("wkday-border", ["==", "name", twt[0].properties.name]);
 });
 
+
 //hover effect-wkend map
 wkendMap.on('mousemove', function (e) {
     var twt = wkendMap.queryRenderedFeatures(e.point, {
@@ -117,15 +171,45 @@ wkendMap.on('mousemove', function (e) {
     } else {
         document.getElementById('statistics').innerHTML = '<h3>Hover over boroughs.</h3>';
     }
-    
+
     //hover-show border
     wkendMap.setFilter("wkend-border", ["==", "name", twt[0].properties.name]);
 });
+
 
 //no border when mouseleave
 wkdayMap.on("mouseleave", "london-wkcount", function () {
     wkdayMap.setFilter("wkday-border", ["==", "name", ""]);
 });
-wkendMap.on("mouseleave","london-wkendcount", function () {
+wkendMap.on("mouseleave", "london-wkendcount", function () {
     wkendMap.setFilter("wkend-border", ["==", "name", ""]);
 });
+
+
+//Click to show comparing layer
+var link = document.getElementById('button');
+
+link.onclick = function (e) {
+    //change the visibility of variance layer
+    var clickedLayer = 'variance';
+    e.preventDefault();
+    e.stopPropagation();
+
+    var visibility = wkdayMap.getLayoutProperty(clickedLayer, 'visibility');
+
+    if (visibility === 'visible') {
+        wkdayMap.setLayoutProperty(clickedLayer, 'visibility', 'none');
+        this.className = '';
+    } else {
+        this.className = 'active';
+        wkdayMap.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+    }
+    
+    //show comparing texts and legends
+    var x = document.getElementById("compareTxt");
+    if (x.style.display === "none" || x.style.display === "") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+};
