@@ -18,39 +18,78 @@ body {
 /* EXIT AND ENTRY BUTTON LAYOUT */
 
  #menu {
-        background: white;
+        background: black;
+        opacity: 0.6;
         position: absolute;
         top: 20px;
-        right: 20px;
-        width: 120px;
+        /* size depending on buttons website */
+        right: 60px;
+        width: 80px;
         border-radius: 3px;
     }
     #menu a {
-        color: black;
+        color: white;
         display: block;
         margin: 0;
         padding: 0;
         padding: 10px;
         text-decoration: none;
         border-bottom: 1px solid rgba(0,0,0,0.25);
-        opacity: 0.6;
+        /*opacity: 0.6;*/
     }
 
     #menu a:last-child {
         border: none;
     }
-    #menu a:hover {
+
+    /* CHANGE BORDER RADIUS OTHERWISE WILL SEE PART OF BLACK BACKGROUND */
+    #menu a[id = 'Exits']:hover {
         color: white;
-        background-color: black;
+        background: darkblue;
+        opacity: 1;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
     }
-    #menu a.active {
+
+    #menu a[id = 'Entries']:hover {
         color: white;
-        background: black;
+        background: darkblue;
+        opacity: 1;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
     }
-    #menu a.active:hover {
+
+    #menu a[id = 'Exits'].active {
         color: white;
-        background: black;
-    } 
+        background: darkblue;
+        opacity: 1;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+
+    #menu a[id = 'Entries'].active {
+        color: white;
+        background: darkblue;
+        opacity: 1;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+
+    #menu a[id = 'Exits'].active:hover {
+        color: white;
+        background: darkblue;
+        opacity: 1;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+
+    #menu a[id = 'Entries'].active:hover {
+        color: white;
+        background: darkblue;
+        opacity: 1;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
 
 /* POSITION OF MENU OF EXIT ENTRY BUTTON*/
 
@@ -171,12 +210,22 @@ map-overlay2 {
 
 #legend {
     background: black;
-    opacity: 0.6;
+    opacity: 1;
     padding: 10px;
     /* line height divides space between options */
-    line-height: 19px;
-    height: 150px;
+    line-height: 15px;
+    height: 210px;
     margin-bottom: 40px;
+    width: 100px;
+}
+
+#legend-title {
+    background: black;
+    opacity: 1;
+    padding: 10px;
+    /* line height divides space between options */
+    line-height: 15px;
+    margin-bottom: 260px;
     width: 100px;
 }
 
@@ -233,21 +282,35 @@ map-overlay2 {
 /*TEXT STYLE*/
 
 h1 {
-    font-family: "Montserrat";
+    font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     color: black;
     font-weight: normal;
 }
 
 h2 {
-    font-family: "Montserrat";
+    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     color: white;
     font-weight: normal;
 }
 
+h10 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: white;
+    font-weight: normal;
+}
+
+h11 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: white;
+    font-weight: normal;
+}
+
 h3 {
-    font-family: "Montserrat";
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color: white;
     font-weight: normal;
@@ -255,14 +318,14 @@ h3 {
 }
 
 h5 {
-    font-family: "Montserrat";
+    font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     color: white;
     text-shadow: 1px 1px 5px #030303;
 }
 
 h6 {
-    font-family: "Montserrat";
+    font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     color: white;
     text-shadow: 1px 1px 5px #030303;
@@ -302,11 +365,12 @@ h6 {
 /* Special styling for WebKit/Blink */
 .range-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  border: 1px solid #000000;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
-  background: #ffffff;
+  border: 3px solid white;
+  height: 29px;
+  width: 32px;
+  border-radius: 2px;
+  background: black;
+  opacity: 1;
   cursor: pointer;
   margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
@@ -328,27 +392,30 @@ h6 {
 /* All the same stuff for IE */
 .range-slider::-ms-thumb {
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
-  background: #ffffff;
+  border: 3px solid white;
+  height: 29px;
+  width: 32px;
+  border-radius: 2px;
+  background: black;
+  opacity: 1;
   cursor: pointer;
 }    
 
 .range-slider::-webkit-slider-runnable-track {
+  opacity: 1;
   width: 100%;
-  height: 8.4px;
+  height: 20px;
   cursor: pointer;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #3071a9;
+  background: red;
   border-radius: 1.3px;
-  border: 0.2px solid #010101;
+  border: 0.2px solid white;
 }
 
+/*
 .range-slider:focus::-webkit-slider-runnable-track {
   background: #367ebd;
-}
+} */
 
 /* change % of width so slider value is in de middle */
 .range-slider::-moz-range-track {
@@ -364,11 +431,12 @@ h6 {
 }
 
 .range-slider::-ms-track {
+  opacity: 1;
   width: 100%;
-  height: 8.4px;
+  height: 20px;
   cursor: pointer;
-  background: transparent;
-  border-color: transparent;
+  background: black;
+  /*border-color: transparent;*/
   border-width: 16px 0;
   color: transparent;
 }
