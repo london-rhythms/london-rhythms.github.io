@@ -1,4 +1,3 @@
-
 //mapbox token
 //mapboxgl.accessToken = //'pk.eyJ1Ijoia2FhdG5sIiwiYSI6ImNqY2h2d2ZtMzFnaTQzNHBhOWhvaWs3aWs//ifQ.Ok-oAUUWa36bsPl_tOJ13g';
 
@@ -10,7 +9,7 @@ var map = new mapboxgl.Map({
     container: 'map', // div id in html
     style: 'mapbox://styles/gslater64/cjd35ag6828t32spdig74dkko',
     //style: 'mapbox://styles/kaatnl/cje7cgai0h5zl2smonbz0oybe', 
-    center: [-0.166666,51.3833318],
+    center: [-0.2,51.4833],
     // to change startng view height 
     pitch: 60,
     // to rotate starting view 
@@ -26,7 +25,7 @@ var map = new mapboxgl.Map({
 //add layers                                         
 map.on('load', function () {
     
-    /* EXITS: MAPBOX INTERVAL DATA: 0-1716 */
+    /* EXITS: MAPBOX INTERVAL DATA: 0-1272 */
     map.addLayer({
         id: 'Exits',
         // for 3D effect 
@@ -35,7 +34,8 @@ map.on('load', function () {
             type: 'vector',
             url: 'mapbox://kaatnl.0m8m2xhy'
         },
-        'filter': ['==', ['number', ['get', 'unix']], 1481853600],
+        // filter on first value unixtime 
+        'filter': ['==', ['number', ['get', 'unix']], 1471568400],
         'source-layer': 'station_unix_locations_final-81o5o1',
         'layout': {
             'visibility': 'none'
@@ -46,22 +46,33 @@ map.on('load', function () {
                 property: 'Exits',
                 type: 'exponential',
                 stops: [
-                    [0, "#f7fbff"],
-                    [50, "#deebf7"],
-                    [100, "hsl(0, 40%, 83%)"],
-                    [200, "hsl(0, 53%, 73%)"],
-                    [300, "hsl(0, 80%, 59%)"],
-                    [400, "hsl(0, 83%, 48%)"],
-                    [500, "hsl(0, 100%, 22%)"],
-                    [600, "hsl(0, 96%, 10%)"],
-                    [750, "#08306b"]
+                    // all values that had string "Below 5" were in python set to 0. 
+                    // only showing colour from 5 onwards 
+                    // http://www.0to255.com/17146E for scale 
+                    [1, 'rgba(100, 100, 100, 0.7)'],
+                    [5, '#deddf9'],
+                    [50, '#c2c0f4'],
+                    [100, "#a6a3ee"],
+                    [200, "#7c78e7"],
+                    [300, "#605ce1"],
+                    [400, "#443fdc"],
+                    [500, "#231ea7"],
+                    [600, "#1d198b"],
+                    [700, "#17146e"],
+                    [800, "#110f51"],
+                    [900, "#0e0c43"],
+                    [1000, "#0b0a35"],
+                    [1100, "#080726"],
+                    [1200, "#050418"],
+                    [1300, "#020209"]
                 ]
-            }, 
+            },
             'fill-extrusion-height': {
-                property: 'Exits',
+                property: 'Entries',
                 type: 'exponential',
                 stops: [
-                    [0, 0],
+                    [1, 0],
+                    [5, 125],
                     [50, 250],
                     [100, 500],
                     [200, 1000],
@@ -69,12 +80,18 @@ map.on('load', function () {
                     [400, 2000],
                     [500, 2500],
                     [600, 3000],
-                    [750, 5000]
+                    [700, 3500],
+                    [800, 4000],
+                    [900, 4500],
+                    [1000, 5000],
+                    [1100, 5500],
+                    [1200, 6000],
+                    [1300, 6500]
                 ]
             }}
     });     
     
-    /* ENTRIES: MAPBOX INTERVAL DATA: 0-1727 */
+    /* ENTRIES: MAPBOX INTERVAL DATA: 0-1272 */
     map.addLayer({
         id: 'Entries',
         type: 'fill-extrusion',
@@ -82,10 +99,12 @@ map.on('load', function () {
             type: 'vector', 
             url: 'mapbox://kaatnl.0m8m2xhy'
         },
-        'filter': ['==', ['number', ['get', 'unix']], 1481853600],
+        // filter on first value unixtime
+        'filter': ['==', ['number', ['get', 'unix']], 1471568400],
         'source-layer': 'station_unix_locations_final-81o5o1',
         'layout': {
-            'visibility': 'none'
+            // starting view
+            'visibility': 'visible'
         },
         paint: {
             'fill-extrusion-opacity': 0.75,
@@ -93,24 +112,47 @@ map.on('load', function () {
                 property: 'Entries',
                 type: 'exponential',
                 stops: [
-                    [100, "hsl(0, 40%, 83%)"],
-                    [200, "hsl(0, 53%, 73%)"],
-                    [300, "hsl(0, 80%, 59%)"],
-                    [400, "hsl(0, 83%, 48%)"],
-                    [500, /* "rgb(0,0,0)"*/ "hsl(0, 100%, 22%)"],
-                    [600, /* "rgb(0,0,0)"*/ "hsl(0, 96%, 10%)"]
+                    // all values that had string "Below 5" were in python set to 0. 
+                    // only showing colour from 5 onwards 
+                    // http://www.0to255.com/17146E for scale 
+                    [1, 'rgba(100, 100, 100, 0.7)'],
+                    [5, '#deddf9'],
+                    [50, '#c2c0f4'],
+                    [100, "#a6a3ee"],
+                    [200, "#7c78e7"],
+                    [300, "#605ce1"],
+                    [400, "#443fdc"],
+                    [500, "#231ea7"],
+                    [600, "#1d198b"],
+                    [700, "#17146e"],
+                    [800, "#110f51"],
+                    [900, "#0e0c43"],
+                    [1000, "#0b0a35"],
+                    [1100, "#080726"],
+                    [1200, "#050418"],
+                    [1300, "#020209"]
                 ]
             },
             'fill-extrusion-height': {
                 property: 'Entries',
                 type: 'exponential',
                 stops: [
+                    [1, 0],
+                    [5, 125],
+                    [50, 250],
                     [100, 500],
                     [200, 1000],
                     [300, 1500],
                     [400, 2000],
                     [500, 2500],
-                    [600, 3000]   
+                    [600, 3000],
+                    [700, 3500],
+                    [800, 4000],
+                    [900, 4500],
+                    [1000, 5000],
+                    [1100, 5500],
+                    [1200, 6000],
+                    [1300, 6500]
                 ]
             }}
     });
@@ -118,9 +160,9 @@ map.on('load', function () {
 /* ADDING LEGEND
 CODE HAS TO GO INTO MAP.ON LOAD FUNCTION */
 
-var layers = ['<>', '<>', '<>', '<>', '<>', '<>', '<>', '<>'];
+var layers = ['0-50', '50-100', '100-200', '200-300', '300-400', '400-500', '500-600', '600-700', '700-800', '800-900', '900-1000', '1000-1100', '1100-1200', '1200-1300'];
 
-var colors = ['#800026', '#800026', '#800026', '#800026', '#800026', '#800026', '#800026', '#800026'];
+var colors = ['#deddf9', '#c2c0f4', '#a6a3ee', '#7c78e7', '#605ce1', '#443fdc', '#231ea7', '#1d198b', '#17146e', '#110f51', '#0e0c43', '#0b0a35', '#080726', '#050418', '#020209'];
 
 for (i = 0; i < layers.length; i++) {
   var layer = layers[i];
@@ -140,7 +182,7 @@ for (i = 0; i < layers.length; i++) {
 });
 
 //create exit and entry button to show data
-var toggleableLayerIds = [ 'Exits', 'Entries' ];
+var toggleableLayerIds = [ 'Entries', 'Exits' ];
     
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];
@@ -150,6 +192,11 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
     link.href = '#'+id;
     link.className = '';
     link.textContent = id;
+
+    /* STARTING LAYER BUTTON 
+    FOR SOME REASON CAN ONLY ACCESS ELEMENT ID OF THE FIRT SPECIFIED LAYER*/ 
+    $("#Entries").attr("class", "active");
+    console.log(document.getElementById("Entries"));
     
         link.onclick = function (e) {
         
@@ -346,7 +393,7 @@ $('#forward').click(function () {
     //If you want to change something on the map when the year is INCREASED, do it here 
   	//map.legend.setContent(index);
 });
-$('#reverse').click(function () {
+$('#backward').click(function () {
   var index = $('.range-slider').val();
     index--
     index = index < 0 ? 323 : index;
@@ -409,8 +456,6 @@ $("#stop").click(function(){
 document.getElementById('input').addEventListener('input', function(e) {
     // get value of the slider when changing the slider manually 
     var index = parseInt(e.target.value);
-    console.log("TEST");
-    //console.log(index);
     map.setFilter('Entries', ['==', ['number', ['get', 'unix']], values[index]]);
     map.setFilter('Exits', ['==', ['number', ['get', 'unix']], values[index]]);   
     
@@ -424,9 +469,7 @@ document.getElementById('input').addEventListener('input', function(e) {
         for (i=0; i < data_size; i ++) {
             var check2 = String(data[i].unix);
             if (check == check2) {
-                                
-                //console.log(data[i].Exit);  
-                //console.log(data[i].Entries);
+
             }
         }
     });
@@ -458,7 +501,6 @@ month[10] = "November";
 month[11] = "December";
     
 var index = $('.range-slider').val();
-console.log(values[index]+"XX");
    
 var input = document.getElementById('input'),
    output = document.getElementById('output');
@@ -506,6 +548,104 @@ input.oninput = function(){
     
 };    
 
+/*
+
+map.on('mouseover', 'Exits', function (e) {
+    coordinates = e.lngLat;
+    var station = e.features[0].properties.Station;
+    console.log(station);
+      
+    var csv = String(station + ".csv");
+    console.log(csv);
+      
+    var number_exits = e.features[0].properties.Exits;
+    var number_entries = e.features[0].properties.Entries;
+        
+    var data = [];
+
+var unix = [];
+var entries = [];
+    
+d3.csv(csv, function(file) {
+file.forEach(function(row) {
+    var Station = row.Station;
+    unix.push(String(row.Exits));
+    entries.push(Number(row.Entries));
+
+});  
+}); 
+    
+console.log(unix);
+console.log(entries); 
+    
+$(function() {
+  $('#container').highcharts({
+    chart: {
+    // choose type of chart, could also be a column 
+      type: 'line',
+      zoomType: 'x'
+    },
+      // choose colour of line 
+    colors: [
+      '#d8d826'
+    ],
+    legend: {
+        // name of the line
+        // useful because then can give two seperate colours of exit en entry 
+      enabled: true
+    },
+    title: {
+      style: {
+        fontSize: '0px'
+      }
+    },
+    subtitle: {
+      style: {
+        fontSize: '0px'
+      }
+    },
+    xAxis: {
+      //categories: ['1960', '1961', '1962'],
+      categories: unix,
+      tickmarkPlacement: 'on',
+      tickInterval: 1,
+      minRange: 1 // set this to allow up to one year to be viewed
+    },
+    yAxis: {
+      min: 30, // set min based on array value
+      title: {
+        text: 'Number',
+        style: {
+          fontSize: '0px'
+        }
+      }
+    },
+    tooltip: {
+      shared: false,
+      useHTML: true
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0.2,
+        borderWidth: 0
+      }
+    },
+    series: [{
+      data: entries,
+      name: 'data by year'
+      //data: entries
+    }]
+  } 
+    , function(chart) {
+      
+
+  });
+
+});  
+    
+
+}); */
+
 map.on('click', 'Exits', function (e) {
         coordinates = e.lngLat;
         var station = e.features[0].properties.Station;
@@ -519,48 +659,23 @@ map.on('click', 'Exits', function (e) {
     
               new mapboxgl.Popup()
             .setLngLat(coordinates)
-            .setHTML(station+" Exits: "+number_exits+" Entries: "+number_entries+"Data: ")
+            .setHTML(station+"Exits"+number_exits+"Entries"+number_entries)
             .addTo(map); 
+});
+
+map.on('click', 'Entries', function (e) {
+        coordinates = e.lngLat;
+        var station = e.features[0].properties.Station;
+       
+        var csv = String(station + ".csv");
+       
+        var number_exits = e.features[0].properties.Exits;
+        var number_entries = e.features[0].properties.Entries;
     
-        /* see if possible to import csv of stations as graph */
-        d3.csv(csv, function(error, data){
-        data_size = data.length; 
-        data_station = +data['Station'];
-        console.log(data_size);
-        console.log(data_station);
-        $("#data_size").html(data_size); 
-        
-            /*
-             new mapboxgl.Popup()
+              new mapboxgl.Popup()
             .setLngLat(coordinates)
-            .setHTML(station+" Exits: "+number_exits+" Entries: "+number_entries+"Data: "+data_size)
-            .addTo(map); */
-        
-        });
-
-});
-
-/* TRY TO LOAD CSV */
-
-// Bring in Neighborhood data.
-
-var data = [];
-
-d3.csv('Bank3.csv', function(file) {
-file.forEach(function(row) {
-    console.log(row);
-    console.log("KAHINA");
-    console.log(row.Entries);
-    data[row.Date] = {
-        Entries: row.Entries,
-        Exits: row.Exits
-    };
-    //var value = row.Entries;
-
-});
-    
-    console.log(data);
-    console.log(data['Entries'])
+            .setHTML(station+"Exits"+number_exits+"Entries"+number_entries)
+            .addTo(map); 
 });
 
 
