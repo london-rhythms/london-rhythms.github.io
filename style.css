@@ -1,13 +1,13 @@
-/* style of navigation tabs 
+/* NAVIGATION TABS 
  * ------------------------------*/
 
 #menu {
     position: fixed;
     top: 10px;
-    right: 10px;
+    right: 5px;
     height: 10px;
-    z-index: 70;
     width: 50px;
+    z-index: 70;
     padding: 0;
     margin: 0;
 }
@@ -24,7 +24,7 @@
     border-radius: 12px;
 }
 
-/* style of image in menu*/
+/* menu icon */
 
 #menu li img {
     width: 16px;
@@ -41,7 +41,7 @@
     color: #fff;
 }
 
-/*when hovering, change style*/
+/*when mouseover, change style*/
 
 #menu li:hover {
     background: rgba(255, 255, 255, 0.5);
@@ -49,7 +49,7 @@
 }
 
 
-/* style of controlArrow for slides
+/* CONTROL ARROWS FOR SLIDES(IF ANY)
  * ---------------------------------*/
 
 .fp-controlArrow {
@@ -76,7 +76,7 @@
 
 
 
-/* page overall style 
+/* PAGE OVERALL STYLE
  * ---------------------------------*/
 
 .section {
@@ -92,10 +92,19 @@
     background-image: url(media/bg_pulsecity.jpg);
 }
 
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: lightgray;
+}
 
 
-/* style of texts
+/* TEXT STYLE
  * ---------------------------------*/
+
+/*Page1 title*/
 
 .prjtitle {
     text-align: center;
@@ -120,22 +129,20 @@
     animation: fadeIn 5s;
 }
 
+/*Page2 title*/
+
 .section2 h2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+
+    -webkit-transform: scale(0.5, 0.5);
     transform: scale(0.5, 0.5);
     opacity: 0;
     transition: all 1s;
 }
 
-
-/*
-
-.textContainer {
-    text-align: left;
-    position: relative;
-    left: 10px;
-    width: 95%;
-}
-*/
 
 h1 {
     font-family: "Montserrat";
@@ -167,12 +174,9 @@ p {
     padding-top: 5px;
 }
 
-.pfoot {
-    font-size: 10px;
-    color: #808080;
-}
 
-/*style of elements
+
+/* STYLE OF ELEMENTS
  *------------------------------------*/
 
 .downarrow {
@@ -188,6 +192,8 @@ p {
     animation: slidefromBottom 2s;
 }
 
+/*title overlay*/
+
 .overlay {
     position: absolute;
     top: 10px;
@@ -202,13 +208,7 @@ p {
     text-align: left;
 }
 
-a:link {
-    color: white;
-}
-
-a:visited {
-    color: lightgray;
-}
+/*about page*/
 
 #about {
     position: fixed;
@@ -219,11 +219,11 @@ a:visited {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 75;
 }
 
-#aboutText{
+#aboutText {
     position: absolute;
     text-align: left;
     top: 20%;
@@ -231,8 +231,41 @@ a:visited {
     color: white;
 }
 
+/*Page2 elements*/
 
-/* transition and animation
+#items {
+    margin:auto;
+    width: 500px;
+    padding: 0;
+}
+
+#items li {
+    display: block;
+    margin: 80px;
+    
+     -webkit-transform: scale(0.5, 0.5);
+    transform: scale(0.5, 0.5);
+    opacity: 0;
+    transition: all 1s;
+}
+
+#items li img {
+    width: 80px;
+    position: absolute;
+    top: 0;
+    left: 0;  
+}
+
+.subtitles{
+    position: relative;
+    top: 20px;
+    left: 130px;
+    text-align: left;
+}
+
+
+
+/* TRANSITION & ANIMATION
  *------------------------------------*/
 
 @keyframes fadeIn {
@@ -255,10 +288,16 @@ a:visited {
     }
 }
 
+/*when page loads, start animation*/
 
 .active h2 {
+    -webkit-transform: scale(1, 1);
     transform: scale(1, 1);
     opacity: 1;
 }
 
-
+.active #items li{
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
+}
