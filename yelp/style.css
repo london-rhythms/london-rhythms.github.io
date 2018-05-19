@@ -1,0 +1,51 @@
+
+/* Overlay class for story info box */
+
+.map-overlay {
+    /*    background: black;*/
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 10px;
+    overflow: visible;
+    border-radius: 3px;
+}
+
+
+#story {
+    position: absolute;
+    /* top: 10px;
+    right: 30px; */
+    bottom: 140px;
+    left: 30px;
+    width: 180px;
+    height: 280px;
+    background: black;
+    color: white;
+    padding: 15px;
+    opacity: 0.5;
+}
+
+
+
+/*TEXT STYLE*/
+
+h2 {
+    font-family: "Montserrat";
+    font-size: 20px;
+    color: white;
+    font-weight: normal;
+}
+
+h3 {
+    font-family: "Montserrat";
+    font-size: 14px;
+    color: white;
+    font-weight: normal;
+    margin: 0;
+}
+
+p {
+    font-family: "Montserrat";
+    font-size: 11px;
+}

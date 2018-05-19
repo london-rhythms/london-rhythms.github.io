@@ -1,0 +1,47 @@
+[
+    {
+      "LatLng": {
+        "lat": 51.509865,
+        "lng": -0.118092
+      },
+      "zoom": 12,
+      "title": "1/5 - High Level",
+      "text": "Aperiam dolor quia eum incidunt praesentium aut aut. Et qui et occaecati quia atque commodi deserunt deleniti. Alias inventore culpa laboriosam dolor sit ipsa dolorum accusamus. Autem sint dignissimos sed quas corporis."
+    },
+    {
+      "LatLng": {
+        "lat": 51.509865,
+        "lng": -0.118092
+      },
+      "zoom": 12,
+      "title": "2/5 - High Level",
+      "text": "At a slower speed there is a clear spatial bias to lateness of opening, with more central businesses staying open later."
+    },
+    {
+      "LatLng": {
+        "lat": 51.51276218235479,
+        "lon": -0.13355255126953128
+      },
+      "zoom": 15,
+      "title": "3/5 - More Granular",
+      "text": "Eligendi minima aspernatur debitis illum non quia mollitia. Dolore praesentium quam vero est sed minima corporis. Facere debitis deleniti occaecati eos earum consequatur voluptas dolorem. Aut et sint dolore veniam provident assumenda vel."
+    },
+    {
+      "LatLng": {
+        "lat": 51.51197429106744,
+        "lon": -0.1344108581542969
+      },
+      "zoom": 14,
+      "title": "4/5 - More Granular",
+      "text": "Dolor expedita illum ad assumenda qui. Quis quas molestiae ipsa ut vero. Placeat dolor delectus quia nobis rem. Officiis harum repellat sit quidem expedita error aliquam reprehenderit. Saepe sit molestias non distinctio ad quia enim deserunt."
+    },
+    {
+      "LatLng": {
+        "lat": 51.51197429106744,
+        "lon": -0.1344108581542969
+      },
+      "zoom": 13,
+      "title": "5/5 - More Granular - 2",
+      "text": "Eligendi minima aspernatur debitis illum non quia mollitia. Dolore praesentium quam vero est sed minima corporis. Facere debitis deleniti occaecati eos earum consequatur voluptas dolorem. Aut et sint dolore veniam provident assumenda vel."
+    }
+  ]
