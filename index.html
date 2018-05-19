@@ -24,8 +24,7 @@
         //fullPage settings
         $(function() {
             $('#myPage').fullpage({
-                // page background
-                sectionsColor: ['#353535', '#353535', '#353535', '#353535', '#353535', '#353535'],
+                sectionsColor: ['#353535', '#353535', '#353535', '#353535', '#353535', '#353535'], // page background
                 anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
                 menu: '#menu',
             });
@@ -62,8 +61,32 @@
 
         <!-- Page2: STORY-->
         <div class="section section2">
-            <h2>What can we explore about NTE?</h2>
-            <p>More details here!!!</p>
+            <ul id="items">
+                <li><img src="media/icon_3w.png">
+                    <div class="subtitles">
+                        <h3>Where do people go at night?</h3>
+                        <p>Blablabla.</p>
+                    </div>
+                </li>
+                <li><img src="media/icon_4w.png">
+                    <div class="subtitles">
+                        <h3>What can people do?</h3>
+                        <p>Blablabla.</p>
+                    </div>
+                </li>
+                <li><img src="media/icon_5w.png">
+                    <div class="subtitles">
+                        <h3>...?</h3>
+                        <p>Blablabla.</p>
+                    </div>
+                </li>
+                <li><img src="media/icon_6w.png">
+                    <div class="subtitles">
+                        <h3>...?</h3>
+                        <p>Blablabla.</p>
+                    </div>
+                </li>
+            </ul>
         </div>
 
 
@@ -91,7 +114,7 @@
             </div>
 
             <!--MAP-->
-            <iframe src="yelp/index.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
+            <iframe src="yelp/p5js_test.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
 
         </div>
 
@@ -104,6 +127,9 @@
                 <h3>Footfall</h3>
                 <p>Data source: <a href="https://data.cdrc.ac.uk/" target="_blank">CDRC</a></p>
             </div>
+
+            <!--VIDEO-->
+            <iframe src="footfall/footfall.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
         </div>
 
 
@@ -117,11 +143,12 @@
                 <p>Data source: <a href="https://developer.twitter.com/" target="_blank">Twitter data API</a></p>
             </div>
 
-            <!--MAP-->
+            <!--CLUSTER MAP-->
             <div class="slide">
                 <iframe src="twitter/twtcluster/tweet-cluster.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
             </div>
 
+            <!--TOPIC MODELLING(to be decided)-->
             <div class="slide">
                 <iframe src="twitter/twt-topic/twt-topic.html" height="100%" width="100%" frameBorder="0" scrolling="no"></iframe>
             </div>
