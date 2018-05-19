@@ -68,7 +68,7 @@ map.on('load', function () {
                 ]
             },
             'fill-extrusion-height': {
-                property: 'Entries',
+                property: 'Exits',
                 type: 'exponential',
                 stops: [
                     [1, 0],
