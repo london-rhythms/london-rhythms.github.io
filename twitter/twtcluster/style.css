@@ -62,19 +62,18 @@ body * {
     text-align: right;
 }
 
-
 .map-overlay {
-    /*    background: black;*/
     position: absolute;
     bottom: 0;
     right: 0;
-    margin-right: 10px;
     overflow: visible;
     border-radius: 3px;
+    z-index: 4;
 }
 
 #legend {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    margin-right: 10px;
     width: 100px;
     height: 150px;
     line-height: 13px;
@@ -96,13 +95,56 @@ body * {
 
 #statistics {
     position: absolute;
-    top: 10px;
-    right: 30px;
+    top: 80px;
+    left: 10px;
     width: 200px;
-    height: 80px;
-    background: black;
+    height: 65px;
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     padding: 15px;
+}
+
+/*BUTTON*/
+
+#button {
+    background: #202020;
+    border-radius: 10px;
+    border: 2px solid #606060;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 14px;
+    position: absolute;
+    left: 10px;
+    bottom: 40px;
+    padding: 10px;
+
+}
+
+#button:hover {
+    font-size: 16px;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
+#compareTxt {
+    position: absolute;
+    bottom: 100px;
+    left: 10px;
+    width: 100px;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    display: none;
+}
+
+#compareTxt p {
+    margin-top: 0;
+}
+
+#compareLeg {
+    line-height: 9px;
 }
 
 /*TEXT STYLE*/
