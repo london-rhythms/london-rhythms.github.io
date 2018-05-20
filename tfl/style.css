@@ -23,8 +23,8 @@ body {
         position: absolute;
         top: 20px;
         /* size depending on buttons website */
-        right: 45px;
-        width: 90px;
+        right: 50px;
+        width: 80px;
         border-radius: 3px;
     }
     #menu a {
@@ -367,12 +367,12 @@ h6 {
   -webkit-appearance: none;
   border: 3px solid white;
   height: 29px;
-  width: 32px;
+  width: 15px;
   border-radius: 2px;
   background: black;
   opacity: 1;
   cursor: pointer;
-  margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  margin-top: -5px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
 }
     
@@ -404,10 +404,11 @@ h6 {
 .range-slider::-webkit-slider-runnable-track {
   opacity: 1;
   width: 100%;
-  height: 20px;
+  height: 21px;
   cursor: pointer;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: red;
+  background: black;
+  opacity: 0.9;
   border-radius: 1.3px;
   border: 0.2px solid white;
 }
