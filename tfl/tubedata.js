@@ -160,7 +160,7 @@ map.on('load', function () {
                     // all values that had string "Below 5" were in python set to 0. 
                     // only showing colour from 5 onwards 
                     // http://www.0to255.com/17146E for scale 
-                    [1, 'rgba(100, 100, 100, 0.7)'],
+                    [1, '#3b4042'],
                     [5, '#deddf9'],
                     [50, '#c2c0f4'],
                     [100, "#a6a3ee"],
@@ -221,6 +221,7 @@ map.on('load', function () {
         },
         paint: {
             'fill-extrusion-opacity': 0.75,
+            'fill-extrusion-opacity': 0.75,
             'fill-extrusion-color': {
                 property: 'Entries',
                 type: 'exponential',
@@ -228,7 +229,7 @@ map.on('load', function () {
                     // all values that had string "Below 5" were in python set to 0. 
                     // only showing colour from 5 onwards 
                     // http://www.0to255.com/17146E for scale 
-                    [1, 'rgba(100, 100, 100, 0.7)'],
+                    [1, '#3b4042'],
                     [5, '#deddf9'],
                     [50, '#c2c0f4'],
                     [100, "#a6a3ee"],
@@ -273,9 +274,9 @@ map.on('load', function () {
 /* ADDING LEGEND
 CODE HAS TO GO INTO MAP.ON LOAD FUNCTION */
 
-var layers = ['0-50', '50-100', '100-200', '200-300', '300-400', '400-500', '500-600', '600-700', '700-800', '800-900', '900-1000', '1000-1100', '1100-1200', '1200-1300'];
+var layers = ['0-5','5-50', '50-100', '100-200', '200-300', '300-400', '400-500', '500-600', '600-700', '700-800', '800-900', '900-1000', '1000-1100', '1100-1200', '1200-1300'];
 
-var colors = ['#deddf9', '#c2c0f4', '#a6a3ee', '#7c78e7', '#605ce1', '#443fdc', '#231ea7', '#1d198b', '#17146e', '#110f51', '#0e0c43', '#0b0a35', '#080726', '#050418', '#020209'];
+var colors = ['#3b4042','#deddf9', '#c2c0f4', '#a6a3ee', '#7c78e7', '#605ce1', '#443fdc', '#231ea7', '#1d198b', '#17146e', '#110f51', '#0e0c43', '#0b0a35', '#080726', '#050418', '#020209'];
 
 for (i = 0; i < layers.length; i++) {
   var layer = layers[i];
@@ -447,10 +448,23 @@ $('#backward').click(function () {
 $('#play').click(function(){
 	interval=setInterval(function (){
 	$("#forward").trigger('click');
-        // affects the rate of speed of slider 
+    // play button colour
+    var play = document.getElementById("play");
+    play.setAttribute("style", "background-color: darkblue");
+    // stop button colour
+    var stop = document.getElementById("stop");
+    stop.setAttribute("style", "background-color: black");
+    // affects the rate of speed of slider 
   },1200);
 });
 $("#stop").click(function(){
+    // stop button colour
+    var stop = document.getElementById("stop");
+    stop.setAttribute("style", "background-color: darkblue");
+    // play button colour
+    var play = document.getElementById("play");
+    play.setAttribute("style", "background-color: black");
+        // affects the rate of speed of slider 
 	clearInterval(interval);
 });
     
