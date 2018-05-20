@@ -23,8 +23,8 @@ body {
         position: absolute;
         top: 20px;
         /* size depending on buttons website */
-        right: 60px;
-        width: 80px;
+        right: 45px;
+        width: 90px;
         border-radius: 3px;
     }
     #menu a {
@@ -149,7 +149,7 @@ body {
     opacity: 0.6;
     position: absolute;
     bottom: 150px;
-    left: 20px;
+    left: 10px;
     border-radius: 5px;
 }
 
@@ -163,7 +163,7 @@ body {
     opacity: 0.6;
     position: absolute;
     bottom: 90px;
-    left: 20px;
+    left: 10px;
     border-radius: 5px;
 }
 
@@ -204,7 +204,7 @@ map-overlay2 {
     position: absolute;
     bottom: 0;
     right: 0;
-    margin-right: 20px;
+    margin-right: 10px;
     border-radius: 5px;
 }
 
