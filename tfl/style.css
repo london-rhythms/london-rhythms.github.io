@@ -145,10 +145,10 @@ body {
 /* DATE AND TIME LAYOUT */
 
 .map-overlay3 {
-    background-color: black;
-    opacity: 0.6;
+    background-color: transparent;
+    /*opacity: 0.6;*/
     position: absolute;
-    bottom: 150px;
+    bottom: 120px;
     left: 10px;
     border-radius: 5px;
 }
@@ -159,10 +159,10 @@ body {
 }
 
 .map-overlay4 {
-    background-color: black;
-    opacity: 0.6;
+    background-color: transparent;
+    /*opacity: 0.6;*/
     position: absolute;
-    bottom: 90px;
+    bottom: 80px;
     left: 10px;
     border-radius: 5px;
 }
@@ -214,7 +214,7 @@ map-overlay2 {
     padding: 10px;
     /* line height divides space between options */
     line-height: 15px;
-    height: 210px;
+    height: 225px;
     margin-bottom: 40px;
     width: 100px;
 }
@@ -224,8 +224,8 @@ map-overlay2 {
     opacity: 1;
     padding: 10px;
     /* line height divides space between options */
-    line-height: 15px;
-    margin-bottom: 260px;
+    line-height: 16px;
+    margin-bottom: 275px;
     width: 100px;
 }
 
@@ -321,14 +321,14 @@ h5 {
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     color: white;
-    text-shadow: 1px 1px 5px #030303;
+    text-shadow: 3px 3px 6px #0e0c43;
 }
 
 h6 {
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     color: white;
-    text-shadow: 1px 1px 5px #030303;
+    text-shadow: 4px 4px 8px #0e0c43;
 }
 
 /* CLEAN */
@@ -477,6 +477,7 @@ h6 {
 }
 
 #storymode-content {
+ font-family: 'Montserrat', sans-serif;
  font-size: 12px;
  line-height: 16px;
 }
