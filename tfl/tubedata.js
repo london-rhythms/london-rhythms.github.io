@@ -35,7 +35,7 @@ map.on('load', function () {
             url: 'mapbox://kaatnl.0m8m2xhy'
         },
         // filter on first value unixtime 
-        'filter': ['==', ['number', ['get', 'unix']], 1471568400],
+        'filter': ['==', ['number', ['get', 'unix']], 1487296800],
         'source-layer': 'station_unix_locations_final-81o5o1',
         'layout': {
             'visibility': 'none'
@@ -100,7 +100,9 @@ map.on('load', function () {
             url: 'mapbox://kaatnl.0m8m2xhy'
         },
         // filter on first value unixtime
-        'filter': ['==', ['number', ['get', 'unix']], 1471568400],
+        // starting 1471568400
+        // 1487296800
+        'filter': ['==', ['number', ['get', 'unix']], 1487296800],
         'source-layer': 'station_unix_locations_final-81o5o1',
         'layout': {
             // starting view
@@ -548,104 +550,7 @@ input.oninput = function(){
     
 };    
 
-/*
-
-map.on('mouseover', 'Exits', function (e) {
-    coordinates = e.lngLat;
-    var station = e.features[0].properties.Station;
-    console.log(station);
-      
-    var csv = String(station + ".csv");
-    console.log(csv);
-      
-    var number_exits = e.features[0].properties.Exits;
-    var number_entries = e.features[0].properties.Entries;
-        
-    var data = [];
-
-var unix = [];
-var entries = [];
-    
-d3.csv(csv, function(file) {
-file.forEach(function(row) {
-    var Station = row.Station;
-    unix.push(String(row.Exits));
-    entries.push(Number(row.Entries));
-
-});  
-}); 
-    
-console.log(unix);
-console.log(entries); 
-    
-$(function() {
-  $('#container').highcharts({
-    chart: {
-    // choose type of chart, could also be a column 
-      type: 'line',
-      zoomType: 'x'
-    },
-      // choose colour of line 
-    colors: [
-      '#d8d826'
-    ],
-    legend: {
-        // name of the line
-        // useful because then can give two seperate colours of exit en entry 
-      enabled: true
-    },
-    title: {
-      style: {
-        fontSize: '0px'
-      }
-    },
-    subtitle: {
-      style: {
-        fontSize: '0px'
-      }
-    },
-    xAxis: {
-      //categories: ['1960', '1961', '1962'],
-      categories: unix,
-      tickmarkPlacement: 'on',
-      tickInterval: 1,
-      minRange: 1 // set this to allow up to one year to be viewed
-    },
-    yAxis: {
-      min: 30, // set min based on array value
-      title: {
-        text: 'Number',
-        style: {
-          fontSize: '0px'
-        }
-      }
-    },
-    tooltip: {
-      shared: false,
-      useHTML: true
-    },
-    plotOptions: {
-      column: {
-        pointPadding: 0.2,
-        borderWidth: 0
-      }
-    },
-    series: [{
-      data: entries,
-      name: 'data by year'
-      //data: entries
-    }]
-  } 
-    , function(chart) {
-      
-
-  });
-
-});  
-    
-
-}); */
-
+/* SHOW EXIT AND ENTRY VALUE ON KLICK */
 map.on('click', 'Exits', function (e) {
         coordinates = e.lngLat;
         var station = e.features[0].properties.Station;
@@ -677,8 +582,3 @@ map.on('click', 'Entries', function (e) {
             .setHTML(station+"Exits"+number_exits+"Entries"+number_entries)
             .addTo(map); 
 });
-
-
-
-
-
