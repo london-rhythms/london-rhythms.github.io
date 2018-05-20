@@ -249,7 +249,7 @@ map-overlay2 {
 }
 
 .stop:hover {
- background-color: grey;
+ background-color: darkblue;
 }
 
 .play {
@@ -258,7 +258,7 @@ map-overlay2 {
 }
 
 .play:hover {
- background-color: grey;
+ background-color: darkblue;
 }
 
 .backward {
@@ -267,7 +267,7 @@ map-overlay2 {
 }
 
 .backward:hover {
- background-color: grey;
+ background-color: darkblue;
 }
 
 .forward {
@@ -276,7 +276,7 @@ map-overlay2 {
 }
 
 .forward:hover {
- background-color: grey;
+ background-color: darkblue;
 }
 
 /*TEXT STYLE*/
