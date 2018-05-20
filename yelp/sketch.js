@@ -89,7 +89,7 @@ function setup() {
 
   textFont('Helvetica');
 
-  let y = 100;
+  let y = 120;
   // create colour array
   for (let i = 0; i < categories.length; i++){
 
@@ -111,7 +111,7 @@ function setup() {
     }
 
     // create array of key objects
-    let k = new KeyItem(20, y, i);
+    let k = new KeyItem(30, y, i);
     key_display.push(k);
     y += 30;
   }
@@ -153,11 +153,12 @@ function draw() {
 
   runTime(speed);
 
+  fill(10, 200);
+  rectMode(CORNERS);
+  rect(width-160, height-100, width, height-30);
   fill(255);
   textSize(25);
   textAlign(LEFT, CENTER);
-  // text(day_names[day_t], 50, 30);
-  // text(timeString(time), 50, 60);
   text(day_names[day_t], width-150, height-50);
   text(timeString(time), width-150, height-80);
 
@@ -273,7 +274,7 @@ class KeyItem {
     this.x = x;
     this.y = y;
     this.num = num;
-    this.r = 15;
+    this.r = 20;
     this.selected = true;
   }
 
@@ -289,10 +290,11 @@ class KeyItem {
       text(categories[this.num], this.x + this.r, this.y);
     }
     else{
-      fill(colour2[this.num]);
+
+      noFill();
+      stroke(colour2[this.num]);
       ellipse(this.x, this.y, this.r, this.r);
-      fill('#282828');
-      ellipse(this.x, this.y, this.r-2, this.r-2);
+      noStroke();
       fill(255);
       textSize(15);
       textAlign(LEFT, CENTER);
@@ -364,6 +366,7 @@ class Button{
     if (dist(this.x, this.y, mouseX, mouseY) < this.r){
 
       if (this.selected == false){
+        resetStory();
         s = createDiv('');
         s.class('map-overlay').id('story');
         s.html('<H3>' + stories[0].title + '</H3> <p>' + stories[0].text + '</p>');
@@ -446,6 +449,7 @@ function storyControl(){
 
   switch (sID) {
     case 0:
+      resetStory();
       break;
 
     case 1:
