@@ -213,10 +213,10 @@ class Business {
 // defining colour, location and drawing if open and set to display
 Business.prototype.show = function () {
   // print(myMap.getZoom());
-  if (myMap.getZoom() <= 14){
+  if (myMap.getZoom() <= 13){
     this.r = 3;
-  }if (myMap.getZoom() > 14){
-    this.r = 5;
+  }if (myMap.getZoom() > 13){
+    this.r = 4;
   } if (myMap.getZoom() > 15){
     this.r = 8;
   }
@@ -460,7 +460,7 @@ function storyControl(){
       break;
 
     case 1:
-      setSearch(day_t,1290);
+      setSearch(day_t,1230);
       break;
 
     case 2:
@@ -496,7 +496,7 @@ function storyControl(){
       key_display[1].manual_click();
       key_display[4].manual_click();
       key_display[5].manual_click();
-      setSearch(0,0);
+      // setSearch(0,0);
       break;
   }
 }

@@ -76,7 +76,7 @@ var stories = [
   },
     
   { title: "Number of Entries during Friday Night",
-    description: "02:00 - Flow of passengers that enters the night tube on Friday is clustered around Soho and Liverpool Street. Number of entries is decreasing over night.",
+    description: "02:00 - Passenger flow that enters the night tube on Friday is clustered around Soho and Liverpool Street. Number of entries is decreasing over night.",
     index: 312,
     entries: 'visible',
     exits: 'none',
@@ -193,7 +193,7 @@ var stories = [
   },
     
   { title: "Number of Entries during Saturday Night",
-    description: "02:00 - Flow of passengers that enters the night tube on Saturday is clustered around Soho and Liverpool Street. Number of entries is decreasing over night.",
+    description: "02:00 - Passenger flow that enters the night tube on Saturday is clustered around Soho and Liverpool Street. Number of entries is decreasing over night.",
     index: 318,
     entries: 'visible',
     exits: 'none',
@@ -309,7 +309,7 @@ var stories = [
   },
     
   { title: "Number of Exits during Friday Night",
-    description: "02:00 - Flow of passengers that exits the night tube on Friday is is relatively more clustered around the outer parts of London (e.g. Ealing, Tooting and Stratford). Number of exits is slowly decreasing over time.",
+    description: "02:00 - Passenger flow that exits the night tube on Friday is is relatively more clustered around the outer parts of London (e.g. Ealing, Tooting and Stratford). Number of exits is slowly decreasing over time.",
     index: 312,
     entries: 'none',
     exits: 'visible',
@@ -540,7 +540,7 @@ var stories = [
   },
     
   { title: "Number of Entries/Exits during the Night",
-    description: "Look at the flow of passengers that enters or exits the night tube over time by starting the play button.",
+    description: "Look at the exit and entry passenger flow during the night tube over time by starting the play button.",
     index: 0,
     entries: 'visible',
     exits: 'none',
