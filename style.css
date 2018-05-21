@@ -18,16 +18,16 @@
     display: block;
     float: right;
     margin: 5px;
-    width: 24px;
-    height: 24px;
+    width: 1.5vw;
+    height: 1.5vw;
     background: rgba(100, 100, 100, 0.6);
-    border-radius: 12px;
+    border-radius: 0.75vw;
 }
 
 /* menu icon */
 
 #menu li img {
-    width: 16px;
+    width: 1.1vw;
     position: relative;
     top: 10%;
     left: 15%;
