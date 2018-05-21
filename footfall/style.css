@@ -16,14 +16,11 @@ body {
     position: absolute;
     top: 80px;
     left: 10px;
-    width: 200px;
+    width: 201px;
     color: white;
-    background-color: rgba(0, 0, 0, 1);
+    background: black;
     padding: 10px;
-    z-index: 4;
-    border-radius: 3px;
 }
-
 
 video {
     position: absolute;
