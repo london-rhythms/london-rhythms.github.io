@@ -7,25 +7,34 @@ body {
 
 
 #mVideo {
-    position: absolute;
-    right: 0;
-    top: 0;
-/*    width: 70%;*/
+/*    width: 100%;*/
     height: 100%;
 }
 
-.textContainer{
+.textContainer {
     text-align: left;
     position: absolute;
-    top:80px;
-    left: 15px;
-    width: 50%;
-    color:white;
+    top: 80px;
+    left: 10px;
+    width: 200px;
+    color: white;
+    background-color: rgba(0, 0, 0, 1);
+    padding: 10px;
+    z-index: 4;
+    border-radius: 3px;
+}
+
+
+video {
+    position: absolute;
+    right: 0;
+    top: 0;
+/*    object-fit: fill;*/
 }
 
 p {
-/*    font-family: "Lato";*/
-    font-size: 12px;
+    /*    font-family: "Lato";*/
+    font-size: 0.7vw;
 
     position: relative;
     margin: 0;
