@@ -16,16 +16,15 @@
     position: absolute;
     /* top: 10px;
     right: 30px; */
-    bottom: 170px;
+    bottom: 120px;
     left: 30px;
     width: 250px;
-    height: 300px;
+    height: 250px;
     background: black;
     color: white;
     padding: 15px;
     opacity: 0.5;
 }
-
 
 
 /*TEXT STYLE*/
@@ -39,7 +38,7 @@ h2 {
 
 h3 {
     font-family: "Montserrat";
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     font-weight: normal;
     margin: 0;
@@ -47,5 +46,5 @@ h3 {
 
 p {
     font-family: "Montserrat";
-    font-size: 15px;
+    font-size: 13px;
 }
