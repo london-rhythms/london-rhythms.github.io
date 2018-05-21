@@ -18,16 +18,16 @@
     display: block;
     float: right;
     margin: 5px;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     background: rgba(100, 100, 100, 0.6);
-    border-radius: 15px;
+    border-radius: 12px;
 }
 
 /* menu icon */
 
 #menu li img {
-    width: 20px;
+    width: 16px;
     position: relative;
     top: 10%;
     left: 15%;
@@ -146,17 +146,17 @@ a:visited {
 
 h1 {
     font-family: "Montserrat";
-    font-size: 32px;
+    font-size: 4vw;
 }
 
 h2 {
     font-family: "Montserrat";
-    font-size: 28px;
+    font-size: 2vw;
 }
 
 h3 {
     font-family: "Montserrat";
-    font-size: 22px;
+    font-size: 1.3vw;
     font-weight: normal;
 
     position: relative;
@@ -166,7 +166,7 @@ h3 {
 
 p {
     font-family: "Lato";
-    font-size: 14px;
+    font-size: 0.8vw;
 
     position: relative;
     margin: 0;
