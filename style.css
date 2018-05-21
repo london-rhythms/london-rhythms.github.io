@@ -18,8 +18,8 @@
     display: block;
     float: right;
     margin: 5px;
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     background: rgba(100, 100, 100, 0.6);
     border-radius: 12px;
 }
@@ -27,7 +27,7 @@
 /* menu icon */
 
 #menu li img {
-    width: 16px;
+    width: 20px;
     position: relative;
     top: 10%;
     left: 15%;
