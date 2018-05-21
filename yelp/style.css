@@ -16,10 +16,10 @@
     position: absolute;
     /* top: 10px;
     right: 30px; */
-    bottom: 120px;
+    bottom: 160px;
     left: 30px;
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 230px;
     background: black;
     color: white;
     padding: 15px;
@@ -38,7 +38,7 @@ h2 {
 
 h3 {
     font-family: "Montserrat";
-    font-size: 18px;
+    font-size: 16px;
     color: white;
     font-weight: normal;
     margin: 0;
@@ -46,5 +46,5 @@ h3 {
 
 p {
     font-family: "Montserrat";
-    font-size: 13px;
+    font-size: 12px;
 }
