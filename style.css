@@ -186,7 +186,7 @@ p {
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    width: 30px;
+    width: 2vw;
 
     animation-delay: 7s;
     animation: slidefromBottom 2s;
@@ -235,7 +235,7 @@ p {
 
 #items {
     margin:auto;
-    width: 500px;
+    width: 50vw;
     padding: 0;
 }
 
@@ -250,7 +250,7 @@ p {
 }
 
 #items li img {
-    width: 80px;
+    width: 6vw;
     position: absolute;
     top: 0;
     left: 0;  
