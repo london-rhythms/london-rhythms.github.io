@@ -214,7 +214,7 @@ map-overlay2 {
     padding: 10px;
     /* line height divides space between options */
     line-height: 15px;
-    height: 225px;
+    height: 120px;
     margin-bottom: 40px;
     width: 100px;
 }
@@ -224,8 +224,8 @@ map-overlay2 {
     opacity: 1;
     padding: 10px;
     /* line height divides space between options */
-    line-height: 16px;
-    margin-bottom: 275px;
+    line-height: 15px;
+    margin-bottom: 170px;
     width: 100px;
 }
 
@@ -295,6 +295,13 @@ h2 {
     font-weight: normal;
 }
 
+h9 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: white;
+    font-weight: normal;
+}
+
 h10 {
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
@@ -321,14 +328,21 @@ h5 {
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     color: white;
-    text-shadow: 3px 3px 6px #0e0c43;
+    text-shadow: 5px 5px 10px #0e0c43;
 }
 
 h6 {
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     color: white;
-    text-shadow: 4px 4px 8px #0e0c43;
+    text-shadow: 5px 5px 10px #0e0c43;
+}
+
+.mapboxgl-map {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: black;
+    font-weight: bold;
 }
 
 /* CLEAN */
@@ -466,8 +480,8 @@ h6 {
  position: absolute;
  top: 90px;
  left: 10px;
- width: 300px;
- height: 100px;
+ width: 290px;
+ height: 140px;
  background: black;
  opacity; 0.7;
  color: white;
@@ -523,4 +537,20 @@ i {
 .left {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
+}
+
+/* POP UP STYLE */
+
+mapboxgl-popup-content {
+    position: relative;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+    padding: 10px 10px 15px;
+    pointer-events: auto;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+    -webkit-align-self: center;
+    align-self: center;
+    border-bottom: none;
 }
