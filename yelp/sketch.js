@@ -460,7 +460,7 @@ function storyControl(){
       break;
 
     case 1:
-      setSearch(day_t,1290);
+      setSearch(day_t,1230);
       break;
 
     case 2:
