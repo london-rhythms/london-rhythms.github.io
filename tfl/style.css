@@ -282,42 +282,42 @@ map-overlay2 {
 /*TEXT STYLE*/
 
 h1 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
     font-size: 18px;
     color: black;
     font-weight: normal;
 }
 
 h2 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
     font-size: 20px;
     color: white;
     font-weight: normal;
 }
 
 h9 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
+    font-family: 'Montserrat';
+    font-size: 14px;
     color: white;
     font-weight: normal;
 }
 
 h10 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
     font-size: 14px;
     color: white;
     font-weight: normal;
 }
 
 h11 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
     font-size: 13px;
     color: white;
     font-weight: normal;
 }
 
 h3 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
     font-size: 16px;
     color: white;
     font-weight: normal;
@@ -325,21 +325,21 @@ h3 {
 }
 
 h5 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
     font-size: 30px;
     color: white;
     text-shadow: 5px 5px 10px #0e0c43;
 }
 
 h6 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
     font-size: 30px;
     color: white;
     text-shadow: 5px 5px 10px #0e0c43;
 }
 
 .mapboxgl-map {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
     font-size: 13px;
     color: black;
     font-weight: bold;
