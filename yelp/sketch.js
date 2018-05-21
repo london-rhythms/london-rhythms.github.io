@@ -25,7 +25,7 @@ var speed = 30; // initial minute interval for timer
 var time = 0;
 var day_t = 0;
 var table;
-var speeds = [20,25,30,35,40,45,50,55,60];
+var speeds = [20,25,30,35,40,45,50,55,60, 100];
 var speed_control = 3;
 var day_names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday', 'Saturday', 'Sunday'];
 // var categories = ['musicvenues', 'restaurants', 'adultentertainment', 'beergardens', 'comedyclubs', 'danceclubs', 'jazzandblues', 'karaoke', 'pianobars', 'poolhalls', 'cocktailbars', 'gaybars', 'hookah_bars',  'pubs', 'sportsbars', 'wine_bars']
@@ -49,7 +49,11 @@ var story_point = 0;
 var s; // HTML element
 var sID = 0;
 var stories; // to hold JSON details read in
-var sLength = 4;
+var sLength = 6;
+
+var searching = false;
+var search_d;
+var search_h;
 
 let key_display = [];
 let bus_key;
@@ -75,6 +79,7 @@ function setup() {
   b4 = new SButton(110, 490);
 
   colour2 = [color(0,116,217), color(57,204,204), color(1,255,112), color(255,220,0), color(240,18,190), color(255,65,54)];
+  // colour2 = [color(0,116,217), color(57,204,204), color(1,255,112), color(255,220,0), color(240,18,190), color(133,27,75)];
 
   canvas = createCanvas(windowWidth, windowHeight);
 
@@ -83,7 +88,7 @@ function setup() {
   myMap.overlay(canvas);
 
   // GUI object
-  gui = createGui('Speed Controller', width - 200, 20);
+  gui = createGui('Speed Controller', width - 300, 20);
   sliderRange(0,8,1);
   gui.addGlobals('speed_control');
 
@@ -155,12 +160,12 @@ function draw() {
 
   fill(10, 200);
   rectMode(CORNERS);
-  rect(width-160, height-100, width, height-30);
+  rect(width-170, height-130, width, height-20);
   fill(255);
-  textSize(25);
+  textSize(30);
   textAlign(LEFT, CENTER);
-  text(day_names[day_t], width-150, height-50);
-  text(timeString(time), width-150, height-80);
+  text(day_names[day_t], width-160, height-60);
+  text(timeString(time), width-160, height-100);
 
   // let z = myMap.map.getZoom();
   // print(z);
@@ -187,7 +192,8 @@ function draw() {
   }
   // if graph button selected, display
   if(show_graph) graph3();
-
+  runSearch();
+  print(sID);
 }
 
 
@@ -210,9 +216,9 @@ Business.prototype.show = function () {
   if (myMap.getZoom() <= 14){
     this.r = 3;
   }if (myMap.getZoom() > 14){
-    this.r = 4;
-  } if (myMap.getZoom() > 15){
     this.r = 5;
+  } if (myMap.getZoom() > 15){
+    this.r = 8;
   }
   let cat_index = categories.indexOf(this.cat);
   noStroke();
@@ -439,6 +445,7 @@ class SButton{
       s.html('<H3>' + stories[sID].title + '</H3> <p>' + stories[sID].text + '</p>');
       myMap.map.flyTo(stories[sID].LatLng, stories[sID].zoom);
 
+      // run control switches
       storyControl();
     }
   }
@@ -453,32 +460,44 @@ function storyControl(){
       break;
 
     case 1:
-      speed_control = 0;
-
+      setSearch(day_t,1290);
       break;
 
     case 2:
-      key_display[0].manual_click();
-      key_display[1].manual_click();
-      key_display[2].manual_click();
-      show_graph = true;
-
+      paused = false;
+      speed_control = 0;
       break;
 
     case 3:
-      key_display[3].manual_click();
-      key_display[4].manual_click();
-      key_display[5].manual_click();
       key_display[0].manual_click();
+      key_display[1].manual_click();
+      key_display[2].manual_click();
       break;
 
     case 4:
-      speed_control = 3;
+      key_display[0].manual_click();
       key_display[1].manual_click();
+      key_display[2].manual_click();
+      speed_control = 2;
+      show_graph = true;
+      break;
+
+    case 5:
+      print('case 5');
       key_display[2].manual_click();
       key_display[3].manual_click();
       key_display[4].manual_click();
       key_display[5].manual_click();
+      break;
+
+    case 6:
+      print('case 6');
+      key_display[0].manual_click();
+      key_display[1].manual_click();
+      key_display[4].manual_click();
+      key_display[5].manual_click();
+      setSearch(0,0);
+      break;
   }
 }
 
@@ -495,6 +514,29 @@ function resetStory(){
   myMap.map.flyTo(stories[0].LatLng, stories[0].zoom);
 }
 
+// set time to search for
+function setSearch(day, hour){
+
+  searching = true;
+  search_d = day;
+  search_h = hour;
+}
+
+// pause animation when set time is reached
+function runSearch(){
+
+  if (searching){
+
+    speed_control = 9;
+
+    if(search_d == day_t && search_h <= time && search_h+60 <= time){
+      paused = true;
+      searching = false;
+      speed_control = 2;
+    }
+  }
+}
+
 function graph3(){
 
   // caclulate current total businesses displayed to use in dynamic mapping of y value
@@ -509,7 +551,7 @@ function graph3(){
   rectMode(CORNERS);
 
   // draw bottom border
-  let borderheight = height*.03;
+  let borderheight = height*.04;
   let bottom = height - borderheight;
   fill(50);
   rect(0, bottom, width, height);
@@ -579,9 +621,9 @@ function graphTimes(x, i, ctime, array){
       ind = d;
     }
     fill(255);
-    text(day_names[ind], x+3, height*.985);
+    text(day_names[ind], x+3, height*.975);
     stroke(255);
-    line(x, height*.89, x, height);
+    line(x, height*.85, x, height);
   }
 }
 

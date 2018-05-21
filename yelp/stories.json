@@ -5,8 +5,8 @@
         "lng": -0.118092
       },
       "zoom": 12,
-      "title": "1/5 - High Level",
-      "text": "Aperiam dolor quia eum incidunt praesentium aut aut. Et qui et occaecati quia atque commodi deserunt deleniti. Alias inventore culpa laboriosam dolor sit ipsa dolorum accusamus. Autem sint dignissimos sed quas corporis."
+      "title": "1/7 - Overview",
+      "text": "At a high level there is a clear, pulse-like rhythm to the opening and closing of businesses throughout the day. <p>This follows the expected pattern: a build of openings throughout the day, which tails off suddenly during the night."
     },
     {
       "LatLng": {
@@ -14,34 +14,52 @@
         "lng": -0.118092
       },
       "zoom": 12,
-      "title": "2/5 - High Level",
-      "text": "At a slower speed there is a clear spatial bias to lateness of opening, with more central businesses staying open later."
+      "title": "2/7 - Spatial Clusters",
+      "text": "We can see how all these businesses are spatially distributed throughout the city, with two main clusters in the centre, and others grouped around the main transport arteries or hubs."
     },
     {
       "LatLng": {
-        "lat": 51.51276218235479,
-        "lon": -0.13355255126953128
-      },
-      "zoom": 15,
-      "title": "3/5 - More Granular",
-      "text": "Eligendi minima aspernatur debitis illum non quia mollitia. Dolore praesentium quam vero est sed minima corporis. Facere debitis deleniti occaecati eos earum consequatur voluptas dolorem. Aut et sint dolore veniam provident assumenda vel."
-    },
-    {
-      "LatLng": {
-        "lat": 51.51197429106744,
-        "lon": -0.1344108581542969
+        "lat": 51.51176952558567,
+        "lon": -0.11560915969312192
       },
       "zoom": 14,
-      "title": "4/5 - More Granular",
-      "text": "Dolor expedita illum ad assumenda qui. Quis quas molestiae ipsa ut vero. Placeat dolor delectus quia nobis rem. Officiis harum repellat sit quidem expedita error aliquam reprehenderit. Saepe sit molestias non distinctio ad quia enim deserunt."
+      "title": "3/7 - Cluster Detail",
+      "text": "Taking a closer look it seems like it is Soho which makes up the pulsing heart of London. <p>It also appears that many businesses which stay open latest are based in this area, especially the dance clubs."
     },
     {
       "LatLng": {
-        "lat": 51.51197429106744,
-        "lon": -0.1344108581542969
+        "lat": 51.51176952558567,
+        "lon": -0.11560915969312192
       },
       "zoom": 13,
-      "title": "5/5 - More Granular - 2",
-      "text": "Eligendi minima aspernatur debitis illum non quia mollitia. Dolore praesentium quam vero est sed minima corporis. Facere debitis deleniti occaecati eos earum consequatur voluptas dolorem. Aut et sint dolore veniam provident assumenda vel."
+      "title": "4/7 - Late Night Hubs",
+      "text": "Concentrating just on these venues which are more associated with late night activities we can see a clear central bias in opening hours, as the ones open latest are either very central or close to good transport links."
+    },
+    {
+      "LatLng": {
+        "lat": 51.51176952558567,
+        "lon": -0.11560915969312192
+      },
+      "zoom": 13,
+      "title": "5/7 - Temporal Patterns",
+      "text": "Looking at the high level pattern across all businesses we can see a repeated shape across the week with a sharp peak up to midday, which flattens out before building up again into an evening spike. <p>This spike itself is flattened out towards the weekend as businesses start to open earlier in the day, up to the point where it's almost not visible at all on Sunday."
+    },
+    {
+      "LatLng": {
+        "lat": 51.51176952558567,
+        "lon": -0.11560915969312192
+      },
+      "zoom": 13,
+      "title": "6/7 - Category Variations",
+      "text": "Not every type of business has the same shape, however. We can see that restaurants don't tend to stay open very late from the sharp drop off in volume after 10 O'clock."
+    },
+    {
+      "LatLng": {
+        "lat": 51.51176952558567,
+        "lon": -0.11560915969312192
+      },
+      "zoom": 13,
+      "title": "7/7 - Category Variations",
+      "text": "The picture is very different for Music Venues and Dance Clubs, which stay open well beyond midnight.<p> We can see this tail slowly extend throughout the week up until Friday night where it reaches furthest into the early hours. <p>Interestingly there is a steep drop in volume on Saturday night, showing Friday is perhaps the better night to go out."
     }
-  ]
+]
