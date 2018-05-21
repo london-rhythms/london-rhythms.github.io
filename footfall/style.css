@@ -30,9 +30,8 @@ video {
 }
 
 p {
-    /*    font-family: "Lato";*/
+    font-family: "Montserrat";
     font-size: 0.7vw;
-
     position: relative;
     margin: 0;
     padding-bottom: 5px;
