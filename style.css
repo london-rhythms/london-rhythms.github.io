@@ -18,16 +18,16 @@
     display: block;
     float: right;
     margin: 5px;
-    width: 24px;
-    height: 24px;
+    width: 1.5vw;
+    height: 1.5vw;
     background: rgba(100, 100, 100, 0.6);
-    border-radius: 12px;
+    border-radius: 0.75vw;
 }
 
 /* menu icon */
 
 #menu li img {
-    width: 16px;
+    width: 1.1vw;
     position: relative;
     top: 10%;
     left: 15%;
@@ -146,17 +146,17 @@ a:visited {
 
 h1 {
     font-family: "Montserrat";
-    font-size: 32px;
+    font-size: 4vw;
 }
 
 h2 {
     font-family: "Montserrat";
-    font-size: 28px;
+    font-size: 2vw;
 }
 
 h3 {
     font-family: "Montserrat";
-    font-size: 20px;
+    font-size: 1.3vw;
     font-weight: normal;
 
     position: relative;
@@ -166,7 +166,7 @@ h3 {
 
 p {
     font-family: "Lato";
-    font-size: 12px;
+    font-size: 0.8vw;
 
     position: relative;
     margin: 0;
@@ -186,7 +186,7 @@ p {
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    width: 30px;
+    width: 2vw;
 
     animation-delay: 7s;
     animation: slidefromBottom 2s;
@@ -235,7 +235,7 @@ p {
 
 #items {
     margin:auto;
-    width: 500px;
+    width: 50vw;
     padding: 0;
 }
 
@@ -250,7 +250,7 @@ p {
 }
 
 #items li img {
-    width: 80px;
+    width: 6vw;
     position: absolute;
     top: 0;
     left: 0;  

@@ -82,6 +82,7 @@ function setup() {
   // colour2 = [color(0,116,217), color(57,204,204), color(1,255,112), color(255,220,0), color(240,18,190), color(133,27,75)];
 
   canvas = createCanvas(windowWidth, windowHeight);
+  // canvas = createCanvas(1900, 1068);
 
   // Create a tile map and overlay the canvas on top.
   myMap = mappa.tileMap(options);
@@ -158,18 +159,17 @@ function draw() {
 
   runTime(speed);
 
+  // draw time counter and background box
   fill(10, 200);
   rectMode(CORNERS);
-  rect(width-170, height-130, width, height-20);
+  rect(width-170, height-125, width, height-20);
   fill(255);
-  textSize(30);
+  textSize(25);
   textAlign(LEFT, CENTER);
-  text(day_names[day_t], width-160, height-60);
+  text(day_names[day_t], width-160, height-65);
   text(timeString(time), width-160, height-100);
 
-  // let z = myMap.map.getZoom();
-  // print(z);
-  // print(myMap.map.getZoom());
+
   // display all business points
   for(let bus of businesses[day_t]){
     bus.show();
