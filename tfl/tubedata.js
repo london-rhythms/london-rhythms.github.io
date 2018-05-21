@@ -15,7 +15,7 @@ var map = new mapboxgl.Map({
     // to rotate starting view 
     // bearing: -60,    
     // starting zoom
-    zoom: 11,
+    zoom: 11.5,
     maxZoom: 20,
     // data not visible further away 
     minZoom: 11,
@@ -133,150 +133,14 @@ var values = [ 1.48185360e+09,   1.48185540e+09,   1.48185720e+09,
       
 values.sort();
 
-//add layers                                         
-map.on('load', function () {
-    
-    /* EXITS: MAPBOX INTERVAL DATA: 0-1272 */
-    map.addLayer({
-        id: 'Exits',
-        // for 3D effect 
-        type: 'fill-extrusion',
-        source: {
-            type: 'vector',
-            url: 'mapbox://kaatnl.0m8m2xhy'
-        },
-        // filter on first value unixtime 
-        'filter': ['==', ['number', ['get', 'unix']], values[312]],
-        'source-layer': 'station_unix_locations_final-81o5o1',
-        'layout': {
-            'visibility': 'none'
-        },
-        paint: {
-            'fill-extrusion-opacity': 0.75,
-            'fill-extrusion-color': {
-                property: 'Exits',
-                type: 'exponential',
-                stops: [
-                    // all values that had string "Below 5" were in python set to 0. 
-                    // only showing colour from 5 onwards 
-                    // http://www.0to255.com/17146E for scale 
-                    [1, '#3b4042'],
-                    [5, '#deddf9'],
-                    [50, '#c2c0f4'],
-                    [100, "#a6a3ee"],
-                    [200, "#7c78e7"],
-                    [300, "#605ce1"],
-                    [400, "#443fdc"],
-                    [500, "#231ea7"],
-                    [600, "#1d198b"],
-                    [700, "#17146e"],
-                    [800, "#110f51"],
-                    [900, "#0e0c43"],
-                    [1000, "#0b0a35"],
-                    [1100, "#080726"],
-                    [1200, "#050418"],
-                    [1300, "#020209"]
-                ]
-            },
-            'fill-extrusion-height': {
-                property: 'Exits',
-                type: 'exponential',
-                stops: [
-                    [1, 0],
-                    [5, 125],
-                    [50, 250],
-                    [100, 500],
-                    [200, 1000],
-                    [300, 1500],
-                    [400, 2000],
-                    [500, 2500],
-                    [600, 3000],
-                    [700, 3500],
-                    [800, 4000],
-                    [900, 4500],
-                    [1000, 5000],
-                    [1100, 5500],
-                    [1200, 6000],
-                    [1300, 6500]
-                ]
-            }}
-    });     
-    
-    /* ENTRIES: MAPBOX INTERVAL DATA: 0-1272 */
-    map.addLayer({
-        id: 'Entries',
-        type: 'fill-extrusion',
-        source: {
-            type: 'vector', 
-            url: 'mapbox://kaatnl.0m8m2xhy'
-        },
-        // filter on first value unixtime
-        // starting 1471568400
-        // 1487296800
-        'filter': ['==', ['number', ['get', 'unix']], values[312]],
-        'source-layer': 'station_unix_locations_final-81o5o1',
-        'layout': {
-            // starting view
-            'visibility': 'visible'
-        },
-        paint: {
-            'fill-extrusion-opacity': 0.75,
-            'fill-extrusion-opacity': 0.75,
-            'fill-extrusion-color': {
-                property: 'Entries',
-                type: 'exponential',
-                stops: [
-                    // all values that had string "Below 5" were in python set to 0. 
-                    // only showing colour from 5 onwards 
-                    // http://www.0to255.com/17146E for scale 
-                    [1, '#3b4042'],
-                    [5, '#deddf9'],
-                    [50, '#c2c0f4'],
-                    [100, "#a6a3ee"],
-                    [200, "#7c78e7"],
-                    [300, "#605ce1"],
-                    [400, "#443fdc"],
-                    [500, "#231ea7"],
-                    [600, "#1d198b"],
-                    [700, "#17146e"],
-                    [800, "#110f51"],
-                    [900, "#0e0c43"],
-                    [1000, "#0b0a35"],
-                    [1100, "#080726"],
-                    [1200, "#050418"],
-                    [1300, "#020209"]
-                ]
-            },
-            'fill-extrusion-height': {
-                property: 'Entries',
-                type: 'exponential',
-                stops: [
-                    [1, 0],
-                    [5, 125],
-                    [50, 250],
-                    [100, 500],
-                    [200, 1000],
-                    [300, 1500],
-                    [400, 2000],
-                    [500, 2500],
-                    [600, 3000],
-                    [700, 3500],
-                    [800, 4000],
-                    [900, 4500],
-                    [1000, 5000],
-                    [1100, 5500],
-                    [1200, 6000],
-                    [1300, 6500]
-                ]
-            }}
-    });
-    
-/* ADDING LEGEND
-CODE HAS TO GO INTO MAP.ON LOAD FUNCTION */
+/* TEST 1 with http://colorbrewer2.org/#type=sequential&scheme=Blues&n=9 */
+var layers = ['< 5','5-50', '50-100', '100-300', '300-500', '500-700','700-900', '> 900'];
 
-var layers = ['0-5','5-50', '50-100', '100-200', '200-300', '300-400', '400-500', '500-600', '600-700', '700-800', '800-900', '900-1000', '1000-1100', '1100-1200', '1200-1300'];
+//var colors = ['#3b4042', '#deebf7', "#9ecae1", '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b', '#050418']; 
 
-var colors = ['#3b4042','#deddf9', '#c2c0f4', '#a6a3ee', '#7c78e7', '#605ce1', '#443fdc', '#231ea7', '#1d198b', '#17146e', '#110f51', '#0e0c43', '#0b0a35', '#080726', '#050418', '#020209'];
+// TEST 2 with http://www.0to255.com/17146E
+var colors = ['#3b4042', '#accbf9', "#7dadf5", '#2d7cef', '#0e53ba', '#1d178d', '#0e0b44', '#050418', '#020509']; 
+
 
 for (i = 0; i < layers.length; i++) {
   var layer = layers[i];
@@ -293,7 +157,116 @@ for (i = 0; i < layers.length; i++) {
   legend.appendChild(item);
 }
     
-});
+//add layers                                         
+map.on('load', function () {
+    
+    /* EXITS: MAPBOX INTERVAL DATA: 0-1272 */
+    map.addLayer({
+        id: 'Exits',
+        // for 3D effect 
+        type: 'fill-extrusion',
+        source: {
+            type: 'vector',
+            url: 'mapbox://kaatnl.0m8m2xhy'
+        },
+        // filter on first value unixtime 
+        'filter': ['==', ['number', ['get', 'unix']], values[0]],
+        'source-layer': 'station_unix_locations_final-81o5o1',
+        'layout': {
+            'visibility': 'none'
+        },
+        paint: {
+            'fill-extrusion-opacity': 0.75,
+            'fill-extrusion-color': {
+                property: 'Exits',
+                type: 'interval',
+                stops: [
+                    // all values that had string "Below 5" were in python set to 0. 
+                    // only showing colour from 5 onwards 
+                    [1, colors[0]],
+                    [5, colors[1]],
+                    [50, colors[2]],
+                    [100, colors[3]],
+                    [300, colors[4]],
+                    [500, colors[5]],
+                    [700, colors[6]],
+                    [900, colors[7]],
+                    [1400, colors[8]]
+                ]
+            },
+            'fill-extrusion-height': {
+                property: 'Exits',
+                type: 'exponential',
+                stops: [
+                    [1, 0],
+                    [5, 200],
+                    [50, 400],
+                    [100, 600],
+                    [300, 1400],
+                    [500, 2200],
+                    [700, 3000],
+                    [900, 3800],
+                    [1400, 6800]
+                ]
+            }}
+    });   
+    
+    /* ENTRIES: MAPBOX INTERVAL DATA: 0-1272 */
+    map.addLayer({
+        id: 'Entries',
+        type: 'fill-extrusion',
+        source: {
+            type: 'vector', 
+            url: 'mapbox://kaatnl.0m8m2xhy'
+        },
+        // filter on first value unixtime
+        // starting 1471568400
+        // 1487296800
+        'filter': ['==', ['number', ['get', 'unix']], values[0]],
+        'source-layer': 'station_unix_locations_final-81o5o1',
+        'layout': {
+            // starting view
+            'visibility': 'visible'
+        },
+        paint: {
+            'fill-extrusion-opacity': 0.75,
+            'fill-extrusion-opacity': 0.75,
+            'fill-extrusion-color': {
+                property: 'Entries',
+                type: 'interval',
+                stops: [
+                    // all values that had string "Below 5" were in python set to 0. 
+                    // only showing colour from 5 onwards 
+                    // http://www.0to255.com/17146E for scale 
+                    [1, colors[0]],
+                    [5, colors[1]],
+                    [50, colors[2]],
+                    [100, colors[3]],
+                    [300, colors[4]],
+                    [500, colors[5]],
+                    [700, colors[6]],
+                    [900, colors[7]],
+                    [1400, colors[8]]
+                ]
+            },
+            'fill-extrusion-height': {
+                property: 'Entries',
+                type: 'exponential',
+                stops: [
+                    [1, 0],
+                    [5, 200],
+                    [50, 400],
+                    [100, 600],
+                    [300, 1400],
+                    [500, 2200],
+                    [700, 3000],
+                    [900, 3800],
+                    [1400, 6800]
+                ]
+            }}
+    });
+            
+}); 
 
 //create exit and entry button to show data
 var toggleableLayerIds = [ 'Entries', 'Exits' ];
@@ -354,6 +327,8 @@ $('#forward').click(function () {
     $('.range-slider').val(index);
     
     var date_value = values[index];
+    console.log("XX");
+    console.log(index);
     
     // multiply by 1000
     var d = new Date(date_value*1000);
@@ -582,6 +557,7 @@ map.on('click', 'Exits', function (e) {
             .addTo(map); 
 });
 
+/* TO BE ABLE TO QUICKLY SEE WHAT TUBE STATION IT IS */
 map.on('click', 'Entries', function (e) {
         coordinates = e.lngLat;
         var station = e.features[0].properties.Station;
@@ -590,9 +566,9 @@ map.on('click', 'Entries', function (e) {
        
         var number_exits = e.features[0].properties.Exits;
         var number_entries = e.features[0].properties.Entries;
-    
+       
               new mapboxgl.Popup()
             .setLngLat(coordinates)
-            .setHTML(station+"Exits"+number_exits+"Entries"+number_entries)
-            .addTo(map); 
+            .setHTML(station+" / "+ "Exits: "+number_exits+" / Entries: "+number_entries)
+            .addTo(map);     
 });
