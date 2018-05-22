@@ -1,3 +1,4 @@
+////MAPBOX////
 //mapbox token
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGFubmFxaW4iLCJhIjoiY2l3b2RwY2VlMDAyYzJ6b2hsMTg1b3VvNSJ9.vhj9pOhlYJrNnrwpJKKLOQ';
 
@@ -23,7 +24,7 @@ var wkendMap = new mapboxgl.Map({
 syncMaps(wkdayMap, wkendMap);
 
 
-//actions after map load-weekday
+//actions after map loads-weekday
 wkdayMap.on('load', function () {
 
     //colors and texts of legend
@@ -76,11 +77,11 @@ wkdayMap.on('load', function () {
             "fill-opacity": 1
         }
     });
-    
+
     //legend for comparing layer
-    var layersComp = ['less active','','','','more active'];
-    var colorsComp = ['#003366','#004c99','#660000','#990000','#cc0000'];
-    
+    var layersComp = ['less active', '', '', '', 'more active'];
+    var colorsComp = ['#003366', '#004c99', '#660000', '#990000', '#cc0000'];
+
     for (i = 0; i < layersComp.length; i++) {
         var layerC = layersComp[i];
         var colorC = colorsComp[i];
@@ -97,7 +98,6 @@ wkdayMap.on('load', function () {
         itemC.appendChild(valueC);
         compareLeg.appendChild(itemC);
     }
-    
 
 
     //add border layer for hover effect
@@ -119,7 +119,7 @@ wkdayMap.on('load', function () {
 });
 
 
-//actions after map load-weekend
+//actions after map loads-weekend
 wkendMap.on('load', function () {
 
     //add border layer for hover effect
@@ -186,6 +186,74 @@ wkendMap.on("mouseleave", "london-wkendcount", function () {
 });
 
 
+////GRAPH////
+new Chart(document.getElementById("chart"), {
+    type: 'line',
+    data: {
+        labels: ['18', '19', '20', '21', '22', '23', '24', '01', '02', '03', '04', '05'],
+        datasets: [{
+            data: [1478, 1276, 1236.666667, 1112.333333, 924, 658, 426, 229.6666667, 117, 74, 67.33333333, 102.6666667],
+            label: "wkcount",
+            borderColor: "#3e95cd",
+            borderWidth: 1.5,
+            pointRadius: 1.5,
+            backgroundColor: "#3e95cd",
+            fill: false
+                }, {
+            data: [1509, 1330, 1129.5, 970.5, 801.5, 917, 515.5, 228.5, 118, 82.5, 60.5, 91.5],
+            label: "wkendcount",
+            borderColor: "#c45850",
+            borderWidth: 1.5,
+            pointRadius: 1.5,
+            pointStyle: 'triangle',
+            backgroundColor: "#c45850",
+            fill: false
+                }]
+    },
+    options: {
+        legend: {
+            position: 'top',
+            labels: {
+                boxWidth: 10,
+                fontColor: '#fff'
+            }
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                ticks: {
+                    fontSize: 10,
+                    fontColor: '#fff'
+                },
+                gridLines: {
+                    color: 'rgba(255,255,255,0.2)'
+                },
+            }],
+            yAxes: [{
+                display: true,
+                ticks: {
+                    fontSize: 10,
+                    fontColor: '#fff'
+                },
+                gridLines: {
+                    color: 'rgba(255,255,255,0.2)'
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Num of tweets',
+                    fontSize: 12,
+                    fontColor: '#fff'
+                }
+            }]
+        }
+    }
+
+});
+
+
+
+
+////CLICKING EVENTS////
 //Click to show comparing layer
 var link = document.getElementById('button');
 
@@ -203,13 +271,21 @@ link.onclick = function (e) {
     } else {
         this.className = 'active';
         wkdayMap.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-    }
-    
-    //show comparing texts and legends
+    };
+
+    //show and hide comparing texts and legends
     var x = document.getElementById("compareTxt");
     if (x.style.display === "none" || x.style.display === "") {
         x.style.display = "block";
     } else {
         x.style.display = "none";
+    };
+
+    //show and hide graph
+    var y = document.getElementById("graph");
+    if (y.style.display === "none" || y.style.display === "") {
+        y.style.display = "block";
+    } else {
+        y.style.display = "none";
     }
 };
