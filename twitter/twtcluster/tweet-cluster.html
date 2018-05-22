@@ -13,7 +13,10 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css' rel='stylesheet' />
     <script src="mapbox-gl-sync-move.js"></script>
-    
+
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
     <!--STYLE SHEET-->
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 
@@ -24,21 +27,35 @@
     <div id='wkday' class='map'></div>
     <div id='wkend' class='map'></div>
     <div id='divider'></div>
-    
+
     <!--TITLES ON MAP-->
-    <div id='title-wkday'><h2>Weekday</h2></div>
-    <div id='title-wkend'><h2>Weekend</h2></div>
-    
+    <div id='title-wkday'>
+        <h2>Weekday</h2>
+    </div>
+    <div id='title-wkend'>
+        <h2>Weekend</h2>
+    </div>
+
     <!--LEGEND & INFO OVERLAY-->
-    <div class='map-overlay' id='legend'><div class='plegend'>Number of tweets<br/>(per thousand pop.)</div></div>
-    <div class = 'map-overlay' id='statistics'><h3>Hover over boroughs.</h3></div>
-    
+    <div class='map-overlay' id='legend'>
+        <div class='plegend'>Number of tweets<br/>(per thousand pop.)</div>
+    </div>
+    <div class='map-overlay' id='statistics'>
+        <h3>Hover over boroughs.</h3>
+    </div>
+
     <!--COMPARE BUTTON & INFO-->
     <button id="button">COMPARE</button>
     <div id="compareTxt">
-    <p>Wkend compared to Wkday</p>
-    <div id="compareLeg"></div></div>
-    
+        <p>Wkend compared to Wkday</p>
+        <div id="compareLeg"></div>
+    </div>
+
+    <!--TIME GRAPH-->
+    <div id="graph">
+        <p>Variance through time</p>
+        <div id="linechart"><canvas id="chart"></canvas></div>
+    </div>
 
     <!--STYLE SHEET AND SCRIPT-->
     <link rel="stylesheet" href="style.css" />
