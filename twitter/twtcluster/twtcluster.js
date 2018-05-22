@@ -28,8 +28,8 @@ syncMaps(wkdayMap, wkendMap);
 wkdayMap.on('load', function () {
 
     //colors and texts of legend
-    var layers = ['0-0.4', '0.4-0.6', '0.6-0.9', '0.9-1.2', '1.2-3', '3-5', '>5'];
-    var colors = ['#043371', '#055194', '#0573bd', '#0999dc', '#3eb4f9', '#95dbfe', '#e9f5fb'];
+    var layers = ['0-0.4', '0.4-0.6', '0.6-0.9', '0.9-1.2', '1.2-3', '3-5', '>7'];
+    var colors = ['#bbe3f7', '#91d2f2', '#6cbcea', '#0ba0e5', '#0074c2', '#014f92', '#012f6a'];
 
     //create legend
     for (i = 0; i < layers.length; i++) {
@@ -55,7 +55,7 @@ wkdayMap.on('load', function () {
         type: 'fill',
         source: {
             type: 'vector',
-            url: 'mapbox://dannaqin.5ege415e'
+            url: 'mapbox://dannaqin.5ege415e' 
         },
         'source-layer': 'london_count_var-blzo3g',
         'layout': {
@@ -68,11 +68,11 @@ wkdayMap.on('load', function () {
                 "property": 'count_var',
                 //using quartiles as stop points
                 "stops": [
-                [-5, '#003366'],
-                [-0.04, '#004c99'],
-                [0.03, '#660000'],
-                [0.1, '#990000'],
-                [1, '#cc0000']]
+                [-5, '#44ACCB'],
+                [-0.04, '#82BFD1'],
+                [0.03, '#F2B9B9'],
+                [0.1, '#ff6666'],
+                [0.5, '#D44141']]
             },
             "fill-opacity": 1
         }
@@ -80,7 +80,7 @@ wkdayMap.on('load', function () {
 
     //legend for comparing layer
     var layersComp = ['less active', '', '', '', 'more active'];
-    var colorsComp = ['#003366', '#004c99', '#660000', '#990000', '#cc0000'];
+    var colorsComp = ['#44ACCB', '#82BFD1', '#F2B9B9', '#ff6666', '#D44141'];
 
     for (i = 0; i < layersComp.length; i++) {
         var layerC = layersComp[i];
@@ -111,7 +111,7 @@ wkdayMap.on('load', function () {
         'source-layer': 'london_wkcount-5snfji', // name of tilesets
         'layout': {},
         'paint': {
-            "line-color": "#e9f5fb",
+            "line-color": "white",
             "line-width": 2
         },
         "filter": ["==", "name", ""]
@@ -133,7 +133,7 @@ wkendMap.on('load', function () {
         'source-layer': 'london_wkcount-5snfji', // name of tilesets
         'layout': {},
         'paint': {
-            "line-color": "#e9f5fb",
+            "line-color": "white",
             "line-width": 2
         },
         "filter": ["==", "name", ""]
