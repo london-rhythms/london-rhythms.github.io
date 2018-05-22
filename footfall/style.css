@@ -22,6 +22,10 @@ body {
     padding: 10px;
 }
 
+.textContainer li{
+    font-size: 0.7vw;
+}
+
 video {
     position: absolute;
     right: 0;
