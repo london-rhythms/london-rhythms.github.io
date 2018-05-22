@@ -82,26 +82,26 @@ body * {
 
 .legend-key {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 0.7vw;
+    height: 0.7vw;
     margin-right: 8px;
     margin-top: 0px;
 }
 
 .plegend {
-    font-size: 10px;
+    font-size: 0.7vw;
     margin: 0;
 }
 
 #statistics {
     position: absolute;
-    top: 80px;
+    top: 11%;
     left: 10px;
     width: 200px;
     height: 65px;
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
-    padding: 15px;
+    padding: 10px;
 }
 
 /*BUTTON*/
@@ -112,7 +112,7 @@ body * {
     border: 2px solid #606060;
     color: white;
     font-family: "Montserrat";
-    font-size: 14px;
+    font-size: 0.9vw;
     position: absolute;
     left: 10px;
     bottom: 40px;
@@ -121,10 +121,13 @@ body * {
 }
 
 #button:hover {
-    font-size: 16px;
+    font-size: 1vw;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     cursor: pointer;
 }
+
+
+/*COMPARE LAYER POPUP*/
 
 #compareTxt {
     position: absolute;
@@ -147,18 +150,37 @@ body * {
     line-height: 9px;
 }
 
+/*GRAPH*/
+
+#graph {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    width: 300px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    display: none;
+}
+
+#linechart {
+    width: 300px;
+}
+
 /*TEXT STYLE*/
 
 h2 {
     font-family: "Montserrat";
-    font-size: 20px;
+    font-size: 1.3vw;
     color: white;
     font-weight: normal;
 }
 
 h3 {
     font-family: "Montserrat";
-    font-size: 14px;
+    font-size: 0.9vw;
     color: white;
     font-weight: normal;
     margin: 0;
@@ -166,5 +188,6 @@ h3 {
 
 p {
     font-family: "Montserrat";
-    font-size: 11px;
+    font-size: 0.7vw;
+    margin:0;
 }
