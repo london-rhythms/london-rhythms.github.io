@@ -120,7 +120,8 @@ a:visited {
 .prjintro {
     text-align: center;
     position: relative;
-    top: 0;
+    top: 10px;
+    width:70%;
     font-family: "Montserrat";
     font-weight: normal;
     font-size: 1.2vw;
@@ -228,7 +229,7 @@ p {
     position: absolute;
     text-align: left;
     top: 20%;
-    left: 20%;
+    left: 40%;
     color: white;
 }
 
