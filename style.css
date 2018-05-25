@@ -1,52 +1,307 @@
+/* NAVIGATION TABS 
+ * ------------------------------*/
 
-/* Overlay class for story info box */
+#menu {
+    position: fixed;
+    top: 10px;
+    right: 5px;
+    height: 10px;
+    width: 50px;
+    z-index: 70;
+    padding: 0;
+    margin: 0;
+}
 
-.map-overlay {
-    /*    background: black;*/
-    position: absolute;
-    bottom: 0;
+/* overall style of menu*/
+
+#menu li {
+    display: block;
+    float: right;
+    margin: 5px;
+    width: 1.5vw;
+    height: 1.5vw;
+    background: rgba(100, 100, 100, 0.6);
+    border-radius: 0.75vw;
+}
+
+/* menu icon */
+
+#menu li img {
+    width: 1.1vw;
+    position: relative;
+    top: 10%;
+    left: 15%;
+}
+
+/* when actived, change style*/
+
+#menu li.active {
+    background: #666;
+    background: rgba(255, 255, 255, 0.7);
+    color: #fff;
+}
+
+/*when mouseover, change style*/
+
+#menu li:hover {
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+
+/* CONTROL ARROWS FOR SLIDES(IF ANY)
+ * ---------------------------------*/
+
+.fp-controlArrow {
+    top: 51%;
+}
+
+.fp-controlArrow.fp-prev {
+    left: 0;
+    border: none;
+    width: 50px;
+    height: 50px;
+    background: url(media/arrow_left.png) no-repeat;
+
+}
+
+.fp-controlArrow.fp-next {
     right: 0;
-    margin-right: 10px;
-    overflow: visible;
-    border-radius: 3px;
+    border: none;
+    width: 50px;
+    height: 50px;
+    background: url(media/arrow_right.png) no-repeat;
 }
 
 
-#story {
-    position: absolute;
-    /* top: 10px;
-    right: 30px; */
-    /* bottom: 160px; */
-    top: 50%;
-    left: 1.5%;
-    width: 15%;
-    height: 30%;
-    background: black;
+
+
+/* PAGE OVERALL STYLE
+ * ---------------------------------*/
+
+.section {
+    text-align: center;
+    font: "Lato";
+    color: #fff;
+    background-position: center center;
+    margin: 0;
+}
+
+.section1 {
+    background-size: cover;
+    background-image: url(media/bg_pulsecity.jpg);
+}
+
+a:link {
     color: white;
-    padding: 15px;
-    opacity: 0.5;
+}
+
+a:visited {
+    color: lightgray;
 }
 
 
+/* TEXT STYLE
+ * ---------------------------------*/
 
-/*TEXT STYLE*/
+/*Page1 title*/
+
+.prjtitle {
+    text-align: center;
+    position: relative;
+    top: -5%;
+    font-family: "East Sea Dokdo";
+    font-size: 10vw;
+    font-weight: normal;
+
+    animation: fadeIn 4s;
+}
+
+.prjintro {
+    text-align: center;
+    position: relative;
+    top: 10px;
+    width:70%;
+    margin:auto;
+    font-family: "Montserrat";
+    font-weight: normal;
+    font-size: 1.2vw;
+
+    animation-delay: 3s;
+    animation: fadeIn 5s;
+}
+
+/*Page2 title*/
+
+.section2 h2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+
+    -webkit-transform: scale(0.5, 0.5);
+    transform: scale(0.5, 0.5);
+    opacity: 0;
+    transition: all 1s;
+}
+
+
+h1 {
+    font-family: "Montserrat";
+    font-size: 4vw;
+}
 
 h2 {
     font-family: "Montserrat";
-    font-size: 20px;
-    color: white;
-    font-weight: normal;
+    font-size: 2vw;
 }
 
 h3 {
     font-family: "Montserrat";
-    font-size: 1vw;
-    color: white;
+    font-size: 1.3vw;
     font-weight: normal;
+
+    position: relative;
+    top: 0px;
     margin: 0;
 }
 
 p {
-    font-family: "Montserrat";
-    font-size: 0.7vw;
+    font-family: "Lato";
+    font-size: 0.8vw;
+
+    position: relative;
+    margin: 0;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+
+
+/* STYLE OF ELEMENTS
+ *------------------------------------*/
+
+.downarrow {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 2vw;
+
+    animation-delay: 7s;
+    animation: slidefromBottom 2s;
+}
+
+/*title overlay*/
+
+.overlay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    border-radius: 3px;
+
+    background-color: black;
+    text-align: left;
+}
+
+/*about page*/
+
+#about {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 75;
+}
+
+#aboutText {
+    position: absolute;
+    text-align: left;
+    top: 20%;
+    left: 40%;
+    color: white;
+}
+
+/*Page2 elements*/
+
+#items {
+    margin: auto;
+    width: 50vw;
+    height: 40vw;
+    padding: 0;
+}
+
+#items li {
+    display: block;
+    margin: 80px;
+
+    -webkit-transform: scale(0.5, 0.5);
+    transform: scale(0.5, 0.5);
+    opacity: 0;
+    transition: all 1s;
+}
+
+#items li img {
+    width: 6vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.subtitles {
+    position: relative;
+    top: 20px;
+    left: 130px;
+    text-align: left;
+}
+
+
+
+/* TRANSITION & ANIMATION
+ *------------------------------------*/
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slidefromBottom {
+    from {
+        opacity: 0;
+        bottom: -20px;
+    }
+    to {
+        opacity: 1;
+        bottom: 30px;
+    }
+}
+
+/*when page loads, start animation*/
+
+.active h2 {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
+}
+
+.active #items li {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
 }
