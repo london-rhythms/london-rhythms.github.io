@@ -151,7 +151,7 @@ wkdayMap.on('mousemove', function (e) {
     if (twt.length > 0) {
         document.getElementById('statistics').innerHTML = '<h3><strong>' + twt[0].properties.name + '</strong></h3><p><strong>' + twt[0].properties.twt_count + '</strong> number of tweets were created per thousand population overnight.</p>';
     } else {
-        document.getElementById('statistics').innerHTML = '<h3>Hover over boroughs.</h3>';
+        document.getElementById('statistics').innerHTML = '<h3>Hover over boroughs.</h3><p>Patterns of night social vitality on weekdays and weekends. Click "compare" to see the difference!</p>';
     }
 
     //hover-show border
@@ -169,7 +169,7 @@ wkendMap.on('mousemove', function (e) {
     if (twt.length > 0) {
         document.getElementById('statistics').innerHTML = '<h3><strong>' + twt[0].properties.name + '</strong></h3><p><strong>' + twt[0].properties.twt_count + '</strong> number of tweets were created per thousand population overnight.</p>';
     } else {
-        document.getElementById('statistics').innerHTML = '<h3>Hover over boroughs.</h3>';
+        document.getElementById('statistics').innerHTML = '<h3>Hover over boroughs.</h3><p>Patterns of night social vitality on weekdays and weekends. Click "compare" to see the difference!</p>';
     }
 
     //hover-show border
@@ -186,7 +186,7 @@ wkendMap.on("mouseleave", "london-wkendcount", function () {
 });
 
 
-////GRAPH////
+////CHART JS////
 new Chart(document.getElementById("chart"), {
     type: 'line',
     data: {
