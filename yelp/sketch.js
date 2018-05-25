@@ -1,5 +1,4 @@
 
-
 // MAP - key for mapbox and options for Mappa instance
 const key = 'pk.eyJ1IjoiZ3NsYXRlcjY0IiwiYSI6ImNqYzk3NTU3YTA5MjAycXAzcmkzazl0YXcifQ.a066cgDjUYxGvv0ei_rHKg';
 var options = {
@@ -12,8 +11,8 @@ var options = {
 
 // OBJECT CONTAINERS
 var b1, b2, b3, b4;     // buttons
-let key_display = [];   // key objects
-let tables = [];        // load in tables
+var key_display = [];   // key objects
+var tables = [];        // load in tables
 var table;
 let businesses = [];    // to hold business arrays
 var gui;                // gui object for sliders
@@ -37,10 +36,10 @@ let colour = [];
 let colour2 = [];
 
 // graph arrays
-let cat_display = [];       // to hold booleans for display or not
-let cat_open_count = [];    // to hold count of currently open businesses for each category
-let cat_graphs = [];        // to hold arrays of business open counts for graphing
-let graph_stack = []        // to hold running total of heights for stacked chart
+var cat_display = [];       // to hold booleans for display or not
+var cat_open_count = [];    // to hold count of currently open businesses for each category
+var cat_graphs = [];        // to hold arrays of business open counts for graphing
+var graph_stack = []        // to hold running total of heights for stacked chart
 var cat_totals = [936, 782, 347, 346, 133, 117];
 
 // user input controls
@@ -72,12 +71,6 @@ function  preload(){
 
 function setup() {
 
-  // create button controls
-  b1 = new Button(50, 350, 'PAUSE', 'paused');
-  b2 = new Button(50, 420, 'GRAPH', 'show_graph');
-  b3 = new Button(50, 490, 'STORY', 'story');
-  b4 = new SButton(110, 490);
-
   // define colour palette
   colour2 = [color(0,116,217), color(57,204,204), color(1,255,112), color(255,220,0), color(240,18,190), color(255,65,54)];
   // colour2 = [color(0,116,217), color(57,204,204), color(1,255,112), color(255,220,0), color(240,18,190), color(133,27,75)];
@@ -89,14 +82,19 @@ function setup() {
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
 
+  // create button controls
+  b1 = new Button(width*.025, height*.32, 'PAUSE', 'paused');
+  b2 = new Button(width*.025, height*.38, 'GRAPH', 'show_graph');
+  b3 = new Button(width*.025, height*.44, 'STORY', 'story');
+  b4 = new SButton(width*.055, height*.44);
+
   // GUI object
-  gui = createGui('Speed Controller', width - 300, 20);
+  gui = createGui('Speed Controller', width*.9, height*.03);
   sliderRange(0,8,1);
   gui.addGlobals('speed_control');
 
-  textFont('Helvetica');
+  let y = height*.1;   // starting y position for key items
 
-  let y = 120;
   // create all category-level elements
   for (let i = 0; i < categories.length; i++){
 
@@ -105,11 +103,8 @@ function setup() {
     c = map(i,0,categories.length, 100, 250);
     colour[i] = color(c,100,100);
 
-    // set all category display array vars to true
-    cat_display[i] = true;
-
-    // set count of currently open businesses to 0
-    cat_open_count[i] = 0;
+    cat_display[i] = true;    // set all category display array vars to true
+    cat_open_count[i] = 0;    // set count of currently open businesses to 0
 
     // create sub array for each chart element and set all values to 0
     cat_graphs[i] = [];
@@ -118,9 +113,9 @@ function setup() {
     }
 
     // create array of key objects
-    let k = new KeyItem(30, y, i);
+    let k = new KeyItem(width*.02, y, i);
     key_display.push(k);
-    y += 30;
+    y += height*.033;
   }
 
   // load all data and generate businesses
@@ -164,12 +159,12 @@ function draw() {
   // draw time counter and background box
   fill(10, 200);
   rectMode(CORNERS);
-  rect(width-170, height-125, width, height-20);
+  rect(width*.9, height*.87, width, height);
   fill(255);
   textSize(25);
   textAlign(LEFT, CENTER);
-  text(day_names[day_t], width-160, height-65);
-  text(timeString(time), width-160, height-100);
+  text(timeString(time), width*.92, height*.9);
+  text(day_names[day_t], width*.92, height*.94);
 
   // display all business points
   for(let bus of businesses[day_t]){
@@ -276,7 +271,7 @@ class KeyItem {
     this.x = x;
     this.y = y;
     this.num = num;   // used to retrieve category name from array
-    this.r = 20;
+    this.r = height*0.02;
     this.selected = true;
   }
   // draw circle and text elements - based on whether selected or not
@@ -325,13 +320,13 @@ class Button{
     this.y = y;
     this.name = name;   // for display name
     this.bool = bool;   // to define the variable that will be controlled with button
-    this.r = 55;
+    this.r = height*.05;
     this.selected = false;
   }
 
   show(){
     textAlign(CENTER, CENTER);
-    textSize(12);
+    textSize(10);
     colorMode(RGB);
 
     // draw based on passed through variable
@@ -390,7 +385,7 @@ class SButton{
   constructor(x, y){
     this.x = x;
     this.y = y;
-    this.r = 40;
+    this.r = height*.04;
     this.pressed = false;
   }
 
@@ -596,10 +591,10 @@ function graph3(){
   }
   // draw right axis and label
   fill(255);
-  text(total,width*.92, height*.9-borderheight);
+  text(total,width*.91, height*.9-borderheight);
   stroke(255);
-  line(width*.91, height*.9-borderheight, width*.91, height);
-  line(width*.91, height*.9-borderheight,width*.915, height*.9-borderheight);
+  line(width*.9, height*.9-borderheight, width*.9, height);
+  line(width*.9, height*.9-borderheight,width*.905, height*.9-borderheight);
 }
 
 // to plot time elements on moving chart
