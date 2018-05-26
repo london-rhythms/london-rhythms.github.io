@@ -23,7 +23,7 @@ body {
 }
 
 .textContainer li{
-    font-size: 0.8vw;
+    font-size: 0.9vw;
 }
 
 video {
@@ -35,7 +35,7 @@ video {
 
 p {
     font-family: "Montserrat";
-    font-size: 0.8vw;
+    font-size: 0.9vw;
     position: relative;
     margin: 0;
     padding-bottom: 5px;
