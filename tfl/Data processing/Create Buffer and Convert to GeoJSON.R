@@ -41,7 +41,7 @@ locations_polygon <- gBuffer(locations, width=0.003, byid=TRUE)
 
 plot(locations_polygon)
 
-polygon_dataframe = fortify(locations_polygon)
+polygon_dataframe <- fortify(locations_polygon)
 
 # convert polygon to geojson 
 # Show the first 10 rows
