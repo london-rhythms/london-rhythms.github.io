@@ -1,4 +1,4 @@
-/* Storyline buttons to make interac tion easier, d3 used */
+/* Storyline buttons to make interaction easier, d3 used */
 
 var pageNum = 1;
 var backButton = d3.select("#story-back");
@@ -715,7 +715,7 @@ function updateStory2(storyObj) {
 };
 
 
-///////////// CALLBACKS ///////////////
+/* CALL TO STORY */
 
 // Story mode click through FORWARD.
 backButton.on("click", function () {
