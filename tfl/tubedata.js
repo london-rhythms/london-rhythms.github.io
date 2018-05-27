@@ -133,12 +133,9 @@ var values = [ 1.48185360e+09,   1.48185540e+09,   1.48185720e+09,
       
 values.sort();
 
-/* TEST 1 with http://colorbrewer2.org/#type=sequential&scheme=Blues&n=9 */
 var layers = ['< 5','5-50', '50-100', '100-300', '300-500', '500-700','700-900', '> 900'];
 
-//var colors = ['#3b4042', '#deebf7', "#9ecae1", '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b', '#050418']; 
-
-// TEST 2 with http://www.0to255.com/17146E
+// TEST with http://www.0to255.com/17146E
 var colors = ['#3b4042', '#accbf9', "#7dadf5", '#2d7cef', '#0e53ba', '#1d178d', '#0e0b44', '#050418', '#020509']; 
 
 
@@ -167,11 +164,13 @@ map.on('load', function () {
         type: 'fill-extrusion',
         source: {
             type: 'vector',
-            url: 'mapbox://kaatnl.0m8m2xhy'
+            url: 'mapbox://kaatnl.dwdfpjmc'
+            //url: 'mapbox://kaatnl.0m8m2xhy'
         },
         // filter on first value unixtime 
         'filter': ['==', ['number', ['get', 'unix']], values[0]],
-        'source-layer': 'station_unix_locations_final-81o5o1',
+        //'source-layer': 'station_unix_locations_final-81o5o1', 
+        'source-layer': 'station_unix_locations_final-4n8kv3',
         'layout': {
             'visibility': 'none'
         },
@@ -217,13 +216,13 @@ map.on('load', function () {
         type: 'fill-extrusion',
         source: {
             type: 'vector', 
-            url: 'mapbox://kaatnl.0m8m2xhy'
+            url: 'mapbox://kaatnl.dwdfpjmc'
+            //url: 'mapbox://kaatnl.0m8m2xhy'
         },
         // filter on first value unixtime
-        // starting 1471568400
-        // 1487296800
         'filter': ['==', ['number', ['get', 'unix']], values[0]],
-        'source-layer': 'station_unix_locations_final-81o5o1',
+        //'source-layer': 'station_unix_locations_final-81o5o1', 
+        'source-layer': 'station_unix_locations_final-4n8kv3',
         'layout': {
             // starting view
             'visibility': 'visible'
@@ -368,8 +367,7 @@ $('#forward').click(function () {
     
     map.setFilter('Entries', ['==', ['number', ['get', 'unix']], values[index]]);
     map.setFilter('Exits', ['==', ['number', ['get', 'unix']], values[index]]);
-    //If you want to change something on the map when the year is INCREASED, do it here 
-  	//map.legend.setContent(index);
+
 });
 $('#backward').click(function () {
   var index = $('.range-slider').val();
@@ -417,8 +415,7 @@ $('#backward').click(function () {
     
     map.setFilter('Entries', ['==', ['number', ['get', 'unix']], values[index]]);
     map.setFilter('Exits', ['==', ['number', ['get', 'unix']], values[index]]);
-    //If you want to change something on the map when the year is DECREASED, do it here 
-  	//map.legend.setContent(index);
+
 }); 
 $('#play').click(function(){
 	interval=setInterval(function (){
@@ -439,7 +436,7 @@ $("#stop").click(function(){
     // play button colour
     var play = document.getElementById("play");
     play.setAttribute("style", "background-color: black");
-        // affects the rate of speed of slider 
+         
 	clearInterval(interval);
 });
     
@@ -448,24 +445,7 @@ document.getElementById('input').addEventListener('input', function(e) {
     // get value of the slider when changing the slider manually 
     var index = parseInt(e.target.value);
     map.setFilter('Entries', ['==', ['number', ['get', 'unix']], values[index]]);
-    map.setFilter('Exits', ['==', ['number', ['get', 'unix']], values[index]]);   
-    
-    //console.log("?????");
-    
-    d3.csv("Bank.csv", function(data){
-    data_size = data.length;
-    
-        var check = String(values[index] + ".0");
-        
-        for (i=0; i < data_size; i ++) {
-            var check2 = String(data[i].unix);
-            if (check == check2) {
-
-            }
-        }
-    });
-    
-    
+    map.setFilter('Exits', ['==', ['number', ['get', 'unix']], values[index]]);          
 });
 
 var weekday = new Array(7);
@@ -543,10 +523,6 @@ input.oninput = function(){
 map.on('click', 'Exits', function (e) {
         coordinates = e.lngLat;
         var station = e.features[0].properties.Station;
-        console.log(station);
-       
-        var csv = String(station + ".csv");
-        console.log(csv);
        
         var number_exits = e.features[0].properties.Exits;
         var number_entries = e.features[0].properties.Entries;
@@ -557,12 +533,10 @@ map.on('click', 'Exits', function (e) {
             .addTo(map); 
 });
 
-/* TO BE ABLE TO QUICKLY SEE WHAT TUBE STATION IT IS */
+/* SHOW EXIT AND ENTRY VALUE ON KLICK */
 map.on('click', 'Entries', function (e) {
         coordinates = e.lngLat;
         var station = e.features[0].properties.Station;
-       
-        var csv = String(station + ".csv");
        
         var number_exits = e.features[0].properties.Exits;
         var number_entries = e.features[0].properties.Entries;
