@@ -5,11 +5,11 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 import json
 
-# if possible use your own consumer_key and other details 
-consumer_key = "PjEG20WtcyzS40xERI3WwGufw"
-consumer_secret = "Uq54Dss0bkyDerJnbh04HYk2cQvMzLXCgRS1lrROx7EeET8C3J"
-access_token = "513578093-5aWcLC7TGbjydb9I1wOC70xdfzEgb7DoSCYH6YyU"
-access_secret = "9duyDEHAMpeY494R1yEKx8kq3IvfeHqOpNJYo9n6VWNm1"
+# Use your own consumer_key and other details by registering for an application on Twitter 
+# consumer_key = ""
+# consumer_secret = ""
+# access_token = ""
+# access_secret = ""
  
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
@@ -40,15 +40,13 @@ class MyListener(StreamListener):
         print(status)
         return True
  
-#Set the hashtag to be searched
+# Set the hashtag to be searched
 twitter_stream = Stream(auth, MyListener())
-# greater london bounding box
+# Greater london bounding box
 # https://wiki.openstreetmap.org/wiki/Bounding_Box
 # long-lat "51.2867602","51.6918741","-0.5103751","0.3340155"
 # Each bounding box should be specified as a pair of longitude and latitude pairs,
 # with the southwest corner of the bounding box coming first
-# twitter_stream.filter(track=['#London'])
-
 # https://developer.twitter.com/en/docs/tweets/filter-realtime/guides/basic-stream-parameters
 
 twitter_stream.filter(locations=[-0.5103751,51.2867602, 0.3340155, 51.6918741])
