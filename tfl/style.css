@@ -281,13 +281,7 @@ map-overlay2 {
 
 /*TEXT STYLE*/
 
-h1 {
-    font-family: 'Montserrat';
-    font-size: 18px;
-    color: black;
-    font-weight: normal;
-}
-
+/* EXIT ENTRY BUTTON TEXT*/
 h2 {
     font-family: 'Montserrat';
     font-size: 17px;
@@ -295,6 +289,7 @@ h2 {
     font-weight: normal;
 }
 
+/* STORY TEXT AND LEGEND CONTENT */
 h9 {
     font-family: 'Montserrat';
     font-size: 13px;
@@ -302,16 +297,10 @@ h9 {
     font-weight: normal;
 }
 
+/* STORY TEXT AND LEGEND HEADER */
 h10 {
     font-family: 'Montserrat';
     font-size: 14px;
-    color: white;
-    font-weight: normal;
-}
-
-h11 {
-    font-family: 'Montserrat';
-    font-size: 13px;
     color: white;
     font-weight: normal;
 }
@@ -324,12 +313,7 @@ h3 {
     margin: 0;
 }
 
-h5 {
-    font-family: 'Montserrat';
-    font-size: 30px;
-    color: white;
-    text-shadow: 5px 5px 10px #0e0c43;
-}
+/* TIME TEXT */
 
 h6 {
     font-family: 'Montserrat';
@@ -338,6 +322,8 @@ h6 {
     text-shadow: 5px 5px 10px #0e0c43;
 }
 
+/* POP UP TEXT */
+
 .mapboxgl-map {
     font-family: 'Montserrat';
     font-size: 13px;
@@ -345,10 +331,7 @@ h6 {
     font-weight: bold;
 }
 
-/* CLEAN */
-
 /* RANGE SLIER LAY OUT */
-
 
 .range-slider {
   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
@@ -456,22 +439,22 @@ h6 {
   color: transparent;
 }
 .range-slider::-ms-fill-lower {
-  background: #2a6495;
+  background: black;
   border: 0.2px solid #010101;
   border-radius: 2.6px;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 .range-slider:focus::-ms-fill-lower {
-  background: #3071a9;
+  background: black;
 }
 .range-slider::-ms-fill-upper {
-  background: #3071a9;
+  background: black;
   border: 0.2px solid #010101;
   border-radius: 2.6px;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 .range-slider:focus::-ms-fill-upper {
-  background: #367ebd;
+  background: black;
 }    
 
 /* STORY */
